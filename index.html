@@ -393,7 +393,7 @@ body.store .citem{font-size:19px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.1.1';
+const APP_VERSION = '2.1.2';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -819,14 +819,20 @@ function toBase(qty, unit){
   }
 }
 const unitPrice = (p, qty, unit) => { const b = toBase(qty, unit); return {up: p / b.v, uu: b.u}; };
+S.lists.forEach(l => l.items.forEach(i => { if (i.price != null){ const c = S.catalog[canonK(i.name)]; if (!c || c.lp == null){ const {up, uu} = unitPrice(i.price, i.qty, i.unit); const cc = S.catalog[canonK(i.name)] || (S.catalog[canonK(i.name)] = {name:i.name, rayon:null, n:0, b:0}); Object.assign(cc, {lp:i.price, lup:up, lu:uu}); } } }));
 const fmtUnit = (up, uu) => up == null ? '' : eur(up) + (uu === 'pce' ? (LANG === 'es' ? '/ud' : '/pce') : '/' + uu);
 const qtyLabel = it => it.qty ? (it.unit ? `${String(it.qty).replace('.', ',')} ${it.unit}` : `×${String(it.qty).replace('.', ',')}`) : '';
 
 function recordsOf(k){ return S.prices.filter(r => r.k === k).sort((a, b) => b.d.localeCompare(a.d)); }
 function lastPrice(k, chain){ return recordsOf(k).find(r => !chain || r.c === chain) || null; }
 function suggestPrice(it, chain){
-  const r = lastPrice(it.k, chain); if (!r) return null;
   const b = toBase(it.qty, it.unit);
+  const r = lastPrice(it.k, chain);
+  if (!r){
+    const c = !chain && S.catalog[it.k];
+    if (!c || c.lp == null) return null;
+    return c.lu === b.u ? c.lup * b.v : c.lp;
+  }
   return r.uu === b.u ? r.up * b.v : r.p;
 }
 function estPrice(it){
@@ -1124,6 +1130,7 @@ function editItem(id){
     const slv = $('#fSl').value.trim(); const sl = slv === '' ? null : Math.max(0, Math.round(num(slv) ?? 0));
     if (sl != null && sl !== shelfDays({...it, name, rayon, sl:null})) learn(name, {sl});
     Object.assign(it, {name, k:canonK(name), qty:num($('#fQty').value), unit:$('#fUnit').value, rayon, note:$('#fNote').value.trim(), price:np, st:$('#fOnly').value.trim(), urg, sl});
+    if (np != null && np !== it._p0) notePrice(name, np, it.qty, it.unit);
     if (np != null && st && np !== it._p0){ recordPrice(it.name, it.k, np, it.qty, it.unit, st); S.settings.lastStore = st; }
     touch(L, it); save(); renderList(); closeSheet();
   };
@@ -1989,7 +1996,14 @@ function openListPicker(){
 }
 
 /* ================= Mode courses : magasin, étiquettes, total ================= */
+/* Dernier prix connu du produit, avec ou sans magasin (sert d'estimation) */
+function notePrice(name, p, qty, unit){
+  if (p == null || isNaN(p)) return;
+  const {up, uu} = unitPrice(p, qty, unit);
+  learn(name, {lp:p, lup:up, lu:uu, lpd:today()});
+}
 function recordPrice(name, k, p, qty, unit, chain){
+  notePrice(name, p, qty, unit);
   if (p == null || !chain) return;
   const {up, uu} = unitPrice(p, qty, unit), d = today();
   dropPrices(r => !(r.k === k && r.c === chain && r.d === d));
