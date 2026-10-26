@@ -305,7 +305,7 @@ body.store .citem{min-height:62px;font-size:20px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.7.0';
+const APP_VERSION = '1.8.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -351,7 +351,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', sh_off:'Non partagée pour l\'instant', sh_msgs:'Messages, activité, code d\'invitation', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -415,7 +415,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', sh_off:'Aún no compartida', sh_msgs:'Mensajes, actividad, código de invitación', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -623,6 +623,23 @@ function load(){
   return defaults();
 }
 let S = load();
+/* Une seule liste, toujours la même : fusion des anciennes listes */
+(function unify(){
+  if (S.lists.length <= 1) return;
+  const cur = S.lists.find(l => l.id === S.cur);
+  const shared = S.lists.filter(l => l.shared).sort((a, b) => (b.seen || 0) - (a.seen || 0));
+  const target = (cur && cur.shared) ? cur : (shared[0] || cur || S.lists[0]);
+  S.lists.forEach(l => {
+    if (l === target) return;
+    l.items.filter(i => !i.checked).forEach(i => {
+      if (target.items.some(x => x.k === i.k)) return;
+      target.items.push(i);
+      if (target.shared){ i.u = Date.now(); i.by = S.dev; i.dirty = i.u; }
+    });
+  });
+  S.lists = [target]; S.cur = target.id;
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
+})();
 S.settings.view = 'carnet';
 S.lists.forEach(l => { l.items = l.items.filter(i => !i.checked); });
 function setLang(l){ LANG = l === 'es' ? 'es' : 'fr'; LOC = LANG === 'es' ? 'es-ES' : 'fr-FR'; document.documentElement.lang = LANG; }
@@ -845,7 +862,7 @@ function itemRow(it){
 }
 function renderList(){
   const L = curList();
-  if ($('#tab-list').classList.contains('on')) $('#title').textContent = L.name;
+  if ($('#tab-list').classList.contains('on')) $('#title').textContent = t('def_list');
   renderTrip(); renderSum(); renderChips(); renderShBar();
   const todo = L.items;
   let h = '';
@@ -1509,8 +1526,8 @@ function notifyLog(fresh){
 function members(L){ const m = new Map(); (L.log || []).forEach(l => { if (l.by !== S.dev && l.w) m.set(l.by, l.w); }); return [...m.values()]; }
 function renderShBar(){
   const L = curList(); const el = $('#shbar');
-  $('#syncBtn').style.display = L.shared ? '' : 'none';
-  if (!L.shared){ el.innerHTML = ''; return; }
+  $('#syncBtn').style.display = 'none';
+  el.innerHTML = ''; return;
   const mem = members(L);
   const lastMsg = [...(L.log || [])].reverse().find(l => l.by !== S.dev);
   el.innerHTML = `<button class="card shbar" id="shOpen"><span style="font-size:20px">👥</span><div class="bd2"><b>${mem.length ? esc(t('sh_bar', {x:mem.join(', ')})) : t('sh_bar_wait')}</b>${lastMsg ? `<div class="small muted">${esc(logText(lastMsg))} · ${ftime(lastMsg.t)}</div>` : ''}</div><span class="muted">›</span></button>`;
@@ -1537,7 +1554,7 @@ function openLive(){
   const L = curList();
   if (L.shared) return openActivity();
   const sh = openSheet(`<h3>${t('sh_t')}</h3><p class="small muted">${t('sh_intro')}</p>${setupFields()}
-    <button class="btn pri full mt" id="shCreate">${ic('users')} ${t('sh_create', {x:esc(L.name)})}</button>
+    <button class="btn pri full mt" id="shCreate">${ic('users')} ${t('sh_create', {x:t('def_list')})}</button>
     <div class="h2">${t('sh_join')}</div>
     <div class="row"><input id="shJoin" placeholder="${t('sh_join_ph')}" autocapitalize="characters" maxlength="6" style="text-transform:uppercase;letter-spacing:.15em"><button class="btn" id="shJoinBtn" style="flex:none">${t('sh_join_btn')}</button></div>`);
   bindSetup(sh);
@@ -1555,17 +1572,20 @@ function openLive(){
 }
 async function joinRoom(room){
   if (!/^[A-Z0-9]{6}$/.test(room)) return toast(t('sh_nf'));
-  const ex = S.lists.find(l => l.shared && l.shared.room === room);
-  if (ex){ S.cur = ex.id; save(); closeSheet(); showTab('list'); return; }
+  const L0 = curList();
+  if (L0.shared && L0.shared.room === room){ closeSheet(); showTab('list'); return; }
   setSyncState('busy');
   let res = null;
   try { const u = S.settings.sync; res = await (await fetch(u + (u.includes('?') ? '&' : '?') + 'room=' + room)).json(); } catch(e){}
   if (!res || !res.ok){ setSyncState('err'); toast(res ? t('sh_nf') : t('sh_err')); return; }
-  const L = {id:uid(), name:res.doc.name || t('def_list'), budget:res.doc.budget || 0, items:[], gone:[], shared:{room}, mu:res.doc.u || 0, log:[], outLog:[], seen:Date.now()};
-  S.lists.push(L); S.cur = L.id;
+  const L = L0;
+  Object.assign(L, {shared:{room}, gone:L.gone || [], log:[], outLog:[], seen:Date.now(), mu:res.doc.u || 0, budget:res.doc.budget || L.budget || 0});
+  const local = L.items.slice(); L.items = [];
   mergeDoc(L, res.doc);
+  local.forEach(i => { if (!L.items.some(x => x.k === i.k)){ i.u = Date.now(); i.by = S.dev; i.dirty = i.u; L.items.push(i); } });
+  queueSync();
   logEv(L, 'join', '');
-  save(); closeSheet(); showTab('list'); toast(t('sh_joined', {x:L.name}));
+  save(); closeSheet(); showTab('list'); toast(t('sh_joined', {x:t('def_list')}));
   askNotif();
 }
 function askNotif(){ try { if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission(); } catch(e){} }
@@ -1573,7 +1593,7 @@ function openActivity(){
   const L = curList(); if (!L.shared) return openLive();
   const mem = members(L);
   const log = [...(L.log || []), ...(L.outLog || [])].sort((a, b) => b.t - a.t).slice(0, 40);
-  const sh = openSheet(`<h3>${t('sh_t')} · ${esc(L.name)}</h3>
+  const sh = openSheet(`<h3>${t('sh_t')}</h3>
     <p class="small muted">${mem.length ? esc(t('sh_members', {x:mem.join(', ')})) : t('sh_alone')}</p>
     <div class="chips" style="flex-wrap:wrap">${['q1','q2','q3','q4'].map(q => `<button class="chip" data-q="${q}">${t(q)}</button>`).join('')}</div>
     <div class="row mt"><input id="msgIn" placeholder="${t('sh_msg_ph')}" enterkeyhint="send"><button class="btn pri" id="msgSend" style="flex:none">${ic('send')}</button></div>
@@ -1620,10 +1640,10 @@ window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); instal
 function renderMore(){
   const L = curList();
   $('#tab-more').innerHTML = `
-    <div class="h2">${t('m_lists')}</div>
-    <div class="card">${S.lists.map(l => `<button class="li" data-list="${l.id}"><i class="radio ${l.id === S.cur ? 'on' : ''}"></i><div class="bd2"><b>${l.shared ? '👥 ' : ''}${esc(l.name)}</b><div class="small muted">${t('articles', {n:l.items.filter(i => !i.checked).length})}${l.budget ? ' · ' + t('budget') + ' ' + eur(l.budget) : ''}</div></div></button>`).join('')}</div>
-    <div class="row mt"><button class="btn" id="mNew">${ic('plus')} ${t('m_new')}</button><button class="btn" id="mEdit">${t('m_edit', {x:esc(L.name)})}</button></div>
-    <button class="btn full mt" id="mLive">${ic('users')} ${t('m_sync')}</button>
+    <div class="h2">${t('m_sync')}</div>
+    <button class="card li" id="mLive" style="border-radius:var(--r)"><span style="font-size:22px">👥</span><div class="bd2"><b>${L.shared ? (members(L).length ? esc(t('sh_members', {x:members(L).join(', ')})) : t('sh_bar_wait')) : t('sh_off')}</b><div class="small muted">${L.shared ? t('sh_msgs') : t('sh_intro')}</div></div><span class="muted">›</span></button>
+    <div class="h2">${t('budget')}</div>
+    <div class="card pad"><input id="mBudget" inputmode="decimal" value="${L.budget || ''}" placeholder="${t('lf_budget')}"></div>
     <div class="h2">${t('m_tpl')}</div>
     <div class="card">${S.templates.length ? S.templates.map(x => `<div class="li"><div class="bd2"><b>${esc(x.name)}</b><div class="small muted" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(x.items.map(trName).join(', '))}</div></div><button class="btn sm" data-tadd="${x.id}">${t('m_add')}</button><button class="ib" data-tedit="${x.id}" style="color:var(--muted)">✎</button></div>`).join('') : `<p class="pad muted">${t('m_notpl')}</p>`}</div>
     <div class="row mt"><button class="btn" id="tNew">${ic('plus')} ${t('m_tnew')}</button><button class="btn" id="tFromList">${t('m_tfrom')}</button></div>
@@ -1651,12 +1671,10 @@ function renderMore(){
     <p class="small muted" style="text-align:center;margin:20px 0 0">${t('m_credits')}</p>
     <div class="verbox"><b>Cabas · ${t('ver', {v:APP_VERSION})}</b><button class="btn sm" id="mVer">${t('ver_check')}</button></div>`;
   $('#mVer').onclick = async () => { const v = await remoteVersion(); if (v && v !== APP_VERSION) hardUpdate(); else toast(v ? t('ver_ok') : t('ver_check') + ' : ✗'); };
-  $$('[data-list]').forEach(b => b.onclick = () => { S.cur = b.dataset.list; save(); renderMore(); renderList(); toast(t('list_sel', {x:curList().name})); if (curList().shared) syncList(curList()); });
-  $('#mNew').onclick = () => listForm(null);
-  $('#mEdit').onclick = () => listForm(curList());
+  $('#mBudget').onchange = e => { L.budget = num(e.target.value) || 0; L.mu = Date.now(); if (L.shared){ L.metaDirty = true; queueSync(); } save(); };
   $('#mLive').onclick = openLive;
   $('#tNew').onclick = () => tplForm(null);
-  $('#tFromList').onclick = () => { const its = curList().items.map(i => (i.qty ? `${i.qty}${i.unit ? ' ' + i.unit : ''} ` : '') + dn(i)); if (!its.length) return toast(t('empty_list')); tplForm({id:null, name:curList().name, items:its}); };
+  $('#tFromList').onclick = () => { const its = curList().items.map(i => (i.qty ? `${i.qty}${i.unit ? ' ' + i.unit : ''} ` : '') + dn(i)); if (!its.length) return toast(t('empty_list')); tplForm({id:null, name:t('def_list'), items:its}); };
   $$('[data-tadd]').forEach(b => b.onclick = () => { const x = S.templates.find(y => y.id === b.dataset.tadd); x.items.forEach(i => addItem(trName(i))); toast(t('tpl_added', {n:x.items.length})); });
   $$('[data-tedit]').forEach(b => b.onclick = () => tplForm(S.templates.find(x => x.id === b.dataset.tedit)));
   $$('#langSeg button').forEach(b => b.onclick = () => { S.settings.lang = b.dataset.l; setLang(b.dataset.l); save(); applyStatic(); renderMore(); });
@@ -1990,8 +2008,8 @@ function showTab(tb){
   $$('#nav button').forEach(b => b.classList.toggle('on', b.dataset.tab === tb));
   $$('.tab').forEach(s => s.classList.toggle('on', s.id === 'tab-' + tb));
   $('#listActs').style.visibility = tb === 'list' ? 'visible' : 'hidden';
-  $('#titleChev').style.display = tb === 'list' ? '' : 'none';
-  $('#title').textContent = tb === 'list' ? curList().name : t('tab_' + tb);
+  $('#titleChev').style.display = 'none';
+  $('#title').textContent = tb === 'list' ? t('def_list') : t('tab_' + tb);
   if (tb === 'list') renderList();
   if (tb === 'stores') renderStores();
   if (tb === 'prices') renderPrices();
@@ -2015,7 +2033,7 @@ $('#shareBtn').onclick = openShare;
 $('#syncBtn').onclick = openActivity;
 $('#micBtn').onclick = toggleMic;
 $('#scanBtn').onclick = openScan;
-$('#titleBtn').onclick = () => { if ($('#tab-list').classList.contains('on')) openListPicker(); };
+
 
 /* Autocomplétion : historique + catalogue de départ */
 const addIn = $('#addIn'), ac = $('#ac');
