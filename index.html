@@ -243,15 +243,26 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 .cam.lbl::after{left:4%;right:4%;top:15%;height:70%}
 body.store .citem{min-height:62px;font-size:20px}
 .undob{color:var(--brand)}
+.undob:disabled{color:var(--muted);opacity:.35}
+.pill{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 13px;border-radius:999px;background:var(--soft);color:var(--brand);font-weight:700;font-size:14px;white-space:nowrap;flex:none}
+.pill svg{width:18px;height:18px}
+.pill.on{background:var(--brand);color:var(--brand-ink)}
+.ha{align-items:center}
+.lt{flex:1;min-width:0;font-size:22px}
+.ha .ib{width:40px}
+@media (max-width:380px){.pill{padding:0 10px}.lt{font-size:20px}}
+.verbox{text-align:center;margin:26px 0 6px}
+.verbox b{display:block;font-size:22px;letter-spacing:-.01em}
+.verbox .btn{margin-top:10px}
 </style>
 </head>
 <body>
 <header class="top">
   <button id="titleBtn" class="lt"><span id="title">Courses</span><svg id="titleChev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
   <div class="ha" id="listActs">
-    <button id="undoBtn" class="ib undob" style="display:none"></button>
+    <button id="undoBtn" class="ib undob" disabled></button>
     <button id="syncBtn" class="ib syncb"></button>
-    <button id="storeBtn" class="ib"></button>
+    <button id="storeBtn" class="pill"></button>
     <button id="shareBtn" class="ib"></button>
   </div>
 </header>
@@ -294,7 +305,7 @@ body.store .citem{min-height:62px;font-size:20px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.6.0';
+const APP_VERSION = '1.7.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -340,7 +351,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', a_undo:'Annuler la dernière action', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -404,7 +415,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', a_undo:'Deshacer la última acción', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -796,7 +807,7 @@ function takeItem(L, it){
 }
 /* Pile d'annulation : bouton ↶ en haut, toujours disponible */
 const UNDO = [];
-function renderUndo(){ const b = $('#undoBtn'); if (b) b.style.display = UNDO.length ? '' : 'none'; }
+function renderUndo(){ const b = $('#undoBtn'); if (b) b.disabled = !UNDO.length; }
 function offerUndo(msg, fn){
   const u = {msg, fn}; UNDO.push(u); if (UNDO.length > 20) UNDO.shift(); renderUndo();
   toast(msg, () => { const i = UNDO.indexOf(u); if (i >= 0) UNDO.splice(i, 1); fn(); renderUndo(); });
@@ -1149,10 +1160,12 @@ function openFinish(){
 
 /* ================= Mode magasin ================= */
 let wakeLock = null;
+function renderStoreBtn(){ const b = $('#storeBtn'); if (b) b.innerHTML = S.trip ? `${ic('check')} ${t('trip_end')}` : `${ic('pin')} ${t('trip_go')}`; }
 async function setStoreMode(on){
   S.settings.storeMode = on; save();
   document.body.classList.toggle('store', on);
   $('#storeBtn').classList.toggle('on', on);
+  renderStoreBtn();
   try {
     if (on && 'wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
     else if (wakeLock){ await wakeLock.release(); wakeLock = null; }
@@ -1635,7 +1648,9 @@ function renderMore(){
       <button class="btn danger full mt" id="mClear">${t('m_clear')}</button>
     </div>
     ${installEvt ? `<button class="btn pri full mt" id="mInst">${t('m_install')}</button>` : ''}
-    <p class="small muted" style="text-align:center;margin:20px 0 8px">Cabas v${APP_VERSION}<br>${t('m_credits')}</p>`;
+    <p class="small muted" style="text-align:center;margin:20px 0 0">${t('m_credits')}</p>
+    <div class="verbox"><b>Cabas · ${t('ver', {v:APP_VERSION})}</b><button class="btn sm" id="mVer">${t('ver_check')}</button></div>`;
+  $('#mVer').onclick = async () => { const v = await remoteVersion(); if (v && v !== APP_VERSION) hardUpdate(); else toast(v ? t('ver_ok') : t('ver_check') + ' : ✗'); };
   $$('[data-list]').forEach(b => b.onclick = () => { S.cur = b.dataset.list; save(); renderMore(); renderList(); toast(t('list_sel', {x:curList().name})); if (curList().shared) syncList(curList()); });
   $('#mNew').onclick = () => listForm(null);
   $('#mEdit').onclick = () => listForm(curList());
@@ -1967,6 +1982,7 @@ function applyStatic(){
   $('#shareBtn').setAttribute('aria-label', t('a_send'));
   $('#syncBtn').setAttribute('aria-label', t('a_sync'));
   $('#undoBtn').setAttribute('aria-label', t('a_undo'));
+  renderStoreBtn();
   $('#micBtn').setAttribute('aria-label', t('a_mic'));
   $('#scanBtn').setAttribute('aria-label', t('a_scan'));
 }
@@ -1986,7 +2002,7 @@ function showTab(tb){
 function renderAll(){ showTab($$('#nav button').find(b => b.classList.contains('on')).dataset.tab); }
 $$('#nav button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
 
-$('#storeBtn').innerHTML = ic('cart');
+renderStoreBtn();
 $('#shareBtn').innerHTML = ic('share');
 $('#syncBtn').innerHTML = ic('users');
 $('#undoBtn').innerHTML = ic('undo');
@@ -2086,14 +2102,32 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:'){
     reg.update().catch(() => {});
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
   }).catch(() => {});
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (!hadCtrl || $('.upd')) return;
-    const d = document.createElement('div'); d.className = 'upd';
-    d.innerHTML = `<span>✨ ${t('upd')}</span><button class="btn pri sm">${t('upd_btn')}</button>`;
-    d.querySelector('button').onclick = () => location.reload();
-    document.body.appendChild(d);
-  });
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadCtrl) showUpd(null); });
 }
+/* Vérification de version indépendante du cache */
+async function remoteVersion(){
+  try {
+    const r = await fetch('./index.html?v=' + Date.now(), {cache:'no-store'});
+    const m = (await r.text()).match(/APP_VERSION = '([\d.]+)'/);
+    return m ? m[1] : null;
+  } catch(e){ return null; }
+}
+async function hardUpdate(){
+  try { const regs = await navigator.serviceWorker?.getRegistrations() || []; await Promise.all(regs.map(r => r.unregister())); } catch(e){}
+  try { const ks = await caches.keys(); await Promise.all(ks.map(k => caches.delete(k))); } catch(e){}
+  location.replace(location.pathname + '?v=' + Date.now());
+}
+function showUpd(v){
+  if ($('.upd')) return;
+  const d = document.createElement('div'); d.className = 'upd';
+  d.innerHTML = `<span>✨ ${v ? t('ver_new', {v}) : t('upd')}</span><button class="btn pri sm">${t('upd_btn')}</button>`;
+  d.querySelector('button').onclick = hardUpdate;
+  document.body.appendChild(d);
+}
+async function checkVersion(){ const v = await remoteVersion(); if (v && v !== APP_VERSION) showUpd(v); }
+if (/[?&]v=\d/.test(location.search)) history.replaceState(null, '', location.pathname);
+setTimeout(checkVersion, 1500);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkVersion(); });
 </script>
 </body>
 </html>
