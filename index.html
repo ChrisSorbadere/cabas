@@ -255,6 +255,9 @@ body.store .citem{min-height:62px;font-size:20px}
 .verbox{text-align:center;margin:26px 0 6px}
 .verbox b{display:block;font-size:22px;letter-spacing:-.01em}
 .verbox .btn{margin-top:10px}
+.citem .nm{flex:0 1 auto}
+.citem .sp{flex:1}
+.citem .ns{width:22px;height:22px;font-size:13px;border-radius:6px;flex:none;align-self:center}
 </style>
 </head>
 <body>
@@ -307,7 +310,7 @@ body.store .citem{min-height:62px;font-size:20px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.9.0';
+const APP_VERSION = '1.10.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -840,7 +843,7 @@ function doUndo(){
 function carnetRow(it){
   const e = estPrice(it);
   const s = it.rayon === 'fl' ? inSeason(it.name) : null;
-  return `<button class="citem" data-id="${it.id}" data-a="take"><span class="nm">${esc(dn(it))}</span>${qtyLabel(it) ? `<span class="q">${esc(qtyLabel(it))}</span>` : ''}${it.note ? `<span class="nt">${esc(it.note)}</span>` : ''}${s === true ? `<span class="tg">🍃</span>` : s === false ? `<span class="tg warn">✈︎</span>` : ''}${e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : ''}</button>`;
+  return `<button class="citem" data-id="${it.id}" data-a="take"><span class="nm">${esc(dn(it))}</span>${it.ns ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}<span class="sp"></span>${qtyLabel(it) ? `<span class="q">${esc(qtyLabel(it))}</span>` : ''}${it.note ? `<span class="nt">${esc(it.note)}</span>` : ''}${s === true ? `<span class="tg">🍃</span>` : s === false ? `<span class="tg warn">✈︎</span>` : ''}${e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : ''}</button>`;
 }
 function renderSum(){
   const L = curList();
@@ -1824,7 +1827,7 @@ function addLine(o){
   const name = cap(o.name || t('product')), k = canonK(name);
   tr.lines.push({id:uid(), name, k, qty:o.qty ?? null, unit:o.unit || '', p:o.p ?? null, rayon:o.rayon || guessRayon(name), code:o.code || null, t:Date.now()});
   recordPrice(name, k, o.p, o.qty, o.unit, tr.chain);
-  if (o.code) learn(name, {code:o.code});
+  if (o.code) learn(name, {code:o.code, ...(o.ns ? {ns:o.ns} : {})});
   if (!o.fromList){
     const L = curList(); const it = L.items.find(i => i.k === k);
     if (it){ removeItem(L, it); logEv(L, 'chk', it.name); }
@@ -1930,7 +1933,7 @@ async function openLabelScan(pre){
     ${S.trip ? '' : `<label class="f">${t('store')}</label><input id="lsS" list="dlLs" value="${esc(S.settings.lastStore || '')}" placeholder="${t('pf_store_ph')}"><datalist id="dlLs">${[...new Set([...S.prices.map(r => r.c), ...S.favStores.map(chainOf)])].map(c => `<option value="${esc(c)}">`).join('')}</datalist>`}
     <input type="file" id="lsFile" accept="image/*" capture="environment" style="display:none">
     <div class="acts"><button class="btn ghost" id="lsX">${t('cancel')}</button><button class="btn pri" id="lsOk">${S.trip ? t('add_cart') : t('add_list')}</button></div>`, stopLs);
-  let code = pre.code || null;
+  let code = pre.code || null, offInfo = null;
   const msg = s => { const m = $('#lsMsg'); if (m) m.textContent = s; };
   const showOcr = res => {
     const box = $('#lsPr'); if (!box) return;
@@ -1964,7 +1967,7 @@ async function openLabelScan(pre){
     closeSheet();
     if (!S.trip){
       const q = num($('#lsQ').value), u = $('#lsU').value, st = ($('#lsS')?.value || '').trim();
-      const it = addItem('', {name: cap(name || t('product')), qty:q, unit:u, code});
+      const it = addItem('', {name: cap(name || t('product')), qty:q, unit:u, code, ns:offInfo?.ns, brand:offInfo?.brands, cats:offInfo?.cats});
       if (it && p != null){
         const L = curList(); it.price = p; touch(L, it);
         if (st){ recordPrice(it.name, it.k, p, it.qty, it.unit, st); S.settings.lastStore = st; }
@@ -1972,7 +1975,7 @@ async function openLabelScan(pre){
       }
       return;
     }
-    addLine({name: name || t('product'), p, qty:num($('#lsQ').value), unit:$('#lsU').value, rayon: pre.rayon, code, fromList: !!pre.fromList});
+    addLine({name: name || t('product'), p, qty:num($('#lsQ').value), unit:$('#lsU').value, rayon: pre.rayon, code, ns:offInfo?.ns, fromList: !!pre.fromList});
   };
   try {
     lsStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment', width:{ideal:1920}, height:{ideal:1080}}});
@@ -1990,7 +1993,7 @@ async function openLabelScan(pre){
             if (r.length){
               code = r[0].rawValue; vib([20, 30, 20]);
               msg(t('code_found', {x:code}));
-              if (/^\d{8,14}$/.test(code)){ const p = await offProduct(code).catch(() => null); if (p && p.name && !$('#lsN').value) $('#lsN').value = cap(p.name); if (p && p.name) msg(t('code_found', {x:p.name})); }
+              if (/^\d{8,14}$/.test(code)){ const p = await offProduct(code).catch(() => null); offInfo = p; if (p && p.name && !$('#lsN').value) $('#lsN').value = cap(p.name); if (p && p.name) msg(t('code_found', {x:p.name})); }
             }
           } catch(e){}
           busy = false;
@@ -2130,6 +2133,15 @@ applyStatic();
 if (S.settings.storeMode || S.trip) setStoreMode(!!S.trip);
 renderList();
 handleInvite();
+/* Nutri-Score manquant pour les articles déjà scannés */
+setTimeout(async () => {
+  const L = curList(); let ch = false;
+  for (const it of L.items.filter(i => i.code && !i.ns && /^\d{8,14}$/.test(i.code)).slice(0, 15)){
+    const p = await offProduct(it.code).catch(() => null);
+    if (p && p.ns){ it.ns = p.ns; learn(it.name, {ns:p.ns}); touch(L, it); ch = true; }
+  }
+  if (ch){ save(); renderList(); }
+}, 2500);
 if (curList().shared) syncList(curList());
 if ('serviceWorker' in navigator && location.protocol !== 'file:'){
   const hadCtrl = !!navigator.serviceWorker.controller;
