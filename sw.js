@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cabas-1.2.0';
+const CACHE_VERSION = 'cabas-1.3.0';
 const CORE = ['./', './index.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png'];
 const CDN = ['cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
@@ -22,7 +22,7 @@ self.addEventListener('fetch', e => {
   // Page : réseau d'abord
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req).then(r => {
+      fetch(req.url, {cache:'no-store'}).then(r => {
         const copy = r.clone();
         caches.open(CACHE_VERSION).then(c => c.put('./index.html', copy));
         return r;
