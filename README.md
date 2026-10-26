@@ -15,6 +15,12 @@ Application : https://chrissorbadere.github.io/cabas/
 5. Dans Cabas : Plus › Partage en direct, coller l'URL, indiquer son prénom, puis « Partager ».
 6. « Inviter par WhatsApp » : l'autre téléphone ouvre le lien, indique son prénom et rejoint la liste (l'URL du script est transmise avec l'invitation).
 
+## Mettre à jour le script (v2 : placard, menus, prix, dépenses, photos)
+
+1. Feuille Google › Extensions › Apps Script : remplacer tout le code par `apps-script/Code.gs`, enregistrer.
+2. Déployer › Gérer les déploiements › ✎ Modifier › Version : Nouvelle version › Déployer.
+3. L'URL ne change pas : rien à refaire sur les téléphones.
+
 Toute personne qui possède l'URL du script et le code de la liste peut lire et modifier cette liste.
 
 ## Sources de données

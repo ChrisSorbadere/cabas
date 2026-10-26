@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cabas-1.10.0';
+const CACHE_VERSION = 'cabas-2.0.0';
 const CORE = ['./', './index.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png'];
 const CDN = ['cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net'];
 
@@ -9,7 +9,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_VERSION).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE_VERSION && k !== 'cabas-photos').map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
