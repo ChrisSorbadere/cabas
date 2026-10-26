@@ -67,7 +67,8 @@ label.f{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:1
 .addrow{display:flex;gap:6px;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:4px 4px 4px 14px;box-shadow:var(--sh)}
 .addrow:focus-within{border-color:var(--brand)}
 .addrow input{border:0;padding:10px 0;background:transparent}
-.addrow .ib{width:40px;height:40px;color:var(--muted)}
+.addrow .ib{width:38px;height:40px;color:var(--muted)}
+.addrow{padding-left:12px;gap:2px}
 .ac{position:absolute;left:0;right:0;top:100%;margin-top:4px;overflow:hidden;display:none;z-index:25}
 .ac.on{display:block}
 .ac button{display:flex;width:100%;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);text-align:left}
@@ -258,7 +259,7 @@ body.store .citem{min-height:62px;font-size:20px}
 </head>
 <body>
 <header class="top">
-  <button id="titleBtn" class="lt"><span id="title">Courses</span><svg id="titleChev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+  <button id="titleBtn" class="lt"><span id="title">Courses</span><svg id="titleChev" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
   <div class="ha" id="listActs">
     <button id="undoBtn" class="ib undob" disabled></button>
     <button id="syncBtn" class="ib syncb"></button>
@@ -276,6 +277,7 @@ body.store .citem{min-height:62px;font-size:20px}
       <div style="position:relative">
         <div class="addrow">
           <input id="addIn" autocomplete="off" autocapitalize="sentences" enterkeyhint="done">
+          <button id="lblBtn" class="ib"></button>
           <button id="micBtn" class="ib"></button>
           <button id="scanBtn" class="ib"></button>
         </div>
@@ -305,14 +307,14 @@ body.store .citem{min-height:62px;font-size:20px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.8.0';
+const APP_VERSION = '1.9.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
 const T = {
 fr:{
   tab_list:'Liste', tab_stores:'Magasins', tab_prices:'Prix', tab_tips:'Conseils', tab_more:'Plus',
-  add_ph:'Ajouter…  ex. 2 kg tomates', a_store:'Mode courses', a_send:'Envoyer la liste', a_sync:'Partage en direct', a_mic:'Dicter', a_scan:'Scanner un code-barres',
+  add_ph:'Ajouter un article…', a_store:'Mode courses', a_send:'Envoyer la liste', a_sync:'Partage en direct', a_mic:'Dicter', a_scan:'Scanner un code-barres',
   s_todo:'À prendre', s_est:'Estimation', s_basket:'Dans le panier', budget:'Budget',
   empty_t:'Ta liste est vide', empty_d:'Tape un article, dicte-le ou scanne un code-barres.<br>Les articles se rangent tout seuls par rayon.',
   all_done:'Tout est dans le panier', in_basket:'Dans le panier ({n})', hide:'Masquer', show:'Afficher', finish:'Terminer les courses',
@@ -376,7 +378,7 @@ fr:{
 },
 es:{
   tab_list:'Lista', tab_stores:'Tiendas', tab_prices:'Precios', tab_tips:'Consejos', tab_more:'Más',
-  add_ph:'Añadir…  ej. 2 kg tomates', a_store:'Modo compra', a_send:'Enviar la lista', a_sync:'Compartir en directo', a_mic:'Dictar', a_scan:'Escanear un código de barras',
+  add_ph:'Añadir un producto…', a_store:'Modo compra', a_send:'Enviar la lista', a_sync:'Compartir en directo', a_mic:'Dictar', a_scan:'Escanear un código de barras',
   s_todo:'Por coger', s_est:'Estimación', s_basket:'En el carro', budget:'Presupuesto',
   empty_t:'Tu lista está vacía', empty_d:'Escribe un producto, díctalo o escanea un código de barras.<br>Se ordenan solos por sección.',
   all_done:'Todo está en el carro', in_basket:'En el carro ({n})', hide:'Ocultar', show:'Mostrar', finish:'Terminar la compra',
@@ -460,6 +462,7 @@ const P = {
   route:'<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/>',
   users:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5"/>',
   send:'<path d="M4 12l16-8-6 16-2.5-6.5z"/>',
+  tag:'<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
   undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>'
 };
 const ic = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`;
@@ -1924,8 +1927,9 @@ async function openLabelScan(pre){
     <div id="lsPr"></div>
     <label class="f">${t('e_name')}</label><input id="lsN" value="${esc(pre.name ? trName(pre.name) : '')}">
     <div class="grid2"><div><label class="f">${t('pf_price')}</label><input id="lsP" inputmode="decimal"></div><div><label class="f">${t('e_qty')}</label><div class="row"><input id="lsQ" inputmode="decimal" value="${pre.qty ?? ''}" placeholder="1"><select id="lsU" style="flex:.9">${[['', LANG === 'es' ? 'ud' : 'pce'],['kg','kg'],['g','g'],['l','L'],['cl','cl'],['ml','ml']].map(([k, n]) => `<option value="${k}" ${k === (pre.unit || '') ? 'selected' : ''}>${n}</option>`).join('')}</select></div></div></div>
+    ${S.trip ? '' : `<label class="f">${t('store')}</label><input id="lsS" list="dlLs" value="${esc(S.settings.lastStore || '')}" placeholder="${t('pf_store_ph')}"><datalist id="dlLs">${[...new Set([...S.prices.map(r => r.c), ...S.favStores.map(chainOf)])].map(c => `<option value="${esc(c)}">`).join('')}</datalist>`}
     <input type="file" id="lsFile" accept="image/*" capture="environment" style="display:none">
-    <div class="acts"><button class="btn ghost" id="lsX">${t('cancel')}</button><button class="btn pri" id="lsOk">${t('add_cart')}</button></div>`, stopLs);
+    <div class="acts"><button class="btn ghost" id="lsX">${t('cancel')}</button><button class="btn pri" id="lsOk">${S.trip ? t('add_cart') : t('add_list')}</button></div>`, stopLs);
   let code = pre.code || null;
   const msg = s => { const m = $('#lsMsg'); if (m) m.textContent = s; };
   const showOcr = res => {
@@ -1958,6 +1962,16 @@ async function openLabelScan(pre){
     const name = $('#lsN').value.trim(); const p = num($('#lsP').value);
     if (!name && p == null) return;
     closeSheet();
+    if (!S.trip){
+      const q = num($('#lsQ').value), u = $('#lsU').value, st = ($('#lsS')?.value || '').trim();
+      const it = addItem('', {name: cap(name || t('product')), qty:q, unit:u, code});
+      if (it && p != null){
+        const L = curList(); it.price = p; touch(L, it);
+        if (st){ recordPrice(it.name, it.k, p, it.qty, it.unit, st); S.settings.lastStore = st; }
+        save(); renderList();
+      }
+      return;
+    }
     addLine({name: name || t('product'), p, qty:num($('#lsQ').value), unit:$('#lsU').value, rayon: pre.rayon, code, fromList: !!pre.fromList});
   };
   try {
@@ -2002,6 +2016,7 @@ function applyStatic(){
   $('#undoBtn').setAttribute('aria-label', t('a_undo'));
   renderStoreBtn();
   $('#micBtn').setAttribute('aria-label', t('a_mic'));
+  $('#lblBtn').setAttribute('aria-label', t('scan_label'));
   $('#scanBtn').setAttribute('aria-label', t('a_scan'));
 }
 function showTab(tb){
@@ -2026,6 +2041,8 @@ $('#syncBtn').innerHTML = ic('users');
 $('#undoBtn').innerHTML = ic('undo');
 $('#undoBtn').onclick = doUndo;
 $('#micBtn').innerHTML = ic('mic');
+$('#lblBtn').innerHTML = ic('tag');
+$('#lblBtn').onclick = () => openLabelScan({});
 $('#scanBtn').innerHTML = ic('scan');
 if (!SR) $('#micBtn').style.display = 'none';
 $('#storeBtn').onclick = () => { if (S.trip){ if (!S.trip.lines.length || confirm(t('trip_end_c'))) endTrip(); } else startTrip(); };
