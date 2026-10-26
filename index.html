@@ -281,7 +281,7 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.3.0';
+const APP_VERSION = '1.4.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -294,7 +294,7 @@ fr:{
   all_done:'Tout est dans le panier', in_basket:'Dans le panier ({n})', hide:'Masquer', show:'Afficher', finish:'Terminer les courses',
   season:'de saison', offseason:'hors saison', qty_upd:'{x} : quantité mise à jour', deleted:'{x} supprimé', undo:'Annuler',
   bought_every:'Acheté tous les {n} j environ', mem_full:'Mémoire pleine : exporte puis efface l\'historique',
-  e_name:'Nom', e_qty:'Quantité', e_unit:'Unité', e_ray:'Rayon', e_note:'Note', e_note_ph:'marque, taille, bio…', e_price:'Prix payé / vu (total de la ligne)',
+  e_name:'Nom', e_qty:'Quantité', e_unit:'Unité', e_ray:'Rayon', e_note:'Note', e_note_ph:'marque, taille, bio…', e_price:'Prix (€)',
   e_season:'Saison en Espagne (indicatif) : {m}', e_where:'Où l\'acheter', e_info:'Infos produit (Open Food Facts)', e_code:'Code-barres {c}',
   e_op:'Voir les prix communautaires', e_search:'Chercher ce produit', delete:'Supprimer', save:'Enregistrer', cancel:'Annuler', ok:'OK',
   pieces:'pièce(s)', no_price:'Pas encore de prix connu. Il s\'enregistrera quand tu termineras tes courses.',
@@ -327,7 +327,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', took:'{x} rayé', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article pour le rayer · appui long pour le modifier',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', took:'{x} pris', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -358,7 +358,7 @@ es:{
   all_done:'Todo está en el carro', in_basket:'En el carro ({n})', hide:'Ocultar', show:'Mostrar', finish:'Terminar la compra',
   season:'de temporada', offseason:'fuera de temporada', qty_upd:'{x}: cantidad actualizada', deleted:'{x} eliminado', undo:'Deshacer',
   bought_every:'Comprado cada {n} días aprox.', mem_full:'Memoria llena: exporta y borra el historial',
-  e_name:'Nombre', e_qty:'Cantidad', e_unit:'Unidad', e_ray:'Sección', e_note:'Nota', e_note_ph:'marca, tamaño, ecológico…', e_price:'Precio pagado / visto (total de la línea)',
+  e_name:'Nombre', e_qty:'Cantidad', e_unit:'Unidad', e_ray:'Sección', e_note:'Nota', e_note_ph:'marca, tamaño, ecológico…', e_price:'Precio (€)',
   e_season:'Temporada en España (orientativo): {m}', e_where:'Dónde comprarlo', e_info:'Información (Open Food Facts)', e_code:'Código de barras {c}',
   e_op:'Ver precios de la comunidad', e_search:'Buscar este producto', delete:'Eliminar', save:'Guardar', cancel:'Cancelar', ok:'OK',
   pieces:'unidad(es)', no_price:'Aún no hay precio. Se guardará cuando termines la compra.',
@@ -391,7 +391,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', took:'{x} tachado', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto para tacharlo · mantén pulsado para editarlo',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', took:'{x} cogido', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -598,6 +598,8 @@ function load(){
   return defaults();
 }
 let S = load();
+S.settings.view = 'carnet';
+S.lists.forEach(l => { l.items = l.items.filter(i => !i.checked); });
 function setLang(l){ LANG = l === 'es' ? 'es' : 'fr'; LOC = LANG === 'es' ? 'es-ES' : 'fr-FR'; document.documentElement.lang = LANG; }
 setLang(S.settings.lang);
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){ toast(t('mem_full')); } }
@@ -749,8 +751,28 @@ function storeAnalysis(items){
 }
 
 /* ================= Rendu : Liste ================= */
-let showDone = S.settings.view === 'modern';
+let showRecent = false;
 const carnet = () => S.settings.view !== 'modern';
+/* Article pris : il quitte la liste, l'achat est noté en arrière-plan */
+function takeItem(L, it){
+  const idx = L.items.indexOf(it);
+  removeItem(L, it); logEv(L, 'chk', it.name);
+  const d = today();
+  let hst = S.history.find(x => x.auto && x.d === d);
+  if (!hst){ hst = {id:uid(), d, s:'', c:'', items:[], t:0, auto:true}; S.history.push(hst); }
+  const fresh = !hst.items.some(x => x.k === it.k);
+  if (fresh) hst.items.push({n:it.name, k:it.k, q:it.qty, u:it.unit, p:null});
+  const cat = learn(it.name); if (fresh){ cat.b = (cat.b || 0) + 1; cat.lb = d; } if (!cat.rayon) cat.rayon = it.rayon;
+  S.recent = [{k:it.k, name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon, t:Date.now()}, ...(S.recent || []).filter(r => r.k !== it.k)].slice(0, 24);
+  save(); renderList();
+  toast(t('took', {x:dn(it)}), () => {
+    L.items.splice(Math.min(idx, L.items.length), 0, it);
+    L.gone = L.gone.filter(g => g.id !== it.id);
+    if (fresh){ hst.items = hst.items.filter(x => x.k !== it.k); cat.b = Math.max(0, (cat.b || 1) - 1); }
+    S.recent = S.recent.filter(r => r.k !== it.k);
+    touch(L, it); save(); renderList();
+  });
+}
 function carnetRow(it){
   const e = estPrice(it);
   const s = it.rayon === 'fl' ? inSeason(it.name) : null;
@@ -758,15 +780,15 @@ function carnetRow(it){
 }
 function renderSum(){
   const L = curList();
-  let est = 0, basket = 0, known = 0;
-  L.items.forEach(it => { const e = estPrice(it); if (e){ known++; est += e.v; if (it.checked) basket += e.v; } });
-  const todo = L.items.filter(i => !i.checked).length;
+  let est = 0, known = 0;
+  L.items.forEach(it => { const e = estPrice(it); if (e){ known++; est += e.v; } });
+  const todo = L.items.length;
   const pct = L.budget ? Math.min(100, est / L.budget * 100) : 0;
   $('#sum').innerHTML = L.items.length ? `<div class="sum">
     <div class="card k"><small>${t('s_todo')}</small><b>${todo}</b></div>
     <div class="card k"><small>${t('s_est')}${known && known < L.items.length ? ` (${known}/${L.items.length})` : ''}</small><b>${est ? eur(est) : '—'}</b>
       ${L.budget ? `<div class="bar ${est > L.budget ? 'over' : ''}"><i style="width:${pct}%"></i></div><small>${t('budget')} ${eur(L.budget)}</small>` : ''}</div>
-    <div class="card k"><small>${t('s_basket')}</small><b>${basket ? eur(basket) : '—'}</b></div></div>` : '';
+    </div>` : '';
 }
 function itemRow(it){
   const e = estPrice(it);
@@ -781,12 +803,9 @@ function renderList(){
   const L = curList();
   if ($('#tab-list').classList.contains('on')) $('#title').textContent = L.name;
   renderSum(); renderChips(); renderShBar();
-  const todo = L.items.filter(i => !i.checked), done = L.items.filter(i => i.checked);
-  if (!L.items.length){
-    $('#list').innerHTML = `<div class="empty"><div class="big">🧺</div><b>${t('empty_t')}</b>${t('empty_d')}</div>`;
-    return;
-  }
+  const todo = L.items;
   let h = '';
+  if (!todo.length) h += `<div class="empty"><div class="big">🧺</div><b>${t('empty_t')}</b>${t('empty_d')}</div>`;
   if (carnet() && todo.length){
     S.rayonOrder.forEach(rid => {
       const its = todo.filter(i => i.rayon === rid).sort((a, b) => a.ts - b.ts);
@@ -802,11 +821,11 @@ function renderList(){
     const r = RAY[rid];
     h += `<div class="gh"><i class="dot" style="background:${r.c}"></i>${r.e} ${rn(rid)}<span class="n">${its.length}</span></div><div class="card items">${its.map(itemRow).join('')}</div>`;
   });
-  if (!todo.length) h += `<div class="empty" style="padding:26px 20px"><div class="big">🎉</div><b>${t('all_done')}</b></div>`;
-  if (done.length){
-    h += `<button class="donebar" data-a="toggleDone" style="width:calc(100% - 8px)"><span>${t('in_basket', {n:done.length})}</span><span>${showDone ? t('hide') : t('show')}</span></button>`;
-    if (showDone) h += `<div class="card items">${done.map(itemRow).join('')}</div>`;
-    h += `<button class="btn pri full finish" data-a="finish">${ic('check')} ${t('finish')}</button>`;
+  const inList = new Set(todo.map(i => i.k));
+  const rec = (S.recent || []).filter(r => !inList.has(r.k));
+  if (rec.length){
+    h += `<button class="donebar" data-a="toggleRecent" style="width:calc(100% - 8px)"><span>↺ ${t('recent', {n:rec.length})}</span><span>${showRecent ? t('hide') : t('show')}</span></button>`;
+    if (showRecent) h += `<div class="chips" style="flex-wrap:wrap;padding-top:0">${rec.map(r => `<button class="chip" data-readd="${esc(r.k)}">＋ ${esc(trName(r.name))}${r.qty ? ` <span class="muted">${esc(qtyLabel(r))}</span>` : ''}</button>`).join('')}</div>`;
   }
   $('#list').innerHTML = h;
 }
@@ -867,7 +886,9 @@ function editItem(id){
     <div class="grid2"><div><label class="f">${t('e_qty')}</label><input id="fQty" inputmode="decimal" value="${it.qty ?? ''}" placeholder="1"></div><div><label class="f">${t('e_unit')}</label>${unitSelect(it.unit)}</div></div>
     <label class="f">${t('e_ray')}</label>${rayonSelect(it.rayon)}
     <label class="f">${t('e_note')}</label><input id="fNote" value="${esc(it.note)}" placeholder="${t('e_note_ph')}">
-    <label class="f">${t('e_price')}</label><input id="fPrice" inputmode="decimal" value="${it.price ?? ''}" placeholder="€">
+    <div class="grid2"><div><label class="f">${t('e_price')}</label><input id="fPrice" inputmode="decimal" value="${it.price ?? ''}" placeholder="${suggestPrice(it) != null ? '≈ ' + suggestPrice(it).toFixed(2) : '€'}"></div>
+    <div><label class="f">${t('store')}</label><input id="fStore" list="dlStore" value="${esc(S.settings.lastStore || '')}" placeholder="Mercadona"><datalist id="dlStore">${[...new Set([...S.prices.map(r => r.c), ...S.favStores.map(chainOf), ...(S.storesCache?.list || []).slice(0, 10).map(chainOf)])].map(c => `<option value="${esc(c)}">`).join('')}</datalist></div></div>
+    <p class="small muted" style="margin:6px 2px 0">${t('e_price_d')}</p>
     ${s ? `<p class="small">🍃 ${t('e_season', {m: s.m.map(m => new Date(2000, m - 1, 1).toLocaleDateString(LOC, {month:'short'})).join(', ')})}</p>` : ''}
     <div class="h2" style="margin-top:18px">${t('e_where')}</div>
     <div class="card pad">${whereBlock(it.k)}</div>
@@ -879,7 +900,14 @@ function editItem(id){
     const name = canonK(nn) === it.k ? it.name : nn;
     const rayon = $('#fRay').value;
     if (rayon !== it.rayon) learn(name, {rayon});
-    Object.assign(it, {name, k:canonK(name), qty:num($('#fQty').value), unit:$('#fUnit').value, rayon, note:$('#fNote').value.trim(), price:num($('#fPrice').value)});
+    const np = num($('#fPrice').value), st = $('#fStore').value.trim();
+    Object.assign(it, {name, k:canonK(name), qty:num($('#fQty').value), unit:$('#fUnit').value, rayon, note:$('#fNote').value.trim(), price:np});
+    if (np != null && st){
+      const {up, uu} = unitPrice(np, it.qty, it.unit), d = today();
+      S.prices = S.prices.filter(r => !(r.k === it.k && r.c === st && r.d === d));
+      S.prices.push({k:it.k, n:it.name, s:st, c:st, p:np, q:it.qty, u:it.unit, up, uu, d});
+      S.settings.lastStore = st;
+    }
     touch(L, it); save(); renderList(); closeSheet();
   };
   sh.querySelector('#fDel').onclick = () => {
@@ -1402,6 +1430,7 @@ function mergeDoc(L, doc){
     }
     if (li){ if (!li.dirty && (s.u || 0) > (li.u || 0)){ Object.assign(li, s); li.k = canonK(li.name); changed = true; } }
     else if (gi >= 0 && L.gone[gi].u >= (s.u || 0)) { /* supprimé ici plus récemment */ }
+    else if (s.checked) { }
     else { const n = {...s, k:canonK(s.name)}; L.items.push(n); if (gi >= 0) L.gone.splice(gi, 1); changed = true; }
   }
   if ((doc.u || 0) > (L.mu || 0)){ L.name = doc.name || L.name; L.budget = doc.budget || 0; L.mu = doc.u; changed = true; }
@@ -1556,8 +1585,6 @@ function renderMore(){
     <div class="card pad">
       <label class="f" style="margin-top:0">${t('m_lang')}</label>
       <div class="seg" id="langSeg"><button data-l="fr" class="${LANG === 'fr' ? 'on' : ''}">🇫🇷 Français</button><button data-l="es" class="${LANG === 'es' ? 'on' : ''}">🇪🇸 Español</button></div>
-      <label class="f">${t('m_view')}</label>
-      <div class="seg" id="viewSeg"><button data-v="carnet" class="${carnet() ? 'on' : ''}">${t('v_carnet')}</button><button data-v="modern" class="${carnet() ? '' : 'on'}">${t('v_modern')}</button></div>
       <label class="f">${t('m_look')}</label>
       <div class="seg" id="themeSeg">${[['auto','th_auto'],['light','th_light'],['dark','th_dark']].map(([k, n]) => `<button data-t="${k}" class="${S.settings.theme === k ? 'on' : ''}">${t(n)}</button>`).join('')}</div>
       <button class="btn full mt" id="mOrder">${t('m_order')}</button>
@@ -1585,7 +1612,6 @@ function renderMore(){
   $$('[data-tadd]').forEach(b => b.onclick = () => { const x = S.templates.find(y => y.id === b.dataset.tadd); x.items.forEach(i => addItem(trName(i))); toast(t('tpl_added', {n:x.items.length})); });
   $$('[data-tedit]').forEach(b => b.onclick = () => tplForm(S.templates.find(x => x.id === b.dataset.tedit)));
   $$('#langSeg button').forEach(b => b.onclick = () => { S.settings.lang = b.dataset.l; setLang(b.dataset.l); save(); applyStatic(); renderMore(); });
-  $$('#viewSeg button').forEach(b => b.onclick = () => { S.settings.view = b.dataset.v; save(); renderMore(); });
   $$('#themeSeg button').forEach(b => b.onclick = () => { S.settings.theme = b.dataset.t; save(); applyTheme(); renderMore(); });
   $('#mOrder').onclick = orderForm;
   $('#mMe').onchange = e => { S.settings.me = e.target.value.trim(); save(); };
@@ -1717,23 +1743,24 @@ ac.addEventListener('pointerdown', e => e.preventDefault());
 ac.onclick = e => { const b = e.target.closest('[data-ac]'); if (!b) return; addItem(b.dataset.ac); addIn.value = ''; ac.classList.remove('on'); addIn.focus(); };
 $('#chips').onclick = e => { const b = e.target.closest('[data-add]'); if (b) addItem(b.dataset.add); };
 
+$('#list').addEventListener('click', e => {
+  const b = e.target.closest('[data-readd]'); if (!b) return;
+  const r = (S.recent || []).find(x => x.k === b.dataset.readd); if (!r) return;
+  addItem('', {name:trName(r.name), qty:r.qty, unit:r.unit, rayon:r.rayon});
+});
 $('#list').onclick = e => {
   const a = e.target.closest('[data-a]'); if (!a) return;
   const act = a.dataset.a;
-  if (act === 'toggleDone'){ showDone = !showDone; renderList(); return; }
-  if (act === 'finish') return openFinish();
+  if (act === 'toggleRecent'){ showRecent = !showRecent; renderList(); return; }
   const L = curList(); const id = (a.closest('.item') || a.closest('.citem'))?.dataset.id; const it = L.items.find(i => i.id === id); if (!it) return;
   if (act === 'take'){
     if (lpFired){ lpFired = false; return; }
     if (a.classList.contains('gone')) return;
     a.classList.add('gone'); vib(12);
-    setTimeout(() => {
-      it.checked = true; touch(L, it); logEv(L, 'chk', it.name); save(); renderList();
-      toast(t('took', {x:dn(it)}), () => { it.checked = false; touch(L, it); save(); renderList(); });
-    }, 260);
+    setTimeout(() => takeItem(L, it), 260);
     return;
   }
-  if (act === 'chk'){ it.checked = !it.checked; vib(it.checked ? 12 : 6); touch(L, it); if (it.checked) logEv(L, 'chk', it.name); save(); renderList(); }
+  if (act === 'chk'){ vib(12); a.closest('.item').classList.add('done'); setTimeout(() => takeItem(L, it), 260); }
   if (act === 'edit') editItem(id);
 };
 
