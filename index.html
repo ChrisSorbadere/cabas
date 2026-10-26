@@ -232,6 +232,16 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 .upd span{flex:1}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .cgh .e,:root:not([data-theme=light]) .cgh .n{background:rgba(0,0,0,.25)}}
 :root[data-theme=dark] .cgh .e,:root[data-theme=dark] .cgh .n{background:rgba(0,0,0,.25)}
+.trip{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:12px 14px;margin:4px 0 12px;border:2px solid var(--soft)}
+.trow{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.trow+.trow{margin-top:8px}
+.tstore{font-weight:700;text-align:left;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ttot{text-align:left}
+.ttot small{display:block;color:var(--muted);font-size:12px;font-weight:600}
+.ttot b{font-size:28px;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--brand)}
+.cam.lbl{aspect-ratio:3/2}
+.cam.lbl::after{left:4%;right:4%;top:15%;height:70%}
+body.store .citem{min-height:62px;font-size:20px}
 </style>
 </head>
 <body>
@@ -246,6 +256,7 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 
 <main>
   <section id="tab-list" class="tab on">
+    <div id="tripbar"></div>
     <div id="sum"></div>
     <div id="shbar"></div>
     <div class="add">
@@ -281,14 +292,14 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.4.0';
+const APP_VERSION = '1.5.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
 const T = {
 fr:{
   tab_list:'Liste', tab_stores:'Magasins', tab_prices:'Prix', tab_tips:'Conseils', tab_more:'Plus',
-  add_ph:'Ajouter…  ex. 2 kg tomates', a_store:'Mode magasin', a_send:'Envoyer la liste', a_sync:'Partage en direct', a_mic:'Dicter', a_scan:'Scanner un code-barres',
+  add_ph:'Ajouter…  ex. 2 kg tomates', a_store:'Mode courses', a_send:'Envoyer la liste', a_sync:'Partage en direct', a_mic:'Dicter', a_scan:'Scanner un code-barres',
   s_todo:'À prendre', s_est:'Estimation', s_basket:'Dans le panier', budget:'Budget',
   empty_t:'Ta liste est vide', empty_d:'Tape un article, dicte-le ou scanne un code-barres.<br>Les articles se rangent tout seuls par rayon.',
   all_done:'Tout est dans le panier', in_basket:'Dans le panier ({n})', hide:'Masquer', show:'Afficher', finish:'Terminer les courses',
@@ -327,7 +338,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', took:'{x} pris', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -352,7 +363,7 @@ fr:{
 },
 es:{
   tab_list:'Lista', tab_stores:'Tiendas', tab_prices:'Precios', tab_tips:'Consejos', tab_more:'Más',
-  add_ph:'Añadir…  ej. 2 kg tomates', a_store:'Modo tienda', a_send:'Enviar la lista', a_sync:'Compartir en directo', a_mic:'Dictar', a_scan:'Escanear un código de barras',
+  add_ph:'Añadir…  ej. 2 kg tomates', a_store:'Modo compra', a_send:'Enviar la lista', a_sync:'Compartir en directo', a_mic:'Dictar', a_scan:'Escanear un código de barras',
   s_todo:'Por coger', s_est:'Estimación', s_basket:'En el carro', budget:'Presupuesto',
   empty_t:'Tu lista está vacía', empty_d:'Escribe un producto, díctalo o escanea un código de barras.<br>Se ordenan solos por sección.',
   all_done:'Todo está en el carro', in_basket:'En el carro ({n})', hide:'Ocultar', show:'Mostrar', finish:'Terminar la compra',
@@ -391,7 +402,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', took:'{x} cogido', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -802,7 +813,7 @@ function itemRow(it){
 function renderList(){
   const L = curList();
   if ($('#tab-list').classList.contains('on')) $('#title').textContent = L.name;
-  renderSum(); renderChips(); renderShBar();
+  renderTrip(); renderSum(); renderChips(); renderShBar();
   const todo = L.items;
   let h = '';
   if (!todo.length) h += `<div class="empty"><div class="big">🧺</div><b>${t('empty_t')}</b>${t('empty_d')}</div>`;
@@ -1550,7 +1561,7 @@ function openActivity(){
 setInterval(() => { if (document.visibilityState === 'visible'){ const L = curList(); if (L.shared) syncList(L); } }, 6000);
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState !== 'visible') return;
-  if (S.settings.storeMode) setStoreMode(true);
+  if (S.trip) setStoreMode(true);
   const L = curList(); if (L.shared) syncList(L);
 });
 /* Invitation reçue par lien */
@@ -1672,6 +1683,251 @@ function openListPicker(){
   sh.querySelector('#lpLive').onclick = openLive;
 }
 
+/* ================= Mode courses : magasin, étiquettes, total ================= */
+function recordPrice(name, k, p, qty, unit, chain){
+  if (p == null || !chain) return;
+  const {up, uu} = unitPrice(p, qty, unit), d = today();
+  S.prices = S.prices.filter(r => !(r.k === k && r.c === chain && r.d === d));
+  S.prices.push({k, n:name, s:chain, c:chain, p, q:qty, u:unit, up, uu, d});
+}
+function noteBought(name, k, qty, unit, rayon){
+  const d = today();
+  let hst = S.history.find(x => x.auto && x.d === d);
+  if (!hst){ hst = {id:uid(), d, s:'', c:'', items:[], t:0, auto:true}; S.history.push(hst); }
+  if (!hst.items.some(x => x.k === k)){ hst.items.push({n:name, k, q:qty, u:unit, p:null}); const cat = learn(name); cat.b = (cat.b || 0) + 1; cat.lb = d; if (!cat.rayon) cat.rayon = rayon; }
+  S.recent = [{k, name, qty, unit, rayon, t:Date.now()}, ...(S.recent || []).filter(r => r.k !== k)].slice(0, 24);
+}
+const tripTotal = () => (S.trip?.lines || []).reduce((s, l) => s + (l.p || 0), 0);
+async function fetchShops(lat, lon, radius){
+  const q = `[out:json][timeout:20];nwr["shop"~"^(supermarket|convenience|department_store)$"](around:${radius},${lat},${lon});out center tags 40;`;
+  for (const ep of ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter', 'https://overpass.private.coffee/api/interpreter']){
+    try {
+      const r = await fetch(ep, {method:'POST', body:'data=' + encodeURIComponent(q), headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+      if (!r.ok) continue;
+      const j = await r.json();
+      return j.elements.map(e => { const la = e.lat ?? e.center?.lat, lo = e.lon ?? e.center?.lon, g = e.tags || {}; return la == null ? null : {id:e.type[0] + e.id, name:g.name || '', brand:g.brand || '', lat:la, lon:lo, dist:hav(lat, lon, la, lo)}; })
+        .filter(s => s && (s.name || s.brand)).sort((a, b) => a.dist - b.dist);
+    } catch(e){}
+  }
+  return null;
+}
+function startTrip(){
+  S.trip = {start:Date.now(), store:'', chain:'', lines:[], near:[]};
+  setStoreMode(true); save(); renderList();
+  if (!navigator.geolocation){ pickStore(); return; }
+  toast(t('trip_locating'));
+  navigator.geolocation.getCurrentPosition(async p => {
+    const near = await fetchShops(p.coords.latitude, p.coords.longitude, 300);
+    if (!S.trip) return;
+    S.trip.near = (near || []).slice(0, 8);
+    const best = S.trip.near[0];
+    if (best && best.dist < 200){ S.trip.store = storeLabel(best); S.trip.chain = chainOf(best); save(); renderList(); toast('📍 ' + S.trip.store); }
+    else { save(); pickStore(); }
+  }, () => pickStore(), {enableHighAccuracy:true, timeout:12000, maximumAge:30000});
+}
+function pickStore(){
+  if (!S.trip) return;
+  const opts = new Map();
+  (S.trip.near || []).forEach(s => opts.set(chainOf(s) + '|' + storeLabel(s), {c:chainOf(s), s:storeLabel(s), d:s.dist}));
+  S.favStores.forEach(s => { const k = chainOf(s) + '|' + storeLabel(s); if (!opts.has(k)) opts.set(k, {c:chainOf(s), s:storeLabel(s)}); });
+  [...new Set(S.prices.map(r => r.c))].forEach(c => { if (![...opts.values()].some(o => o.c === c)) opts.set(c + '|' + c, {c, s:c}); });
+  const arr = [...opts.values()];
+  const sh = openSheet(`<h3>${t('trip_pick')}</h3>
+    <div class="card mt">${arr.map((o, i) => `<button class="li" data-st="${i}"><i class="radio ${S.trip.store === o.s ? 'on' : ''}"></i><div class="bd2"><b>${esc(o.s)}</b>${o.d != null ? `<div class="small muted">${fmtDist(o.d)}</div>` : ''}</div></button>`).join('') || `<p class="pad muted small">${t('trip_nostore')}</p>`}</div>
+    <div class="row mt"><input id="stOther" placeholder="${t('fin_ph')}"><button class="btn pri" id="stOk" style="flex:none">${t('ok')}</button></div>`);
+  $$('[data-st]', sh).forEach(b => b.onclick = () => { const o = arr[+b.dataset.st]; S.trip.store = o.s; S.trip.chain = o.c; save(); closeSheet(); renderList(); });
+  sh.querySelector('#stOk').onclick = () => { const v = $('#stOther').value.trim(); if (!v) return; S.trip.store = S.trip.chain = v; save(); closeSheet(); renderList(); };
+}
+function endTrip(){
+  if (!S.trip) return;
+  const n = S.trip.lines.length, tot = tripTotal(), st = S.trip.chain;
+  if (n){
+    S.history.push({id:uid(), d:today(), s:S.trip.store, c:st, items:S.trip.lines.map(l => ({n:l.name, k:l.k, q:l.qty, u:l.unit, p:l.p})), t:tot, trip:true});
+  }
+  S.trip = null; setStoreMode(false); save(); renderList();
+  if (n) toast(t('trip_ended', {x:`${eur(tot)}${st ? ' · ' + st : ''}`}));
+}
+function renderTrip(){
+  const el = $('#tripbar'); if (!el) return;
+  if (!S.trip){ el.innerHTML = ''; return; }
+  const tr = S.trip, tot = tripTotal(), L = curList();
+  const pct = L.budget ? Math.min(100, tot / L.budget * 100) : 0;
+  el.innerHTML = `<div class="trip">
+    <div class="trow"><button class="tstore" id="tStore">📍 ${tr.store ? esc(tr.store) : t('trip_locating')} <span class="muted">›</span></button><button class="btn sm ghost" id="tEnd">${t('trip_end')}</button></div>
+    <div class="trow"><button class="ttot" id="tCart"><small>${t('trip_cart')} · ${tr.lines.length}</small><b>${eur(tot) || eur(0)}</b></button><button class="btn pri" id="tScan">${ic('scan')} ${t('trip_scan')}</button></div>
+    ${L.budget ? `<div class="bar ${tot > L.budget ? 'over' : ''}"><i style="width:${pct}%"></i></div>` : ''}</div>`;
+  $('#tStore').onclick = pickStore;
+  $('#tEnd').onclick = () => { if (!tr.lines.length || confirm(t('trip_end_c'))) endTrip(); };
+  $('#tCart').onclick = openCart;
+  $('#tScan').onclick = () => openLabelScan({});
+}
+function addLine(o){
+  const tr = S.trip; if (!tr) return;
+  const name = cap(o.name || t('product')), k = canonK(name);
+  tr.lines.push({id:uid(), name, k, qty:o.qty ?? null, unit:o.unit || '', p:o.p ?? null, rayon:o.rayon || guessRayon(name), code:o.code || null, t:Date.now()});
+  recordPrice(name, k, o.p, o.qty, o.unit, tr.chain);
+  if (o.code) learn(name, {code:o.code});
+  if (!o.fromList){
+    const L = curList(); const it = L.items.find(i => i.k === k);
+    if (it){ removeItem(L, it); logEv(L, 'chk', it.name); }
+    noteBought(name, k, o.qty, o.unit, o.rayon || guessRayon(name));
+  }
+  save(); renderList(); vib(15);
+  toast(t('in_cart', {x:trName(name), t:eur(tripTotal())}));
+}
+function openCart(){
+  const tr = S.trip; if (!tr) return;
+  const sh = openSheet(`<h3>${t('trip_cart')} · ${esc(tr.store || '')}</h3>
+    <div class="card mt">${tr.lines.length ? tr.lines.slice().reverse().map(l => `<div class="li"><div class="bd2"><b>${esc(trName(l.name))}</b>${qtyLabel(l) ? `<div class="small muted">${esc(qtyLabel(l))}</div>` : ''}</div><input class="clp" data-id="${l.id}" inputmode="decimal" value="${l.p != null ? l.p.toFixed(2) : ''}" placeholder="€" style="width:92px;flex:none;text-align:right"><button class="ib" data-cdel="${l.id}" style="color:var(--muted)">${ic('trash')}</button></div>`).join('') : `<p class="pad muted">${t('trip_empty')}</p>`}</div>
+    <div class="row mt" style="justify-content:space-between"><b>${t('total')}</b><b id="cTot" style="text-align:right">${eur(tripTotal())}</b></div>
+    <div class="acts"><button class="btn" id="cScan">${ic('scan')} ${t('trip_scan')}</button><button class="btn pri" id="cOk">${t('done')}</button></div>`);
+  $$('.clp', sh).forEach(i => i.onchange = () => {
+    const l = tr.lines.find(x => x.id === i.dataset.id); l.p = num(i.value);
+    recordPrice(l.name, l.k, l.p, l.qty, l.unit, tr.chain); save(); $('#cTot').textContent = eur(tripTotal()); renderTrip();
+  });
+  $$('[data-cdel]', sh).forEach(b => b.onclick = () => { tr.lines = tr.lines.filter(x => x.id !== b.dataset.cdel); save(); renderTrip(); openCart(); });
+  sh.querySelector('#cScan').onclick = () => openLabelScan({});
+  sh.querySelector('#cOk').onclick = () => closeSheet();
+}
+/* Prix d'un article pris dans la liste pendant le mode courses */
+function askPrice(it){
+  const tr = S.trip; if (!tr) return;
+  const last = tr.chain ? lastPrice(it.k, tr.chain) : null;
+  const sug = tr.chain ? suggestPrice(it, tr.chain) : null;
+  const sh = openSheet(`<h3>${t('price_of', {x:esc(dn(it))})}</h3>
+    ${last ? `<p class="small muted">${t('last_at', {p:eur(last.p), d:fdate(last.d)})}</p>` : ''}
+    <div class="row mt"><input id="apP" inputmode="decimal" placeholder="${sug != null ? '≈ ' + sug.toFixed(2) : '€'}" value=""><button class="btn" id="apScan" style="flex:none">${ic('scan')} ${t('scan_label')}</button></div>
+    ${sug != null ? `<button class="chip mt" id="apSug">≈ ${eur(sug)}</button>` : ''}
+    <div class="acts"><button class="btn ghost" id="apSkip">${t('skip')}</button><button class="btn pri" id="apOk">${t('add_cart')}</button></div>`);
+  const done = p => { closeSheet(); addLine({name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon, p, code:it.code, fromList:true}); };
+  sh.querySelector('#apOk').onclick = () => done(num($('#apP').value));
+  sh.querySelector('#apSkip').onclick = () => done(null);
+  const sb = sh.querySelector('#apSug'); if (sb) sb.onclick = () => done(+sug.toFixed(2));
+  sh.querySelector('#apScan').onclick = () => openLabelScan({name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon, code:it.code, fromList:true});
+}
+
+/* --- Lecture d'étiquette (Tesseract, sur le téléphone) --- */
+let tessP = null, tessW = null;
+function loadTess(){
+  if (window.Tesseract) return Promise.resolve();
+  if (tessP) return tessP;
+  tessP = new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'; s.onload = res; s.onerror = () => { tessP = null; rej(new Error('load')); }; document.head.appendChild(s); });
+  return tessP;
+}
+async function ocrWorker(){
+  await loadTess();
+  if (!tessW) tessW = await Tesseract.createWorker('spa');
+  return tessW;
+}
+function grabFrame(v){
+  const w = v.videoWidth, h = v.videoHeight;
+  const cw = Math.round(w * .92), ch = Math.round(h * .7), sx = Math.round((w - cw) / 2), sy = Math.round((h - ch) / 2);
+  const scale = Math.min(2, 1600 / cw);
+  const c = document.createElement('canvas'); c.width = Math.round(cw * scale); c.height = Math.round(ch * scale);
+  const x = c.getContext('2d'); x.drawImage(v, sx, sy, cw, ch, 0, 0, c.width, c.height);
+  const d = x.getImageData(0, 0, c.width, c.height), a = d.data;
+  let mn = 255, mx = 0;
+  for (let i = 0; i < a.length; i += 4){ const g = a[i] * .3 + a[i+1] * .59 + a[i+2] * .11; a[i] = g; if (g < mn) mn = g; if (g > mx) mx = g; }
+  const k = 255 / Math.max(1, mx - mn);
+  for (let i = 0; i < a.length; i += 4){ const g = (a[i] - mn) * k; a[i] = a[i+1] = a[i+2] = g; }
+  x.putImageData(d, 0, 0);
+  return c;
+}
+const LABEL_STOP = /^(precio|pvp|p\.v\.p|eur|euros?|iva|oferta|promo|ahorra|ahorro|unidad|ud|kg|kilo|litro|l|cada|antes|ahora|el kg|el litro|por|de|ref|cod|codigo)$/i;
+function parseLabel(text){
+  const lines = text.split('\n').map(s => s.replace(/\s+/g, ' ').trim()).filter(Boolean);
+  const prices = []; const seen = new Set();
+  lines.forEach(l => {
+    const unit = /\/\s*(kg|k|l|lt|litro|kilo|ud|u)\b|€\s*\/|\b(por|el|precio)\s*(kg|kilo|litro|l)\b/i.test(l);
+    const re = /(\d{1,3})\s?[,.'´`]\s?(\d{2})(?!\d)/g; let m;
+    while ((m = re.exec(l))){ const v = parseFloat(m[1] + '.' + m[2]); if (v > 0 && v < 1000 && !seen.has(v + '|' + unit)){ seen.add(v + '|' + unit); prices.push({v, unit}); } }
+  });
+  let qty = null, unitQ = '';
+  const qm = text.match(/(\d+(?:[.,]\d+)?)\s?(kg|g|gr|grs|ml|cl|l|lt|litros?)\b/i);
+  if (qm){ qty = num(qm[1]); unitQ = qm[2].toLowerCase().replace(/^(gr|grs)$/, 'g').replace(/^(lt|litros?)$/, 'l'); }
+  const name = lines.filter(l => { const letters = (l.match(/[a-záéíóúñü]/gi) || []).length; return letters >= 4 && letters / l.length > .7 && !/\d\s?[,.'´`]\s?\d{2}/.test(l) && !/€/.test(l); })
+    .map(l => l.split(' ').filter(w => !LABEL_STOP.test(w)).join(' ')).filter(l => l.length >= 4).slice(0, 2).join(' ');
+  const main = prices.find(p => !p.unit) || prices[0] || null;
+  return {prices, main, qty, unit:unitQ, name: name ? cap(name.toLowerCase()) : ''};
+}
+let lsStream = null, lsLoop = null;
+function stopLs(){ if (lsLoop) cancelAnimationFrame(lsLoop); lsLoop = null; if (lsStream) lsStream.getTracks().forEach(x => x.stop()); lsStream = null; }
+async function openLabelScan(pre){
+  const hasBD = 'BarcodeDetector' in window;
+  const sh = openSheet(`<h3>${t('sl_t')}</h3>
+    <div class="cam lbl"><video id="lvid" playsinline muted></video></div>
+    <p class="small muted" id="lsMsg">${t('sl_hint')}</p>
+    <button class="btn pri full" id="lsRead">📷 ${t('scan_label')}</button>
+    <div id="lsPr"></div>
+    <label class="f">${t('e_name')}</label><input id="lsN" value="${esc(pre.name ? trName(pre.name) : '')}">
+    <div class="grid2"><div><label class="f">${t('pf_price')}</label><input id="lsP" inputmode="decimal"></div><div><label class="f">${t('e_qty')}</label><div class="row"><input id="lsQ" inputmode="decimal" value="${pre.qty ?? ''}" placeholder="1"><select id="lsU" style="flex:.9">${[['', LANG === 'es' ? 'ud' : 'pce'],['kg','kg'],['g','g'],['l','L'],['cl','cl'],['ml','ml']].map(([k, n]) => `<option value="${k}" ${k === (pre.unit || '') ? 'selected' : ''}>${n}</option>`).join('')}</select></div></div></div>
+    <input type="file" id="lsFile" accept="image/*" capture="environment" style="display:none">
+    <div class="acts"><button class="btn ghost" id="lsX">${t('cancel')}</button><button class="btn pri" id="lsOk">${t('add_cart')}</button></div>`, stopLs);
+  let code = pre.code || null;
+  const msg = s => { const m = $('#lsMsg'); if (m) m.textContent = s; };
+  const showOcr = res => {
+    const box = $('#lsPr'); if (!box) return;
+    if (!res.prices.length){ box.innerHTML = ''; msg(t('ocr_none')); return; }
+    msg(t('ocr_pick'));
+    box.innerHTML = `<div class="chips" style="flex-wrap:wrap">${res.prices.map((p, i) => `<button class="chip ${p === res.main ? 'due' : ''}" data-pp="${i}">${eur(p.v)}${p.unit ? ` <span class="muted">${t('unit_p')}</span>` : ''}</button>`).join('')}</div>`;
+    $$('[data-pp]', box).forEach(b => b.onclick = () => { $('#lsP').value = res.prices[+b.dataset.pp].v.toFixed(2); $$('[data-pp]', box).forEach(x => x.classList.remove('due')); b.classList.add('due'); });
+    if (res.main) $('#lsP').value = res.main.v.toFixed(2);
+    if (!$('#lsN').value && res.name) $('#lsN').value = res.name;
+    if (!$('#lsQ').value && res.qty){ $('#lsQ').value = res.qty; $('#lsU').value = res.unit; }
+  };
+  const runOcr = async src => {
+    const btn = $('#lsRead'); btn.disabled = true;
+    msg(window.Tesseract && tessW ? t('scan_reading') : t('scan_first'));
+    try {
+      const w = await ocrWorker(); msg(t('scan_reading'));
+      const r = await w.recognize(src);
+      showOcr(parseLabel(r.data.text || ''));
+    } catch(e){ msg(t('ocr_err')); }
+    if (btn) btn.disabled = false;
+  };
+  sh.querySelector('#lsRead').onclick = () => {
+    const v = $('#lvid');
+    if (lsStream && v && v.videoWidth) runOcr(grabFrame(v)); else $('#lsFile').click();
+  };
+  sh.querySelector('#lsFile').onchange = e => { const f = e.target.files[0]; if (!f) return; const img = new Image(); img.onload = () => { const c = document.createElement('canvas'); const sc = Math.min(1, 1600 / img.width); c.width = img.width * sc; c.height = img.height * sc; c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); runOcr(c); }; img.src = URL.createObjectURL(f); };
+  sh.querySelector('#lsX').onclick = () => closeSheet();
+  sh.querySelector('#lsOk').onclick = () => {
+    const name = $('#lsN').value.trim(); const p = num($('#lsP').value);
+    if (!name && p == null) return;
+    closeSheet();
+    addLine({name: name || t('product'), p, qty:num($('#lsQ').value), unit:$('#lsU').value, rayon: pre.rayon, code, fromList: !!pre.fromList});
+  };
+  try {
+    lsStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment', width:{ideal:1920}, height:{ideal:1080}}});
+    const v = $('#lvid'); if (!v){ stopLs(); return; }
+    v.srcObject = lsStream; await v.play();
+    if (hasBD && !pre.fromList){
+      const det = new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','qr_code','code_128']});
+      let last = 0, busy = false;
+      const tick = async ts => {
+        if (!lsStream) return;
+        if (!code && !busy && ts - last > 300){
+          last = ts; busy = true;
+          try {
+            const r = await det.detect(v);
+            if (r.length){
+              code = r[0].rawValue; vib([20, 30, 20]);
+              msg(t('code_found', {x:code}));
+              if (/^\d{8,14}$/.test(code)){ const p = await offProduct(code).catch(() => null); if (p && p.name && !$('#lsN').value) $('#lsN').value = cap(p.name); if (p && p.name) msg(t('code_found', {x:p.name})); }
+            }
+          } catch(e){}
+          busy = false;
+        }
+        lsLoop = requestAnimationFrame(tick);
+      };
+      lsLoop = requestAnimationFrame(tick);
+    }
+  } catch(e){
+    const cam = $('.cam.lbl'); if (cam) cam.style.display = 'none';
+  }
+  loadTess().catch(() => {});
+}
+
 /* ================= Navigation & évènements ================= */
 const TABS = {list:'list', stores:'pin', prices:'chart', tips:'bulb', more:'more'};
 function applyStatic(){
@@ -1705,7 +1961,7 @@ $('#syncBtn').innerHTML = ic('users');
 $('#micBtn').innerHTML = ic('mic');
 $('#scanBtn').innerHTML = ic('scan');
 if (!SR) $('#micBtn').style.display = 'none';
-$('#storeBtn').onclick = () => { setStoreMode(!S.settings.storeMode); toast(S.settings.storeMode ? t('store_on') : t('store_off')); };
+$('#storeBtn').onclick = () => { if (S.trip){ if (!S.trip.lines.length || confirm(t('trip_end_c'))) endTrip(); } else startTrip(); };
 $('#shareBtn').onclick = openShare;
 $('#syncBtn').onclick = openActivity;
 $('#micBtn').onclick = toggleMic;
@@ -1757,10 +2013,10 @@ $('#list').onclick = e => {
     if (lpFired){ lpFired = false; return; }
     if (a.classList.contains('gone')) return;
     a.classList.add('gone'); vib(12);
-    setTimeout(() => takeItem(L, it), 260);
+    setTimeout(() => { takeItem(L, it); if (S.trip) askPrice(it); }, 260);
     return;
   }
-  if (act === 'chk'){ vib(12); a.closest('.item').classList.add('done'); setTimeout(() => takeItem(L, it), 260); }
+  if (act === 'chk'){ vib(12); a.closest('.item').classList.add('done'); setTimeout(() => { takeItem(L, it); if (S.trip) askPrice(it); }, 260); }
   if (act === 'edit') editItem(id);
 };
 
@@ -1787,7 +2043,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', applyThe
 
 applyTheme();
 applyStatic();
-if (S.settings.storeMode) setStoreMode(true);
+if (S.settings.storeMode || S.trip) setStoreMode(!!S.trip);
 renderList();
 handleInvite();
 if (curList().shared) syncList(curList());
