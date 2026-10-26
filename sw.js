@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cabas-2.0.0';
+const CACHE_VERSION = 'cabas-2.0.1';
 const CORE = ['./', './index.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png'];
 const CDN = ['cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net'];
 
