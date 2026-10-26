@@ -1,0 +1,18 @@
+{
+  "id": "/cabas/",
+  "name": "Cabas — courses malines",
+  "short_name": "Cabas",
+  "description": "Liste de courses par rayon, magasins proches, suivi des prix et conseils d'achat.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f6f2",
+  "theme_color": "#1f8a5b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
