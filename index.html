@@ -9,6 +9,8 @@
 <link rel="icon" href="./icons/icon-192.png">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--bg:#f4f6f2;--card:#fff;--ink:#17201b;--muted:#68736c;--line:#e2e7e1;--brand:#1f8a5b;--brand-ink:#fff;--soft:#e4f2ea;--accent:#e9822f;--accent-soft:#fdf0e4;--danger:#d14343;--sh:0 1px 2px rgba(20,40,30,.05),0 6px 18px rgba(20,40,30,.06);--r:16px}
@@ -204,6 +206,26 @@ tr.best td{color:var(--brand);font-weight:700}
 .code{font:800 30px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;text-align:center;padding:16px;border-radius:14px;background:var(--soft);color:var(--brand);margin-top:12px}
 .finP::placeholder{color:var(--muted);opacity:.75;font-style:italic}
 pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;max-height:30vh;overflow:auto}
+
+/* Présentation carnet */
+:root{--paper:#fbf8ee;--rule:rgba(70,110,160,.16);--margin:rgba(214,90,90,.35);--pink:rgba(0,0,0,0)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#1c2320;--rule:rgba(255,255,255,.07);--margin:rgba(239,107,107,.3)}}
+:root[data-theme=dark]{--paper:#1c2320;--rule:rgba(255,255,255,.07);--margin:rgba(239,107,107,.3)}
+.paper{position:relative;margin-top:14px;padding:18px 0 22px;background-color:var(--paper);background-image:linear-gradient(90deg,transparent 33px,var(--margin) 33px,var(--margin) 35px,transparent 35px);border-radius:3px 3px 10px 10px;box-shadow:0 2px 4px rgba(0,0,0,.08),0 10px 26px rgba(0,0,0,.10);transform:rotate(-.3deg)}
+.paper::before{content:"";position:absolute;left:0;right:0;top:-6px;height:12px;background:radial-gradient(circle at 7px 6px,var(--bg) 4.5px,transparent 5px) 0 0/14px 12px repeat-x}
+.cgh{display:flex;align-items:center;gap:10px;margin:10px 0 2px;padding:5px 14px 3px 44px;font:700 21px/1.2 Kalam,"Comic Sans MS",cursive;color:var(--ink)}
+.cgh .e{font-size:22px;filter:saturate(1.2)}
+.cgh .n{margin-left:auto;font-size:16px;opacity:.55}
+.citem{display:flex;align-items:baseline;gap:10px;width:100%;text-align:left;min-height:48px;padding:5px 16px 1px 44px;border-bottom:1px solid var(--rule);font:400 27px/40px Kalam,"Comic Sans MS",cursive;color:var(--ink);user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;transition:opacity .25s}
+.citem .q{font-size:20px;opacity:.65;white-space:nowrap}
+.citem .nm{flex:1;min-width:0;position:relative}
+.citem .nm::after{content:"";position:absolute;left:-4px;top:52%;height:3px;width:0;background:var(--danger);border-radius:3px;transform:rotate(-2deg);transition:width .22s ease}
+.citem.gone .nm::after{width:calc(100% + 8px)}
+.citem.gone{opacity:.35}
+.citem .pz{font-size:17px;opacity:.5;white-space:nowrap}
+.citem .tg{font-size:15px;color:var(--brand);white-space:nowrap}
+.citem .tg.warn{color:var(--accent)}
+.chint{font:400 15px Kalam,cursive;color:var(--muted);text-align:center;margin:12px 0 0}
 </style>
 </head>
 <body>
@@ -253,7 +275,7 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.1.0';
+const APP_VERSION = '1.2.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -299,7 +321,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Carnet', v_modern:'Moderne', took:'{x} rayé', c_hint:'Touche un article pour le rayer · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -363,7 +385,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Libreta', v_modern:'Moderna', took:'{x} tachado', c_hint:'Toca un producto para tacharlo · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -552,7 +574,7 @@ function defaults(){
       {id:uid(), name:'Petit-déjeuner', items:['Lait','Pain de mie','Beurre','Confiture','Café moulu','Jus d\'orange']},
       {id:uid(), name:'Spaghetti carbonara (4 pers.)', items:['500 g spaghetti','200 g lardons','4 œufs','100 g parmesan','Poivre']}
     ],
-    settings:{theme:'auto', radius:2000, food:false, ai:'', storeMode:false, lang:(navigator.language || 'fr').startsWith('es') ? 'es' : 'fr', sync:'', me:''}
+    settings:{theme:'auto', radius:2000, food:false, ai:'', storeMode:false, view:'carnet', lang:(navigator.language || 'fr').startsWith('es') ? 'es' : 'fr', sync:'', me:''}
   };
 }
 function load(){
@@ -721,7 +743,13 @@ function storeAnalysis(items){
 }
 
 /* ================= Rendu : Liste ================= */
-let showDone = true;
+let showDone = S.settings.view === 'modern';
+const carnet = () => S.settings.view !== 'modern';
+function carnetRow(it){
+  const e = estPrice(it);
+  const s = it.rayon === 'fl' ? inSeason(it.name) : null;
+  return `<button class="citem" data-id="${it.id}" data-a="take"><span class="nm">${esc(dn(it))}</span>${qtyLabel(it) ? `<span class="q">${esc(qtyLabel(it))}</span>` : ''}${it.note ? `<span class="q">(${esc(it.note)})</span>` : ''}${s === true ? `<span class="tg">🍃</span>` : s === false ? `<span class="tg warn">✈︎</span>` : ''}${e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : ''}</button>`;
+}
 function renderSum(){
   const L = curList();
   let est = 0, basket = 0, known = 0;
@@ -753,7 +781,17 @@ function renderList(){
     return;
   }
   let h = '';
-  S.rayonOrder.forEach(rid => {
+  if (carnet() && todo.length){
+    h += '<div class="paper">';
+    S.rayonOrder.forEach(rid => {
+      const its = todo.filter(i => i.rayon === rid).sort((a, b) => a.ts - b.ts);
+      if (!its.length) return;
+      const r = RAY[rid];
+      h += `<div class="cgh" style="background:linear-gradient(90deg,${r.c}55,${r.c}22 70%,transparent)"><span class="e">${r.e}</span>${rn(rid)}<span class="n">${its.length}</span></div>` + its.map(carnetRow).join('');
+    });
+    h += `</div><p class="chint">${t('c_hint')}</p>`;
+  }
+  if (!carnet()) S.rayonOrder.forEach(rid => {
     const its = todo.filter(i => i.rayon === rid).sort((a, b) => a.ts - b.ts);
     if (!its.length) return;
     const r = RAY[rid];
@@ -1513,6 +1551,8 @@ function renderMore(){
     <div class="card pad">
       <label class="f" style="margin-top:0">${t('m_lang')}</label>
       <div class="seg" id="langSeg"><button data-l="fr" class="${LANG === 'fr' ? 'on' : ''}">🇫🇷 Français</button><button data-l="es" class="${LANG === 'es' ? 'on' : ''}">🇪🇸 Español</button></div>
+      <label class="f">${t('m_view')}</label>
+      <div class="seg" id="viewSeg"><button data-v="carnet" class="${carnet() ? 'on' : ''}">📝 ${t('v_carnet')}</button><button data-v="modern" class="${carnet() ? '' : 'on'}">▤ ${t('v_modern')}</button></div>
       <label class="f">${t('m_look')}</label>
       <div class="seg" id="themeSeg">${[['auto','th_auto'],['light','th_light'],['dark','th_dark']].map(([k, n]) => `<button data-t="${k}" class="${S.settings.theme === k ? 'on' : ''}">${t(n)}</button>`).join('')}</div>
       <button class="btn full mt" id="mOrder">${t('m_order')}</button>
@@ -1540,6 +1580,7 @@ function renderMore(){
   $$('[data-tadd]').forEach(b => b.onclick = () => { const x = S.templates.find(y => y.id === b.dataset.tadd); x.items.forEach(i => addItem(trName(i))); toast(t('tpl_added', {n:x.items.length})); });
   $$('[data-tedit]').forEach(b => b.onclick = () => tplForm(S.templates.find(x => x.id === b.dataset.tedit)));
   $$('#langSeg button').forEach(b => b.onclick = () => { S.settings.lang = b.dataset.l; setLang(b.dataset.l); save(); applyStatic(); renderMore(); });
+  $$('#viewSeg button').forEach(b => b.onclick = () => { S.settings.view = b.dataset.v; save(); renderMore(); });
   $$('#themeSeg button').forEach(b => b.onclick = () => { S.settings.theme = b.dataset.t; save(); applyTheme(); renderMore(); });
   $('#mOrder').onclick = orderForm;
   $('#mMe').onchange = e => { S.settings.me = e.target.value.trim(); save(); };
@@ -1676,10 +1717,33 @@ $('#list').onclick = e => {
   const act = a.dataset.a;
   if (act === 'toggleDone'){ showDone = !showDone; renderList(); return; }
   if (act === 'finish') return openFinish();
-  const L = curList(); const id = a.closest('.item')?.dataset.id; const it = L.items.find(i => i.id === id); if (!it) return;
+  const L = curList(); const id = (a.closest('.item') || a.closest('.citem'))?.dataset.id; const it = L.items.find(i => i.id === id); if (!it) return;
+  if (act === 'take'){
+    if (lpFired){ lpFired = false; return; }
+    if (a.classList.contains('gone')) return;
+    a.classList.add('gone'); vib(12);
+    setTimeout(() => {
+      it.checked = true; touch(L, it); logEv(L, 'chk', it.name); save(); renderList();
+      toast(t('took', {x:dn(it)}), () => { it.checked = false; touch(L, it); save(); renderList(); });
+    }, 260);
+    return;
+  }
   if (act === 'chk'){ it.checked = !it.checked; vib(it.checked ? 12 : 6); touch(L, it); if (it.checked) logEv(L, 'chk', it.name); save(); renderList(); }
   if (act === 'edit') editItem(id);
 };
+
+/* Appui long sur une ligne du carnet : modifier */
+let lpTimer = null, lpFired = false, lpXY = null;
+$('#list').addEventListener('pointerdown', e => {
+  const r = e.target.closest('.citem'); if (!r) return;
+  lpFired = false; lpXY = [e.clientX, e.clientY];
+  lpTimer = setTimeout(() => { lpFired = true; vib(25); editItem(r.dataset.id); }, 520);
+});
+const lpCancel = () => clearTimeout(lpTimer);
+$('#list').addEventListener('pointerup', lpCancel);
+$('#list').addEventListener('pointercancel', lpCancel);
+$('#list').addEventListener('pointermove', e => { if (lpXY && Math.hypot(e.clientX - lpXY[0], e.clientY - lpXY[1]) > 10) lpCancel(); });
+$('#list').addEventListener('contextmenu', e => { if (e.target.closest('.citem')) e.preventDefault(); });
 
 function applyTheme(){
   const th = S.settings.theme;
