@@ -285,6 +285,14 @@ body.store .citem{min-height:62px;font-size:20px}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:95;overflow:hidden}
 .confetti span{position:absolute;top:-40px;animation:fall 1.8s cubic-bezier(.2,.6,.4,1) forwards}
 @keyframes fall{to{transform:translate(var(--dx),105vh) rotate(var(--rot));opacity:.2}}
+.citem .cbd{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.citem .ctop{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.citem .ctop .nm{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;line-height:1.25;flex:0 1 auto}
+.citem .csub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:500;color:var(--muted);line-height:1.2}
+.citem .csub .sq{font-weight:700;color:var(--brand)}
+.citem .csub .pz,.citem .csub .nt{font-size:13px;max-width:none}
+.citem .csub .stt{font-size:11.5px;padding:0 7px}
+body.store .citem .csub{font-size:14px}
 @media (prefers-reduced-motion:reduce){.citem,.citem.gone{transition:none}.citem.fresh{animation:none}}
 body.store .citem{font-size:19px}
 
@@ -378,7 +386,7 @@ body.store .citem{font-size:19px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.0.1';
+const APP_VERSION = '2.0.2';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -918,8 +926,9 @@ function carnetRow(it){
   const tr = S.trip && S.trip.chain;
   const other = tr && it.st && !sameChain(it.st, S.trip.chain), here = tr && it.st && !other;
   const em = it.photo ? `<span class="em ph" data-a="photo"><img src="${esc(photoSrc(it.photo))}" alt=""></span>` : `<span class="em">${emojiOf(it.name) || RAY[it.rayon]?.e || '🛒'}</span>`;
-  const q = it.qty ? qtyLabel(it).replace('×', '') : '1';
-  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="nm">${esc(dn(it))}</span>${it.ns ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}<span class="sp"></span>${it.note ? `<span class="nt">${esc(it.note)}</span>` : ''}${it.st ? `<span class="stt">${esc(it.st)}</span>` : ''}${s === true ? `<span class="tg">🍃</span>` : s === false ? `<span class="tg warn">✈︎</span>` : ''}${e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : ''}<span class="stp"><i data-a="minus">−</i><b>${esc(q)}</b><i data-a="plus">+</i></span></button>`;
+  const q = it.qty ? qtyLabel(it) : '×1';
+  const sub = [q ? `<span class="sq">${esc(q)}</span>` : '', it.st ? `<span class="stt">${esc(it.st)}</span>` : '', e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : '', it.note ? `<span class="nt">${esc(it.note)}</span>` : ''].filter(Boolean).join('');
+  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="cbd"><span class="ctop"><span class="nm">${esc(dn(it))}</span>${it.ns ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}${s === true ? `<span class="tg">🍃</span>` : s === false ? `<span class="tg warn">✈︎</span>` : ''}</span>${sub ? `<span class="csub">${sub}</span>` : ''}</span><span class="stp"><i data-a="minus">−</i><i data-a="plus">+</i></span></button>`;
 }
 function renderSum(){
   const L = curList();
