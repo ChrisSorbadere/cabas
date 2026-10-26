@@ -393,7 +393,7 @@ body.store .citem{font-size:19px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.1.3';
+const APP_VERSION = '2.2.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -439,7 +439,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', tab_pantry:'Placard', ps_ray:'Rayon', ps_az:'A-Z', ps_exp_a:'Péremp. ↑', ps_exp_d:'Péremp. ↓', sl_lbl:'Conservation après achat', sl_unit:'jours', sl_days:'auto : {n} j', sl_none:'auto : sans date', cv_hint:'Sert à dater le produit quand il passe au placard. Laisse vide pour l\'estimation automatique, 0 = sans date.', sl_est:'estimée', ap_exp:'Date de péremption (facultatif)', tab_menus:'Menus', p_add_ph:'Ajouter au placard…', p_exp:'Date de péremption', p_hint:'Date facultative à droite. Touche un produit consommé : il part dans la liste. Appui long pour le modifier.', p_empty_t:'Le placard est vide', p_empty_d:'Note ce que vous avez à la maison, avec la date de péremption si besoin.<br>Quand un produit est consommé, touche-le : il passe dans la liste.', p_soon:'À consommer vite', p_auto:'Ranger automatiquement au placard les articles pris dans la liste', p_done:'Fini : ajouter à la liste', p_moved:'{x} : consommé, ajouté à la liste', px_out:'périmé', px_today:'aujourd\'hui', px_in:'J-{n}', p_alert:'⏳ {n} produit(s) du placard à consommer vite', p_to_list:'Fini : ajouter à la liste', mn_week:'Cette semaine', mn_lunch:'Déjeuner', mn_dinner:'Dîner', mn_pers:'Personnes', mn_add_week:'Ingrédients de la semaine → liste', mn_recipes:'Recettes', mn_new:'Nouvelle recette', mn_serv:'Nombre de personnes de la recette', mn_serv_n:'{n} pers.', mn_free:'…ou un plat sans recette', mn_free_ph:'ex. Restes, Restaurant', mn_clear:'Effacer', mn_paste_d:'Tu peux coller les ingrédients d\'une recette trouvée sur internet : un ingrédient par ligne.', mn_preview_d:'Décoche ce que vous avez déjà. Les quantités sont ajustées au nombre de personnes.', mn_in_pantry:'au placard', mn_in_list:'déjà dans la liste', mn_nothing:'Aucune recette prévue', x_title:'Dépenses', x_empty:'Les dépenses se calculent à partir du mode magasin : prends tes articles avec leur prix, puis touche « Quitter ».', x_month:'Ce mois-ci', x_vs:'vs mois dernier', x_by_store:'Par magasin', x_by_ray:'Par rayon', x_p1:'Ce mois', x_p3:'3 mois', x_p12:'12 mois', x_trips:'{n} passage(s) en caisse', ph_take:'Photo', ph_change:'Changer la photo', ph_del:'Retirer', ph_err:'Photo impossible', m_stores:'Magasins autour de moi', srv_old:'Script de partage à mettre à jour', srv_old_d:'Pour partager aussi le placard, les menus, les prix, les dépenses et les photos.', srv_steps:'1. Ouvre ta feuille Google › Extensions › Apps Script.<br>2. Remplace tout le code par celui-ci et enregistre.<br>3. Déployer › Gérer les déploiements › ✎ Modifier › Version : Nouvelle version › Déployer.<br>L\'URL ne change pas : rien à faire sur les téléphones.', e_only:'Seulement chez', e_only_ph:'n\'importe quel magasin', e_urg:'⚡ Urgent', urgent:'Urgent', lg_urg:'{w} : ⚡ {x} est urgent', pv_good:'✓ Bon prix : {p} % moins cher que d\'habitude', pv_high:'↑ {p} % plus cher que d\'habitude', pv_usual:'Prix habituel', pv_cheaper:'moins cher chez {c} ({p})', paste_t:'Coller une liste', paste_d:'Un article par ligne. Puces, emojis et titres sont ignorés.', paste_btn:'Ajouter {n} article(s)', paste_ph:'Lait\n2 kg tomates\nPain x2', m_theme:'Couleurs', pal_coral:'Corail', pal_sage:'Sauge', pal_lav:'Lavande', pal_sky:'Ciel', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', sh_off:'Non partagée pour l\'instant', sh_msgs:'Messages, activité, code d\'invitation', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', bc_price:'code-barres', bc_weighed:'Produit pesé : prix lu dans le code-barres ({p})', ocr_raw:'Voir le texte lu', ocr_der:'calculé', ocr_blank:'Aucun texte lu : rapproche-toi de l\'étiquette et évite les reflets.', ocr_photo:'Photo…', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', tab_pantry:'Placard', ps_ray:'Rayon', ps_az:'A-Z', ps_exp_a:'Péremp. ↑', ps_exp_d:'Péremp. ↓', sl_lbl:'Conservation après achat', sl_unit:'jours', sl_days:'auto : {n} j', sl_none:'auto : sans date', cv_hint:'Sert à dater le produit quand il passe au placard. Laisse vide pour l\'estimation automatique, 0 = sans date.', sl_est:'estimée', ap_exp:'Date de péremption (facultatif)', tab_menus:'Menus', p_add_ph:'Ajouter au placard…', p_exp:'Date de péremption', p_hint:'Date facultative à droite. Touche un produit consommé : il part dans la liste. Appui long pour le modifier.', p_empty_t:'Le placard est vide', p_empty_d:'Note ce que vous avez à la maison, avec la date de péremption si besoin.<br>Quand un produit est consommé, touche-le : il passe dans la liste.', p_soon:'À consommer vite', p_auto:'Ranger automatiquement au placard les articles pris dans la liste', p_done:'Fini : ajouter à la liste', p_moved:'{x} : consommé, ajouté à la liste', px_out:'périmé', px_today:'aujourd\'hui', px_in:'J-{n}', p_alert:'⏳ {n} produit(s) du placard à consommer vite', p_to_list:'Fini : ajouter à la liste', mn_week:'Cette semaine', mn_lunch:'Déjeuner', mn_dinner:'Dîner', mn_pers:'Personnes', mn_add_week:'Ingrédients de la semaine → liste', mn_recipes:'Recettes', mn_new:'Nouvelle recette', mn_serv:'Nombre de personnes de la recette', mn_serv_n:'{n} pers.', mn_free:'…ou un plat sans recette', mn_free_ph:'ex. Restes, Restaurant', mn_clear:'Effacer', mn_paste_d:'Tu peux coller les ingrédients d\'une recette trouvée sur internet : un ingrédient par ligne.', mn_preview_d:'Décoche ce que vous avez déjà. Les quantités sont ajustées au nombre de personnes.', mn_in_pantry:'au placard', mn_in_list:'déjà dans la liste', mn_nothing:'Aucune recette prévue', x_title:'Dépenses', x_empty:'Les dépenses se calculent à partir du mode magasin : prends tes articles avec leur prix, puis touche « Quitter ».', x_month:'Ce mois-ci', x_vs:'vs mois dernier', x_by_store:'Par magasin', x_by_ray:'Par rayon', x_p1:'Ce mois', x_p3:'3 mois', x_p12:'12 mois', x_trips:'{n} passage(s) en caisse', ph_take:'Photo', ph_change:'Changer la photo', ph_del:'Retirer', ph_err:'Photo impossible', m_stores:'Magasins autour de moi', srv_old:'Script de partage à mettre à jour', srv_old_d:'Pour partager aussi le placard, les menus, les prix, les dépenses et les photos.', srv_steps:'1. Ouvre ta feuille Google › Extensions › Apps Script.<br>2. Remplace tout le code par celui-ci et enregistre.<br>3. Déployer › Gérer les déploiements › ✎ Modifier › Version : Nouvelle version › Déployer.<br>L\'URL ne change pas : rien à faire sur les téléphones.', e_only:'Seulement chez', e_only_ph:'n\'importe quel magasin', e_urg:'⚡ Urgent', urgent:'Urgent', lg_urg:'{w} : ⚡ {x} est urgent', pv_good:'✓ Bon prix : {p} % moins cher que d\'habitude', pv_high:'↑ {p} % plus cher que d\'habitude', pv_usual:'Prix habituel', pv_cheaper:'moins cher chez {c} ({p})', paste_t:'Coller une liste', paste_d:'Un article par ligne. Puces, emojis et titres sont ignorés.', paste_btn:'Ajouter {n} article(s)', paste_ph:'Lait\n2 kg tomates\nPain x2', m_theme:'Couleurs', pal_coral:'Corail', pal_sage:'Sauge', pal_lav:'Lavande', pal_sky:'Ciel', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', sh_off:'Non partagée pour l\'instant', sh_msgs:'Messages, activité, code d\'invitation', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -503,7 +503,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', tab_pantry:'Despensa', ps_ray:'Sección', ps_az:'A-Z', ps_exp_a:'Caduc. ↑', ps_exp_d:'Caduc. ↓', sl_lbl:'Conservación tras la compra', sl_unit:'días', sl_days:'auto: {n} d', sl_none:'auto: sin fecha', cv_hint:'Sirve para fechar el producto cuando pasa a la despensa. Déjalo vacío para la estimación automática, 0 = sin fecha.', sl_est:'estimada', ap_exp:'Fecha de caducidad (opcional)', tab_menus:'Menús', p_add_ph:'Añadir a la despensa…', p_exp:'Fecha de caducidad', p_hint:'Fecha opcional a la derecha. Toca un producto consumido: pasa a la lista. Mantén pulsado para editarlo.', p_empty_t:'La despensa está vacía', p_empty_d:'Apunta lo que tenéis en casa, con la fecha de caducidad si hace falta.<br>Cuando se acabe un producto, tócalo: pasa a la lista.', p_soon:'Consumir pronto', p_auto:'Guardar en la despensa los productos cogidos de la lista', p_done:'Se acabó: añadir a la lista', p_moved:'{x}: se acabó, añadido a la lista', px_out:'caducado', px_today:'hoy', px_in:'{n} d', p_alert:'⏳ {n} producto(s) de la despensa para consumir pronto', p_to_list:'Se acabó: añadir a la lista', mn_week:'Esta semana', mn_lunch:'Comida', mn_dinner:'Cena', mn_pers:'Personas', mn_add_week:'Ingredientes de la semana → lista', mn_recipes:'Recetas', mn_new:'Nueva receta', mn_serv:'Número de personas de la receta', mn_serv_n:'{n} pers.', mn_free:'…o un plato sin receta', mn_free_ph:'ej. Sobras, Restaurante', mn_clear:'Borrar', mn_paste_d:'Puedes pegar los ingredientes de una receta de internet: un ingrediente por línea.', mn_preview_d:'Desmarca lo que ya tenéis. Las cantidades se ajustan al número de personas.', mn_in_pantry:'en la despensa', mn_in_list:'ya en la lista', mn_nothing:'No hay recetas previstas', x_title:'Gastos', x_empty:'Los gastos se calculan con el modo compra: coge los productos con su precio y toca «Salir».', x_month:'Este mes', x_vs:'vs mes pasado', x_by_store:'Por tienda', x_by_ray:'Por sección', x_p1:'Este mes', x_p3:'3 meses', x_p12:'12 meses', x_trips:'{n} compra(s)', ph_take:'Foto', ph_change:'Cambiar la foto', ph_del:'Quitar', ph_err:'No se pudo hacer la foto', m_stores:'Tiendas cerca de mí', srv_old:'Hay que actualizar el script', srv_old_d:'Para compartir también despensa, menús, precios, gastos y fotos.', srv_steps:'1. Abre tu hoja de Google › Extensiones › Apps Script.<br>2. Sustituye todo el código por este y guarda.<br>3. Implementar › Gestionar implementaciones › ✎ Editar › Versión: Nueva versión › Implementar.<br>La URL no cambia: nada que hacer en los móviles.', e_only:'Solo en', e_only_ph:'cualquier tienda', e_urg:'⚡ Urgente', urgent:'Urgente', lg_urg:'{w}: ⚡ {x} es urgente', pv_good:'✓ Buen precio: un {p} % más barato de lo habitual', pv_high:'↑ un {p} % más caro de lo habitual', pv_usual:'Precio habitual', pv_cheaper:'más barato en {c} ({p})', paste_t:'Pegar una lista', paste_d:'Un producto por línea. Se ignoran viñetas, emojis y títulos.', paste_btn:'Añadir {n} producto(s)', paste_ph:'Leche\n2 kg tomates\nPan x2', m_theme:'Colores', pal_coral:'Coral', pal_sage:'Salvia', pal_lav:'Lavanda', pal_sky:'Cielo', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', sh_off:'Aún no compartida', sh_msgs:'Mensajes, actividad, código de invitación', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', bc_price:'código de barras', bc_weighed:'Producto pesado: precio leído en el código de barras ({p})', ocr_raw:'Ver el texto leído', ocr_der:'calculado', ocr_blank:'No se ha leído ningún texto: acércate a la etiqueta y evita reflejos.', ocr_photo:'Foto…', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', tab_pantry:'Despensa', ps_ray:'Sección', ps_az:'A-Z', ps_exp_a:'Caduc. ↑', ps_exp_d:'Caduc. ↓', sl_lbl:'Conservación tras la compra', sl_unit:'días', sl_days:'auto: {n} d', sl_none:'auto: sin fecha', cv_hint:'Sirve para fechar el producto cuando pasa a la despensa. Déjalo vacío para la estimación automática, 0 = sin fecha.', sl_est:'estimada', ap_exp:'Fecha de caducidad (opcional)', tab_menus:'Menús', p_add_ph:'Añadir a la despensa…', p_exp:'Fecha de caducidad', p_hint:'Fecha opcional a la derecha. Toca un producto consumido: pasa a la lista. Mantén pulsado para editarlo.', p_empty_t:'La despensa está vacía', p_empty_d:'Apunta lo que tenéis en casa, con la fecha de caducidad si hace falta.<br>Cuando se acabe un producto, tócalo: pasa a la lista.', p_soon:'Consumir pronto', p_auto:'Guardar en la despensa los productos cogidos de la lista', p_done:'Se acabó: añadir a la lista', p_moved:'{x}: se acabó, añadido a la lista', px_out:'caducado', px_today:'hoy', px_in:'{n} d', p_alert:'⏳ {n} producto(s) de la despensa para consumir pronto', p_to_list:'Se acabó: añadir a la lista', mn_week:'Esta semana', mn_lunch:'Comida', mn_dinner:'Cena', mn_pers:'Personas', mn_add_week:'Ingredientes de la semana → lista', mn_recipes:'Recetas', mn_new:'Nueva receta', mn_serv:'Número de personas de la receta', mn_serv_n:'{n} pers.', mn_free:'…o un plato sin receta', mn_free_ph:'ej. Sobras, Restaurante', mn_clear:'Borrar', mn_paste_d:'Puedes pegar los ingredientes de una receta de internet: un ingrediente por línea.', mn_preview_d:'Desmarca lo que ya tenéis. Las cantidades se ajustan al número de personas.', mn_in_pantry:'en la despensa', mn_in_list:'ya en la lista', mn_nothing:'No hay recetas previstas', x_title:'Gastos', x_empty:'Los gastos se calculan con el modo compra: coge los productos con su precio y toca «Salir».', x_month:'Este mes', x_vs:'vs mes pasado', x_by_store:'Por tienda', x_by_ray:'Por sección', x_p1:'Este mes', x_p3:'3 meses', x_p12:'12 meses', x_trips:'{n} compra(s)', ph_take:'Foto', ph_change:'Cambiar la foto', ph_del:'Quitar', ph_err:'No se pudo hacer la foto', m_stores:'Tiendas cerca de mí', srv_old:'Hay que actualizar el script', srv_old_d:'Para compartir también despensa, menús, precios, gastos y fotos.', srv_steps:'1. Abre tu hoja de Google › Extensiones › Apps Script.<br>2. Sustituye todo el código por este y guarda.<br>3. Implementar › Gestionar implementaciones › ✎ Editar › Versión: Nueva versión › Implementar.<br>La URL no cambia: nada que hacer en los móviles.', e_only:'Solo en', e_only_ph:'cualquier tienda', e_urg:'⚡ Urgente', urgent:'Urgente', lg_urg:'{w}: ⚡ {x} es urgente', pv_good:'✓ Buen precio: un {p} % más barato de lo habitual', pv_high:'↑ un {p} % más caro de lo habitual', pv_usual:'Precio habitual', pv_cheaper:'más barato en {c} ({p})', paste_t:'Pegar una lista', paste_d:'Un producto por línea. Se ignoran viñetas, emojis y títulos.', paste_btn:'Añadir {n} producto(s)', paste_ph:'Leche\n2 kg tomates\nPan x2', m_theme:'Colores', pal_coral:'Coral', pal_sage:'Salvia', pal_lav:'Lavanda', pal_sky:'Cielo', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', sh_off:'Aún no compartida', sh_msgs:'Mensajes, actividad, código de invitación', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -2155,36 +2155,119 @@ async function ocrWorker(){
   if (!tessW) tessW = await Tesseract.createWorker('spa');
   return tessW;
 }
-function grabFrame(v){
-  const w = v.videoWidth, h = v.videoHeight;
+async function takePhoto(v){
+  try {
+    const tr = lsStream && lsStream.getVideoTracks()[0];
+    if (tr && 'ImageCapture' in window){
+      const blob = await new ImageCapture(tr).takePhoto();
+      const bmp = await createImageBitmap(blob);
+      return prepImage(bmp, bmp.width, bmp.height);
+    }
+  } catch(e){}
+  return grabFrame(v);
+}
+function prepImage(src, w, h, invert){
   const cw = Math.round(w * .92), ch = Math.round(h * .7), sx = Math.round((w - cw) / 2), sy = Math.round((h - ch) / 2);
-  const scale = Math.min(2, 1600 / cw);
+  const scale = Math.min(2.5, 2000 / cw);
   const c = document.createElement('canvas'); c.width = Math.round(cw * scale); c.height = Math.round(ch * scale);
-  const x = c.getContext('2d'); x.drawImage(v, sx, sy, cw, ch, 0, 0, c.width, c.height);
+  const x = c.getContext('2d'); x.drawImage(src, sx, sy, cw, ch, 0, 0, c.width, c.height);
   const d = x.getImageData(0, 0, c.width, c.height), a = d.data;
   let mn = 255, mx = 0;
   for (let i = 0; i < a.length; i += 4){ const g = a[i] * .3 + a[i+1] * .59 + a[i+2] * .11; a[i] = g; if (g < mn) mn = g; if (g > mx) mx = g; }
   const k = 255 / Math.max(1, mx - mn);
-  for (let i = 0; i < a.length; i += 4){ const g = (a[i] - mn) * k; a[i] = a[i+1] = a[i+2] = g; }
+  for (let i = 0; i < a.length; i += 4){ let g = (a[i] - mn) * k; if (invert) g = 255 - g; a[i] = a[i+1] = a[i+2] = g; }
   x.putImageData(d, 0, 0);
+  c._src = src; c._w = w; c._h = h;
   return c;
 }
+function grabFrame(v){ return prepImage(v, v.videoWidth, v.videoHeight); }
 const LABEL_STOP = /^(precio|pvp|p\.v\.p|eur|euros?|iva|oferta|promo|ahorra|ahorro|unidad|ud|kg|kilo|litro|l|cada|antes|ahora|el kg|el litro|por|de|ref|cod|codigo)$/i;
+const DATE_RE = /\b\d{1,2}\s?[./-]\s?\d{1,2}\s?[./-]\s?\d{2,4}\b/g;
+const PRICE_RE = /(\d{1,3})\s?[,.'´`]\s?(\d{2})(?![\d.,])/g;
+/* Repli texte seul (sans positions) */
 function parseLabel(text){
+  text = (text || '').replace(DATE_RE, ' ');
   const lines = text.split('\n').map(s => s.replace(/\s+/g, ' ').trim()).filter(Boolean);
   const prices = []; const seen = new Set();
   lines.forEach(l => {
     const unit = /\/\s*(kg|k|l|lt|litro|kilo|ud|u)\b|€\s*\/|\b(por|el|precio)\s*(kg|kilo|litro|l)\b/i.test(l);
-    const re = /(\d{1,3})\s?[,.'´`]\s?(\d{2})(?!\d)/g; let m;
-    while ((m = re.exec(l))){ const v = parseFloat(m[1] + '.' + m[2]); if (v > 0 && v < 1000 && !seen.has(v + '|' + unit)){ seen.add(v + '|' + unit); prices.push({v, unit}); } }
+    const re = new RegExp(PRICE_RE.source, 'g'); let m;
+    while ((m = re.exec(l))){
+      const after = l.slice(m.index + m[0].length, m.index + m[0].length + 4);
+      if (/^\s?(kg|g|gr|ml|cl|l|lt)\b/i.test(after)) continue;
+      const v = parseFloat(m[1] + '.' + m[2]); if (v > 0 && v < 1000 && !seen.has(v + '|' + unit)){ seen.add(v + '|' + unit); prices.push({v, unit, sc:/€|pvp/i.test(l) ? 1 : 0}); }
+    }
   });
-  let qty = null, unitQ = '';
-  const qm = text.match(/(\d+(?:[.,]\d+)?)\s?(kg|g|gr|grs|ml|cl|l|lt|litros?)\b/i);
-  if (qm){ qty = num(qm[1]); unitQ = qm[2].toLowerCase().replace(/^(gr|grs)$/, 'g').replace(/^(lt|litros?)$/, 'l'); }
-  const name = lines.filter(l => { const letters = (l.match(/[a-záéíóúñü]/gi) || []).length; return letters >= 4 && letters / l.length > .7 && !/\d\s?[,.'´`]\s?\d{2}/.test(l) && !/€/.test(l); })
-    .map(l => l.split(' ').filter(w => !LABEL_STOP.test(w)).join(' ')).filter(l => l.length >= 4).slice(0, 2).join(' ');
+  prices.sort((a, b) => b.sc - a.sc);
+  const w = weightOf(text);
   const main = prices.find(p => !p.unit) || prices[0] || null;
-  return {prices, main, qty, unit:unitQ, name: name ? cap(name.toLowerCase()) : ''};
+  return {prices, main, qty:w.qty, unit:w.unit, name:''};
+}
+function weightOf(text){
+  const qm = (text || '').replace(DATE_RE, ' ').match(/(\d+(?:[.,]\d+)?)\s?(kg|g|gr|grs|ml|cl|l|lt|litros?)\b(?!\s*\/)/i);
+  if (!qm) return {qty:null, unit:''};
+  return {qty:num(qm[1]), unit:qm[2].toLowerCase().replace(/^(gr|grs)$/, 'g').replace(/^(lt|litros?)$/, 'l')};
+}
+/* Lecture avec la taille des mots : le prix de vente est le plus gros chiffre */
+function ocrWords(data){
+  let ws = data.words;
+  if (!ws || !ws.length){ ws = []; (data.blocks || []).forEach(b => (b.paragraphs || []).forEach(p => (p.lines || []).forEach(l => (l.words || []).forEach(w => ws.push(w))))); }
+  return ws.filter(w => w && w.bbox && (w.text || '').trim()).map(w => ({t:w.text.trim(), c:w.confidence ?? 0, x0:w.bbox.x0, x1:w.bbox.x1, y0:w.bbox.y0, y1:w.bbox.y1, h:w.bbox.y1 - w.bbox.y0}));
+}
+function parseLabelW(data){
+  const ws = ocrWords(data);
+  if (!ws.length) return parseLabel(data.text || '');
+  ws.sort((a, b) => (Math.abs(a.y0 - b.y0) < Math.min(a.h, b.h) * .6 ? 0 : a.y0 - b.y0) || a.x0 - b.x0);
+  const sameLine = (a, b) => Math.abs((a.y0 + a.y1) / 2 - (b.y0 + b.y1) / 2) < Math.max(a.h, b.h) * .7 || (b.y0 >= a.y0 - a.h * .2 && b.y1 <= a.y1 + a.h * .2);
+  const lineOf = w => ws.filter(x => sameLine(w, x)).map(x => x.t).join(' ');
+  const cands = [];
+  ws.forEach((w, i) => {
+    const txt = w.t, nxt = ws[i + 1], line = lineOf(w);
+    if (DATE_RE.test(txt)){ DATE_RE.lastIndex = 0; return; } DATE_RE.lastIndex = 0;
+    const tail = txt + ' ' + (nxt && sameLine(w, nxt) ? nxt.t : '');
+    const isW = re => re.test(tail);
+    let m = txt.match(/^[^\d]*(\d{1,3})\s?[,.'´`]\s?(\d{2})(?![\d.,])/);
+    let v = null, h = w.h;
+    if (m && !/^\d{1,3}[,.]\d{2}[,.]/.test(txt.replace(/^[^\d]*/, ''))) v = parseFloat(m[1] + '.' + m[2]);
+    /* Centimes en exposant : « 3 » en gros suivi de « 50 » plus petit */
+    else if (/^[^\d]*\d{1,3}$/.test(txt)){
+      /* « 3 50 », « 3⁵⁰ » ou « 3 , 50 » mal lu (virgule lue comme un signe) */
+      let j = i + 1; if (ws[j] && sameLine(w, ws[j]) && /^[^\d\s]{1,2}$/.test(ws[j].t)) j++;
+      const c2 = ws[j];
+      if (c2 && sameLine(w, c2) && /^\d{2}[^\d]{0,2}$/.test(c2.t) && c2.h <= w.h * 1.1 && c2.x0 - w.x1 < w.h * 1.2 && w.h >= ws.reduce((m, x) => Math.max(m, x.h), 0) * .6) v = parseFloat(txt.replace(/\D/g, '') + '.' + c2.t.slice(0, 2));
+    }
+    if (v == null || !(v > 0 && v < 1000)) return;
+    if (isW(/^\S*\d\s?(kg|g|gr|ml|cl|l|lt)\b(?!\s*\/)/i) && !/€/.test(tail)) return; // poids, pas prix
+    const unit = /\/\s*(kg|k|l|lt|litro|kilo|ud|u)\b|€\s*\/|\b(por|el|pvp|precio)\s*(kg|kilo|litro|l)\b|\b(kg|kilo|litro)\s*:/i.test(tail + ' ' + line);
+    const sc = h + (/€/.test(tail) ? h * .3 : 0) + (/p\.?v\.?p/i.test(line) ? h * .5 : 0) - (w.c < 50 ? h * .3 : 0);
+    cands.push({v, unit, sc});
+  });
+  const seen = new Set(), prices = [];
+  cands.sort((a, b) => b.sc - a.sc).forEach(c => { const k = c.v + '|' + c.unit; if (!seen.has(k)){ seen.add(k); prices.push(c); } });
+  const wt = weightOf(data.text || ws.map(w => w.t).join(' '));
+  /* Pas de prix de vente lisible : on le déduit du prix au kilo/litre et du poids */
+  if (!prices.some(p => !p.unit) && prices.length && wt.qty){
+    const b = toBase(wt.qty, wt.unit);
+    if (b.u !== 'pce'){ const v = Math.round(prices[0].v * b.v * 100) / 100; if (v > 0) prices.push({v, unit:false, der:true}); }
+  }
+  const main = prices.find(p => !p.unit) || null;
+  /* Nom : seulement les mots en lettres, lus avec certitude, parmi les plus gros */
+  const STOP = /^(pvp|p\.v\.p|precio|eur|euros?|iva|oferta|fecha|caducidad|consumir|preferente|peso|neto|kg|ud|unidad|lote|ref|cod|codigo|sin|gluten|lactosa)$/i;
+  const lw = ws.filter(w => /^[A-Za-zÁÉÍÓÚÑÜáéíóúñüÀ-ÿ'’-]{3,}$/.test(w.t) && w.c >= 75 && !STOP.test(w.t));
+  let name = '';
+  if (lw.length){
+    const mh = Math.max(...lw.map(w => w.h));
+    const big = lw.filter(w => w.h >= mh * .7).slice(0, 4);
+    if (big.length) name = cap(big.map(w => w.t).join(' ').toLowerCase());
+  }
+  return {prices, main, qty:wt.qty, unit:wt.unit, name};
+}
+/* Codes-barres « produit pesé » (EAN-13 commençant par 2) : le prix est dans le code */
+function eanOk(c){ if (!/^\d{13}$/.test(c)) return false; let s = 0; for (let i = 0; i < 12; i++) s += +c[i] * (i % 2 ? 3 : 1); return (10 - s % 10) % 10 === +c[12]; }
+function weighedPrice(c){
+  if (!eanOk(c) || c[0] !== '2') return null;
+  const v = parseInt(c.slice(7, 12), 10) / 100;
+  return v > 0 && v < 500 ? v : null;
 }
 let lsStream = null, lsLoop = null;
 function stopLs(){ if (lsLoop) cancelAnimationFrame(lsLoop); lsLoop = null; if (lsStream) lsStream.getTracks().forEach(x => x.stop()); lsStream = null; }
@@ -2201,35 +2284,66 @@ async function openLabelScan(pre){
     <div id="lsV"></div>
     <input type="file" id="lsFile" accept="image/*" capture="environment" style="display:none">
     <div class="acts"><button class="btn ghost" id="lsX">${t('cancel')}</button><button class="btn pri" id="lsOk">${S.trip ? t('add_cart') : t('add_list')}</button></div>`, stopLs);
-  let code = pre.code || null, offInfo = null;
+  let code = null, offInfo = null; const preCode = pre.code || null;
   const msg = s => { const m = $('#lsMsg'); if (m) m.textContent = s; };
   const upV = () => { const v = $('#lsV'); if (v) v.innerHTML = verdictHtml(priceVerdict(canonK($('#lsN').value || ''), num($('#lsP').value), num($('#lsQ').value), $('#lsU').value, S.trip?.chain || ($('#lsS')?.value || '').trim())); };
+  let lastText = '', bcPrice = null;
+  const rawBtn = () => lastText.trim() ? `<button class="btn sm ghost mt" id="lsRaw">${t('ocr_raw')}</button>` : '';
+  const bindRaw = () => { const b = $('#lsRaw'); if (b) b.onclick = () => { b.outerHTML = `<pre class="small muted" style="white-space:pre-wrap;max-height:160px;overflow:auto;background:var(--soft);padding:8px;border-radius:10px">${esc(lastText)}</pre>`; }; };
   const showOcr = res => {
     const box = $('#lsPr'); if (!box) return;
-    if (!res.prices.length){ box.innerHTML = ''; msg(t('ocr_none')); return; }
-    msg(t('ocr_pick'));
-    box.innerHTML = `<div class="chips" style="flex-wrap:wrap">${res.prices.map((p, i) => `<button class="chip ${p === res.main ? 'due' : ''}" data-pp="${i}">${eur(p.v)}${p.unit ? ` <span class="muted">${t('unit_p')}</span>` : ''}</button>`).join('')}</div>`;
-    $$('[data-pp]', box).forEach(b => b.onclick = () => { $('#lsP').value = res.prices[+b.dataset.pp].v.toFixed(2); $$('[data-pp]', box).forEach(x => x.classList.remove('due')); b.classList.add('due'); upV(); });
-    if (res.main) $('#lsP').value = res.main.v.toFixed(2);
-    setTimeout(upV, 0);
+    if (bcPrice != null){
+      if (!res.prices.some(p => Math.abs(p.v - bcPrice) < .005)) res.prices.unshift({v:bcPrice, unit:false});
+      res.main = res.prices.find(p => Math.abs(p.v - bcPrice) < .005);
+    }
     if (!$('#lsN').value && res.name) $('#lsN').value = res.name;
     if (!$('#lsQ').value && res.qty){ $('#lsQ').value = res.qty; $('#lsU').value = res.unit; }
+    if (!res.prices.length){ box.innerHTML = rawBtn(); bindRaw(); msg(t(lastText.trim() ? 'ocr_none' : 'ocr_blank')); return; }
+    msg(t('ocr_pick'));
+    box.innerHTML = `<div class="chips" style="flex-wrap:wrap">${res.prices.map((p, i) => `<button class="chip ${p === res.main ? 'due' : ''}" data-pp="${i}">${eur(p.v)}${p.unit ? ` <span class="muted">${t('unit_p')}</span>` : p.der ? ` <span class="muted">${t('ocr_der')}</span>` : ''}</button>`).join('')}</div>`;
+    $$('[data-pp]', box).forEach(b => b.onclick = () => { $('#lsP').value = res.prices[+b.dataset.pp].v.toFixed(2); $$('[data-pp]', box).forEach(x => x.classList.remove('due')); b.classList.add('due'); upV(); });
+    box.insertAdjacentHTML('beforeend', rawBtn()); bindRaw();
+    if (res.main) $('#lsP').value = res.main.v.toFixed(2);
+    setTimeout(upV, 0);
+  };
+  /* Code-barres détecté (vidéo ou photo) */
+  const onCode = async c => {
+    if (code === c) return;
+    code = c; vib([20, 30, 20]);
+    const wp = weighedPrice(c);
+    if (wp != null){
+      bcPrice = wp; $('#lsP').value = wp.toFixed(2); upV();
+      const box = $('#lsPr'); if (box) box.innerHTML = `<div class="chips"><button class="chip due">${eur(wp)} <span class="muted">${t('bc_price')}</span></button></div>`;
+      msg(t('bc_weighed', {p:eur(wp)})); return;
+    }
+    msg(t('code_found', {x:c}));
+    if (!pre.fromList && /^\d{8,14}$/.test(c)){ const p = await offProduct(c).catch(() => null); offInfo = p; if (p && p.name && !$('#lsN').value) $('#lsN').value = cap(p.name); if (p && p.name) msg(t('code_found', {x:p.name})); }
   };
   const runOcr = async src => {
     const btn = $('#lsRead'); btn.disabled = true;
     msg(window.Tesseract && tessW ? t('scan_reading') : t('scan_first'));
     try {
+      if (!code && 'BarcodeDetector' in window && src._src){ try { const r0 = await new BarcodeDetector({formats:['ean_13','ean_8','upc_a']}).detect(src._src); if (r0.length) onCode(r0[0].rawValue); } catch(e){} }
       const w = await ocrWorker(); msg(t('scan_reading'));
-      const r = await w.recognize(src);
-      showOcr(parseLabel(r.data.text || ''));
+      const O = {text:true, blocks:true};
+      let r = await w.recognize(src, {}, O), res = parseLabelW(r.data), txt = r.data.text || '';
+      const better = (a, b) => (b.main && !a.main) || (b.prices.length > a.prices.length && !a.main);
+      /* 2ᵉ lecture « texte épars » (gros chiffres isolés), 3ᵉ en négatif (texte clair sur fond coloré) */
+      if (!res.main){
+        try { await w.setParameters({tessedit_pageseg_mode:'11'}); r = await w.recognize(src, {}, O); const r2 = parseLabelW(r.data); if (better(res, r2)){ res = r2; txt = r.data.text || ''; } } catch(e){}
+        try { await w.setParameters({tessedit_pageseg_mode:'3'}); } catch(e){}
+      }
+      if (!res.main && src._src){ r = await w.recognize(prepImage(src._src, src._w, src._h, true), {}, O); const r2 = parseLabelW(r.data); if (better(res, r2)){ res = r2; txt = r.data.text || ''; } }
+      lastText = txt;
+      showOcr(res);
     } catch(e){ msg(t('ocr_err')); }
     if (btn) btn.disabled = false;
   };
   sh.querySelector('#lsRead').onclick = () => {
     const v = $('#lvid');
-    if (lsStream && v && v.videoWidth) runOcr(grabFrame(v)); else $('#lsFile').click();
+    if (lsStream && v && v.videoWidth){ $('#lsRead').disabled = true; msg(t('ocr_photo')); takePhoto(v).then(runOcr); } else $('#lsFile').click();
   };
-  sh.querySelector('#lsFile').onchange = e => { const f = e.target.files[0]; if (!f) return; const img = new Image(); img.onload = () => { const c = document.createElement('canvas'); const sc = Math.min(1, 1600 / img.width); c.width = img.width * sc; c.height = img.height * sc; c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); runOcr(c); }; img.src = URL.createObjectURL(f); };
+  sh.querySelector('#lsFile').onchange = e => { const f = e.target.files[0]; if (!f) return; const img = new Image(); img.onload = () => { const c = document.createElement('canvas'); const sc = Math.min(1, 1600 / img.width); c.width = img.width * sc; c.height = img.height * sc; c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); const p = prepImage(img, img.width, img.height); runOcr(p); }; img.src = URL.createObjectURL(f); };
   sh.querySelector('#lsX').onclick = () => closeSheet();
   ['#lsP', '#lsN', '#lsQ', '#lsU', '#lsS'].forEach(s => { const el = sh.querySelector(s); if (el){ el.addEventListener('input', upV); el.addEventListener('change', upV); } });
   sh.querySelector('#lsOk').onclick = () => {
@@ -2238,7 +2352,7 @@ async function openLabelScan(pre){
     closeSheet();
     if (!S.trip){
       const q = num($('#lsQ').value), u = $('#lsU').value, st = ($('#lsS')?.value || '').trim();
-      const it = addItem('', {name: cap(name || t('product')), qty:q, unit:u, code, ns:offInfo?.ns, brand:offInfo?.brands, cats:offInfo?.cats});
+      const it = addItem('', {name: cap(name || t('product')), qty:q, unit:u, code: code && weighedPrice(code) == null ? code : preCode, ns:offInfo?.ns, brand:offInfo?.brands, cats:offInfo?.cats});
       if (it && p != null){
         const L = curList(); it.price = p; touch(L, it);
         if (st){ recordPrice(it.name, it.k, p, it.qty, it.unit, st); S.settings.lastStore = st; }
@@ -2246,13 +2360,13 @@ async function openLabelScan(pre){
       }
       return;
     }
-    addLine({name: name || t('product'), p, qty:num($('#lsQ').value), unit:$('#lsU').value, rayon: pre.rayon, code, ns:offInfo?.ns, fromList: !!pre.fromList});
+    addLine({name: name || t('product'), p, qty:num($('#lsQ').value), unit:$('#lsU').value, rayon: pre.rayon, code: code && weighedPrice(code) == null ? code : preCode, ns:offInfo?.ns, fromList: !!pre.fromList});
   };
   try {
     lsStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment', width:{ideal:1920}, height:{ideal:1080}}});
     const v = $('#lvid'); if (!v){ stopLs(); return; }
     v.srcObject = lsStream; await v.play();
-    if (hasBD && !pre.fromList){
+    if (hasBD){
       const det = new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','qr_code','code_128']});
       let last = 0, busy = false;
       const tick = async ts => {
@@ -2261,11 +2375,7 @@ async function openLabelScan(pre){
           last = ts; busy = true;
           try {
             const r = await det.detect(v);
-            if (r.length){
-              code = r[0].rawValue; vib([20, 30, 20]);
-              msg(t('code_found', {x:code}));
-              if (/^\d{8,14}$/.test(code)){ const p = await offProduct(code).catch(() => null); offInfo = p; if (p && p.name && !$('#lsN').value) $('#lsN').value = cap(p.name); if (p && p.name) msg(t('code_found', {x:p.name})); }
-            }
+            if (r.length) await onCode(r[0].rawValue);
           } catch(e){}
           busy = false;
         }
