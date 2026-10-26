@@ -1,6 +1,6 @@
-const CACHE_VERSION = 'cabas-1.1.0';
+const CACHE_VERSION = 'cabas-1.2.0';
 const CORE = ['./', './index.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png'];
-const CDN = 'cdnjs.cloudflare.com';
+const CDN = ['cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE_VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
@@ -32,7 +32,7 @@ self.addEventListener('fetch', e => {
   }
 
   // Ressources locales et bibliothèque cartographique : cache d'abord
-  if (url.origin === location.origin || url.host === CDN) {
+  if (url.origin === location.origin || CDN.includes(url.host)) {
     e.respondWith(
       caches.match(req).then(hit => hit || fetch(req).then(r => {
         if (r.ok || r.type === 'opaque') {
