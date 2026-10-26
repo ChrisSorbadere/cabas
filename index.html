@@ -242,12 +242,14 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 .cam.lbl{aspect-ratio:3/2}
 .cam.lbl::after{left:4%;right:4%;top:15%;height:70%}
 body.store .citem{min-height:62px;font-size:20px}
+.undob{color:var(--brand)}
 </style>
 </head>
 <body>
 <header class="top">
   <button id="titleBtn" class="lt"><span id="title">Courses</span><svg id="titleChev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
   <div class="ha" id="listActs">
+    <button id="undoBtn" class="ib undob" style="display:none"></button>
     <button id="syncBtn" class="ib syncb"></button>
     <button id="storeBtn" class="ib"></button>
     <button id="shareBtn" class="ib"></button>
@@ -292,7 +294,7 @@ body.store .citem{min-height:62px;font-size:20px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.5.0';
+const APP_VERSION = '1.6.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -338,7 +340,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', a_undo:'Annuler la dernière action', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -402,7 +404,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', a_undo:'Deshacer la última acción', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -446,7 +448,8 @@ const P = {
   wa:'<path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5z"/><path d="M9 8.5c0 3.5 2.6 6.5 6.5 6.5l1-1.5-2-1-1 .8a5 5 0 0 1-2.8-2.8l.8-1-1-2z"/>',
   route:'<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/>',
   users:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5"/>',
-  send:'<path d="M4 12l16-8-6 16-2.5-6.5z"/>'
+  send:'<path d="M4 12l16-8-6 16-2.5-6.5z"/>',
+  undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>'
 };
 const ic = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`;
 
@@ -706,6 +709,7 @@ function addItem(text, extra = {}){
     code: extra.code || cat?.code || null, brand: extra.brand || cat?.brand || '', ns: extra.ns || cat?.ns || null, ts: Date.now()
   };
   L.items.push(it); touch(L, it); logEv(L, 'add', it.name);
+  UNDO.push({msg:t('added', {x:dn(it)}), fn:() => { if (L.items.includes(it)){ removeItem(L, it); save(); renderList(); } }}); if (UNDO.length > 20) UNDO.shift(); renderUndo();
   learn(p.name, {n:(cat?.n || 0) + 1, last: today(), code: it.code, brand: it.brand, ns: it.ns});
   save(); renderList(); vib(8);
   return it;
@@ -776,13 +780,31 @@ function takeItem(L, it){
   const cat = learn(it.name); if (fresh){ cat.b = (cat.b || 0) + 1; cat.lb = d; } if (!cat.rayon) cat.rayon = it.rayon;
   S.recent = [{k:it.k, name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon, t:Date.now()}, ...(S.recent || []).filter(r => r.k !== it.k)].slice(0, 24);
   save(); renderList();
-  toast(t('took', {x:dn(it)}), () => {
-    L.items.splice(Math.min(idx, L.items.length), 0, it);
+  const t0 = Date.now();
+  offerUndo(t('took', {x:dn(it)}), () => {
+    if (!L.items.includes(it)) L.items.splice(Math.min(idx, L.items.length), 0, it);
     L.gone = L.gone.filter(g => g.id !== it.id);
     if (fresh){ hst.items = hst.items.filter(x => x.k !== it.k); cat.b = Math.max(0, (cat.b || 1) - 1); }
     S.recent = S.recent.filter(r => r.k !== it.k);
+    if (S.trip){
+      const ln = S.trip.lines.find(l => l.k === it.k && l.t >= t0);
+      if (ln){ S.trip.lines = S.trip.lines.filter(l => l !== ln); if (ln.p != null) S.prices = S.prices.filter(r => !(r.k === ln.k && r.c === S.trip.chain && r.d === today() && r.p === ln.p)); }
+    }
+    if (sheetOpen) closeSheet();
     touch(L, it); save(); renderList();
   });
+}
+/* Pile d'annulation : bouton ↶ en haut, toujours disponible */
+const UNDO = [];
+function renderUndo(){ const b = $('#undoBtn'); if (b) b.style.display = UNDO.length ? '' : 'none'; }
+function offerUndo(msg, fn){
+  const u = {msg, fn}; UNDO.push(u); if (UNDO.length > 20) UNDO.shift(); renderUndo();
+  toast(msg, () => { const i = UNDO.indexOf(u); if (i >= 0) UNDO.splice(i, 1); fn(); renderUndo(); });
+}
+function doUndo(){
+  const u = UNDO.pop(); if (!u) return;
+  u.fn(); renderUndo(); vib(10);
+  toast(t('undone', {x:u.msg}));
 }
 function carnetRow(it){
   const e = estPrice(it);
@@ -923,8 +945,8 @@ function editItem(id){
   };
   sh.querySelector('#fDel').onclick = () => {
     const idx = L.items.indexOf(it); removeItem(L, it); save(); renderList(); closeSheet();
-    toast(t('deleted', {x:dn(it)}), () => {
-      L.items.splice(idx, 0, it); L.gone = L.gone.filter(g => g.id !== it.id); delete it.dirty; touch(L, it); save(); renderList();
+    offerUndo(t('deleted', {x:dn(it)}), () => {
+      if (!L.items.includes(it)) L.items.splice(Math.min(idx, L.items.length), 0, it); L.gone = L.gone.filter(g => g.id !== it.id); delete it.dirty; touch(L, it); save(); renderList();
     });
   };
   const sb = sh.querySelector('#offSearch');
@@ -1771,6 +1793,14 @@ function addLine(o){
     const L = curList(); const it = L.items.find(i => i.k === k);
     if (it){ removeItem(L, it); logEv(L, 'chk', it.name); }
     noteBought(name, k, o.qty, o.unit, o.rayon || guessRayon(name));
+    const ln = tr.lines[tr.lines.length - 1];
+    save(); renderList(); vib(15);
+    offerUndo(t('in_cart', {x:trName(name), t:eur(tripTotal())}), () => {
+      if (S.trip){ S.trip.lines = S.trip.lines.filter(l => l !== ln); if (ln.p != null) S.prices = S.prices.filter(r => !(r.k === ln.k && r.c === S.trip.chain && r.d === today() && r.p === ln.p)); }
+      if (it && !L.items.includes(it)){ L.items.push(it); L.gone = L.gone.filter(g => g.id !== it.id); touch(L, it); }
+      save(); renderList();
+    });
+    return;
   }
   save(); renderList(); vib(15);
   toast(t('in_cart', {x:trName(name), t:eur(tripTotal())}));
@@ -1936,6 +1966,7 @@ function applyStatic(){
   $('#storeBtn').setAttribute('aria-label', t('a_store'));
   $('#shareBtn').setAttribute('aria-label', t('a_send'));
   $('#syncBtn').setAttribute('aria-label', t('a_sync'));
+  $('#undoBtn').setAttribute('aria-label', t('a_undo'));
   $('#micBtn').setAttribute('aria-label', t('a_mic'));
   $('#scanBtn').setAttribute('aria-label', t('a_scan'));
 }
@@ -1958,6 +1989,8 @@ $$('#nav button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
 $('#storeBtn').innerHTML = ic('cart');
 $('#shareBtn').innerHTML = ic('share');
 $('#syncBtn').innerHTML = ic('users');
+$('#undoBtn').innerHTML = ic('undo');
+$('#undoBtn').onclick = doUndo;
 $('#micBtn').innerHTML = ic('mic');
 $('#scanBtn').innerHTML = ic('scan');
 if (!SR) $('#micBtn').style.display = 'none';
