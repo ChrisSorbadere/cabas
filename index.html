@@ -113,8 +113,8 @@ body.store .chk{width:34px;height:34px}
 body.store .chips{display:none}
 
 /* Nav */
-.nav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
-.nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:11px;font-weight:700;color:var(--muted);border-radius:12px}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(6,1fr);background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+.nav button{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:10.5px;font-weight:700;color:var(--muted);border-radius:12px}
 .nav svg{width:24px;height:24px}
 .nav button.on{color:var(--brand)}
 .nav button.on svg{transform:translateY(-1px)}
@@ -258,6 +258,71 @@ body.store .citem{min-height:62px;font-size:20px}
 .citem .nm{flex:0 1 auto}
 .citem .sp{flex:1}
 .citem .ns{width:22px;height:22px;font-size:13px;border-radius:6px;flex:none;align-self:center}
+
+/* Lot A */
+.citem{gap:8px;padding:8px 10px 8px 12px;overflow:hidden;transition:opacity .25s,transform .28s ease,background .15s}
+.citem .em{width:30px;height:30px;flex:none;display:grid;place-items:center;font-size:21px;border-radius:9px}
+.citem .em.ph{padding:0;overflow:hidden;background:var(--soft)}
+.citem .em.ph img{width:100%;height:100%;object-fit:cover}
+.citem .zap{font-size:15px}
+.citem .stt{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap}
+.citem.here .stt{color:var(--brand-ink);background:var(--brand);border-color:var(--brand)}
+.citem.other{opacity:.42}
+.citem .stp{display:flex;align-items:center;flex:none;background:var(--soft);border-radius:999px;margin-left:2px}
+.citem .stp i{font-style:normal;width:28px;height:30px;display:grid;place-items:center;font-size:18px;font-weight:700;color:var(--brand)}
+.citem .stp b{min-width:18px;text-align:center;font-size:13px;font-weight:700;color:var(--brand);white-space:nowrap}
+.citem.gone{transform:translateX(60%);opacity:0}
+.citem.gone .nm::after{width:100%}
+.citem.fresh{animation:pop .5s ease}
+@keyframes pop{0%{background:var(--soft);transform:scale(.97)}60%{background:var(--soft)}100%{background:transparent;transform:none}}
+.urgsec .cgh{background:color-mix(in srgb,var(--danger) 16%,transparent)}
+.pv{margin-top:10px;padding:9px 12px;border-radius:12px;font-size:14px;font-weight:600;background:var(--soft);color:var(--brand)}
+.pv.warn{background:var(--accent-soft);color:var(--accent)}
+.pals{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.pals button{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 4px;border-radius:12px;border:2px solid transparent;font-size:12px;font-weight:700;color:var(--muted)}
+.pals button i{width:26px;height:26px;border-radius:50%;background:var(--c)}
+.pals button.on{border-color:var(--c);color:var(--ink)}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:95;overflow:hidden}
+.confetti span{position:absolute;top:-40px;animation:fall 1.8s cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes fall{to{transform:translate(var(--dx),105vh) rotate(var(--rot));opacity:.2}}
+@media (prefers-reduced-motion:reduce){.citem,.citem.gone{transition:none}.citem.fresh{animation:none}}
+body.store .citem{font-size:19px}
+
+/* Lot B/C */
+.nav button.dot::after{content:"";position:absolute;top:4px;right:calc(50% - 16px);width:8px;height:8px;border-radius:50%;background:var(--danger)}
+.prow{display:flex;align-items:center;border-top:1px solid var(--line)}
+.prow:first-of-type{border-top:0}
+.cgh+.prow{border-top:1px solid var(--line)}
+.pmain{flex:1;min-width:0;display:flex;align-items:center;gap:8px;padding:10px 6px 10px 12px;text-align:left;font-size:17px;font-weight:500}
+.pmain .em{width:28px;font-size:20px;text-align:center;flex:none}
+.pmain .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1 auto}
+.pmain .q{font-size:13px;font-weight:700;color:var(--brand);background:var(--soft);border-radius:999px;padding:1px 8px;white-space:nowrap}
+.pfin{width:48px;height:48px;display:grid;place-items:center;color:var(--brand);flex:none}
+.pfin svg{width:21px;height:21px}
+.xp{font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap}
+.xp.warn{color:var(--accent)}
+.xp.bad{color:#fff;background:var(--danger);border-radius:999px;padding:1px 8px}
+.pdate{width:auto;flex:none;border:0;background:transparent;color:var(--muted);font-size:13px;padding:6px 4px}
+.tgl{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.tgl input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--brand)}
+.mday{padding:4px 0;margin-top:10px;overflow:hidden}
+.mdh{padding:8px 14px 4px;font-weight:700;font-size:14px;color:var(--muted)}
+.mslot{display:flex;align-items:baseline;gap:10px;width:100%;text-align:left;padding:9px 14px;border-top:1px solid var(--line)}
+.mslot small{width:62px;flex:none;color:var(--muted);font-size:12px;font-weight:700}
+.mslot span{flex:1;font-weight:600}
+.ingr{cursor:pointer}
+.ingr input{width:20px;height:20px;flex:none;accent-color:var(--brand)}
+.xp-card .xbig{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--brand)}
+.xbars{width:52%;height:74px;color:var(--ink)}
+.hb{display:grid;grid-template-columns:minmax(0,38%) 1fr auto;align-items:center;gap:8px;font-size:13px;margin-top:6px}
+.hbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbt{height:10px;background:var(--line);border-radius:9px;overflow:hidden}
+.hbt i{display:block;height:100%;border-radius:9px}
+.hb b{font-variant-numeric:tabular-nums}
+.phrow{display:flex;align-items:center;gap:10px;margin-top:8px}
+.phm{width:56px;height:56px;border-radius:12px;object-fit:cover;background:var(--soft)}
+.bigph{display:block;width:100%;max-height:60vh;object-fit:contain;border-radius:16px;background:var(--soft);margin-top:10px}
+.srvold{text-align:left;width:100%;background:var(--accent-soft);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -290,6 +355,8 @@ body.store .citem{min-height:62px;font-size:20px}
     </div>
     <div id="list"></div>
   </section>
+  <section id="tab-pantry" class="tab"></section>
+  <section id="tab-menus" class="tab"></section>
   <section id="tab-stores" class="tab"></section>
   <section id="tab-prices" class="tab"></section>
   <section id="tab-tips" class="tab"></section>
@@ -298,7 +365,8 @@ body.store .citem{min-height:62px;font-size:20px}
 
 <nav class="nav" id="nav">
   <button data-tab="list" class="on"></button>
-  <button data-tab="stores"></button>
+  <button data-tab="pantry"></button>
+  <button data-tab="menus"></button>
   <button data-tab="prices"></button>
   <button data-tab="tips"></button>
   <button data-tab="more"></button>
@@ -310,7 +378,7 @@ body.store .citem{min-height:62px;font-size:20px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '1.10.0';
+const APP_VERSION = '2.0.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -356,7 +424,7 @@ fr:{
   t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
   ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
   m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', sh_off:'Non partagée pour l\'instant', sh_msgs:'Messages, activité, code d\'invitation', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', tab_pantry:'Placard', tab_menus:'Menus', p_add_ph:'Ajouter au placard…', p_exp:'Date de péremption', p_hint:'Date facultative à droite. 🛒 = fini, à racheter.', p_empty_t:'Le placard est vide', p_empty_d:'Note ce que vous avez à la maison, avec la date de péremption si besoin.<br>Quand un produit est fini, touche 🛒 : il passe dans la liste.', p_soon:'À consommer vite', p_auto:'Ranger automatiquement au placard les articles pris dans la liste', p_done:'Fini : ajouter à la liste', p_moved:'{x} : fini, ajouté à la liste', px_out:'périmé', px_today:'aujourd\'hui', px_in:'J-{n}', p_alert:'⏳ {n} produit(s) du placard à consommer vite', p_to_list:'Fini : ajouter à la liste', mn_week:'Cette semaine', mn_lunch:'Déjeuner', mn_dinner:'Dîner', mn_pers:'Personnes', mn_add_week:'Ingrédients de la semaine → liste', mn_recipes:'Recettes', mn_new:'Nouvelle recette', mn_serv:'Nombre de personnes de la recette', mn_serv_n:'{n} pers.', mn_free:'…ou un plat sans recette', mn_free_ph:'ex. Restes, Restaurant', mn_clear:'Effacer', mn_paste_d:'Tu peux coller les ingrédients d\'une recette trouvée sur internet : un ingrédient par ligne.', mn_preview_d:'Décoche ce que vous avez déjà. Les quantités sont ajustées au nombre de personnes.', mn_in_pantry:'au placard', mn_in_list:'déjà dans la liste', mn_nothing:'Aucune recette prévue', x_title:'Dépenses', x_empty:'Les dépenses se calculent à partir du mode magasin : prends tes articles avec leur prix, puis touche « Quitter ».', x_month:'Ce mois-ci', x_vs:'vs mois dernier', x_by_store:'Par magasin', x_by_ray:'Par rayon', x_p1:'Ce mois', x_p3:'3 mois', x_p12:'12 mois', x_trips:'{n} passage(s) en caisse', ph_take:'Photo', ph_change:'Changer la photo', ph_del:'Retirer', ph_err:'Photo impossible', m_stores:'Magasins autour de moi', srv_old:'Script de partage à mettre à jour', srv_old_d:'Pour partager aussi le placard, les menus, les prix, les dépenses et les photos.', srv_steps:'1. Ouvre ta feuille Google › Extensions › Apps Script.<br>2. Remplace tout le code par celui-ci et enregistre.<br>3. Déployer › Gérer les déploiements › ✎ Modifier › Version : Nouvelle version › Déployer.<br>L\'URL ne change pas : rien à faire sur les téléphones.', e_only:'Seulement chez', e_only_ph:'n\'importe quel magasin', e_urg:'⚡ Urgent', urgent:'Urgent', lg_urg:'{w} : ⚡ {x} est urgent', pv_good:'✓ Bon prix : {p} % moins cher que d\'habitude', pv_high:'↑ {p} % plus cher que d\'habitude', pv_usual:'Prix habituel', pv_cheaper:'moins cher chez {c} ({p})', paste_t:'Coller une liste', paste_d:'Un article par ligne. Puces, emojis et titres sont ignorés.', paste_btn:'Ajouter {n} article(s)', paste_ph:'Lait\n2 kg tomates\nPain x2', m_theme:'Couleurs', pal_coral:'Corail', pal_sage:'Sauge', pal_lav:'Lavande', pal_sky:'Ciel', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', sh_off:'Non partagée pour l\'instant', sh_msgs:'Messages, activité, code d\'invitation', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
   m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
@@ -420,7 +488,7 @@ es:{
   t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
   ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
   m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', sh_off:'Aún no compartida', sh_msgs:'Mensajes, actividad, código de invitación', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', tab_pantry:'Despensa', tab_menus:'Menús', p_add_ph:'Añadir a la despensa…', p_exp:'Fecha de caducidad', p_hint:'Fecha opcional a la derecha. 🛒 = se acabó, a comprar.', p_empty_t:'La despensa está vacía', p_empty_d:'Apunta lo que tenéis en casa, con la fecha de caducidad si hace falta.<br>Cuando se acabe un producto, toca 🛒: pasa a la lista.', p_soon:'Consumir pronto', p_auto:'Guardar en la despensa los productos cogidos de la lista', p_done:'Se acabó: añadir a la lista', p_moved:'{x}: se acabó, añadido a la lista', px_out:'caducado', px_today:'hoy', px_in:'{n} d', p_alert:'⏳ {n} producto(s) de la despensa para consumir pronto', p_to_list:'Se acabó: añadir a la lista', mn_week:'Esta semana', mn_lunch:'Comida', mn_dinner:'Cena', mn_pers:'Personas', mn_add_week:'Ingredientes de la semana → lista', mn_recipes:'Recetas', mn_new:'Nueva receta', mn_serv:'Número de personas de la receta', mn_serv_n:'{n} pers.', mn_free:'…o un plato sin receta', mn_free_ph:'ej. Sobras, Restaurante', mn_clear:'Borrar', mn_paste_d:'Puedes pegar los ingredientes de una receta de internet: un ingrediente por línea.', mn_preview_d:'Desmarca lo que ya tenéis. Las cantidades se ajustan al número de personas.', mn_in_pantry:'en la despensa', mn_in_list:'ya en la lista', mn_nothing:'No hay recetas previstas', x_title:'Gastos', x_empty:'Los gastos se calculan con el modo compra: coge los productos con su precio y toca «Salir».', x_month:'Este mes', x_vs:'vs mes pasado', x_by_store:'Por tienda', x_by_ray:'Por sección', x_p1:'Este mes', x_p3:'3 meses', x_p12:'12 meses', x_trips:'{n} compra(s)', ph_take:'Foto', ph_change:'Cambiar la foto', ph_del:'Quitar', ph_err:'No se pudo hacer la foto', m_stores:'Tiendas cerca de mí', srv_old:'Hay que actualizar el script', srv_old_d:'Para compartir también despensa, menús, precios, gastos y fotos.', srv_steps:'1. Abre tu hoja de Google › Extensiones › Apps Script.<br>2. Sustituye todo el código por este y guarda.<br>3. Implementar › Gestionar implementaciones › ✎ Editar › Versión: Nueva versión › Implementar.<br>La URL no cambia: nada que hacer en los móviles.', e_only:'Solo en', e_only_ph:'cualquier tienda', e_urg:'⚡ Urgente', urgent:'Urgente', lg_urg:'{w}: ⚡ {x} es urgente', pv_good:'✓ Buen precio: un {p} % más barato de lo habitual', pv_high:'↑ un {p} % más caro de lo habitual', pv_usual:'Precio habitual', pv_cheaper:'más barato en {c} ({p})', paste_t:'Pegar una lista', paste_d:'Un producto por línea. Se ignoran viñetas, emojis y títulos.', paste_btn:'Añadir {n} producto(s)', paste_ph:'Leche\n2 kg tomates\nPan x2', m_theme:'Colores', pal_coral:'Coral', pal_sage:'Salvia', pal_lav:'Lavanda', pal_sky:'Cielo', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', sh_off:'Aún no compartida', sh_msgs:'Mensajes, actividad, código de invitación', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
   m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
@@ -466,6 +534,8 @@ const P = {
   users:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5"/>',
   send:'<path d="M4 12l16-8-6 16-2.5-6.5z"/>',
   tag:'<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
+  box:'<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+  chef:'<path d="M6 14a4 4 0 1 1 1.5-7.7A5 5 0 0 1 16.5 6.3 4 4 0 1 1 18 14"/><path d="M6 14v6h12v-6M9 17h6"/>',
   undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>'
 };
 const ic = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`;
@@ -650,7 +720,7 @@ S.settings.view = 'carnet';
 S.lists.forEach(l => { l.items = l.items.filter(i => !i.checked); });
 function setLang(l){ LANG = l === 'es' ? 'es' : 'fr'; LOC = LANG === 'es' ? 'es-ES' : 'fr-FR'; document.documentElement.lang = LANG; }
 setLang(S.settings.lang);
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){ toast(t('mem_full')); } }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){ toast(t('mem_full')); } if (typeof queueData === 'function' && curList().shared) queueData(); }
 const curList = () => S.lists.find(l => l.id === S.cur) || S.lists[0];
 
 /* ================= Logique métier ================= */
@@ -742,7 +812,7 @@ function addItem(text, extra = {}){
     note:'', checked:false, price:null,
     code: extra.code || cat?.code || null, brand: extra.brand || cat?.brand || '', ns: extra.ns || cat?.ns || null, ts: Date.now()
   };
-  L.items.push(it); touch(L, it); logEv(L, 'add', it.name);
+  L.items.push(it); touch(L, it); logEv(L, 'add', it.name); freshId = it.id;
   UNDO.push({msg:t('added', {x:dn(it)}), fn:() => { if (L.items.includes(it)){ removeItem(L, it); save(); renderList(); } }}); if (UNDO.length > 20) UNDO.shift(); renderUndo();
   learn(p.name, {n:(cat?.n || 0) + 1, last: today(), code: it.code, brand: it.brand, ns: it.ns});
   save(); renderList(); vib(8);
@@ -807,13 +877,15 @@ function takeItem(L, it){
   const idx = L.items.indexOf(it);
   removeItem(L, it); logEv(L, 'chk', it.name);
   const d = today();
-  let hst = S.history.find(x => x.auto && x.d === d);
-  if (!hst){ hst = {id:uid(), d, s:'', c:'', items:[], t:0, auto:true}; S.history.push(hst); }
+  let hst = S.history.find(x => x.auto && x.d === d && (x.dev || S.dev) === S.dev);
+  if (!hst){ hst = {id:uid(), d, s:'', c:'', items:[], t:0, auto:true, dev:S.dev}; S.history.push(hst); }
   const fresh = !hst.items.some(x => x.k === it.k);
   if (fresh) hst.items.push({n:it.name, k:it.k, q:it.qty, u:it.unit, p:null});
   const cat = learn(it.name); if (fresh){ cat.b = (cat.b || 0) + 1; cat.lb = d; } if (!cat.rayon) cat.rayon = it.rayon;
   S.recent = [{k:it.k, name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon, t:Date.now()}, ...(S.recent || []).filter(r => r.k !== it.k)].slice(0, 24);
+  if (S.settings.autoPantry) addPantry('', {name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon});
   save(); renderList();
+  if (!L.items.length) confetti();
   const t0 = Date.now();
   offerUndo(t('took', {x:dn(it)}), () => {
     if (!L.items.includes(it)) L.items.splice(Math.min(idx, L.items.length), 0, it);
@@ -822,7 +894,7 @@ function takeItem(L, it){
     S.recent = S.recent.filter(r => r.k !== it.k);
     if (S.trip){
       const ln = S.trip.lines.find(l => l.k === it.k && l.t >= t0);
-      if (ln){ S.trip.lines = S.trip.lines.filter(l => l !== ln); if (ln.p != null) S.prices = S.prices.filter(r => !(r.k === ln.k && r.c === S.trip.chain && r.d === today() && r.p === ln.p)); }
+      if (ln){ S.trip.lines = S.trip.lines.filter(l => l !== ln); if (ln.p != null) dropPrices(r => !(r.k === ln.k && r.c === S.trip.chain && r.d === today() && r.p === ln.p)); }
     }
     if (sheetOpen) closeSheet();
     touch(L, it); save(); renderList();
@@ -843,7 +915,11 @@ function doUndo(){
 function carnetRow(it){
   const e = estPrice(it);
   const s = it.rayon === 'fl' ? inSeason(it.name) : null;
-  return `<button class="citem" data-id="${it.id}" data-a="take"><span class="nm">${esc(dn(it))}</span>${it.ns ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}<span class="sp"></span>${qtyLabel(it) ? `<span class="q">${esc(qtyLabel(it))}</span>` : ''}${it.note ? `<span class="nt">${esc(it.note)}</span>` : ''}${s === true ? `<span class="tg">🍃</span>` : s === false ? `<span class="tg warn">✈︎</span>` : ''}${e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : ''}</button>`;
+  const tr = S.trip && S.trip.chain;
+  const other = tr && it.st && !sameChain(it.st, S.trip.chain), here = tr && it.st && !other;
+  const em = it.photo ? `<span class="em ph" data-a="photo"><img src="${esc(photoSrc(it.photo))}" alt=""></span>` : `<span class="em">${emojiOf(it.name) || RAY[it.rayon]?.e || '🛒'}</span>`;
+  const q = it.qty ? qtyLabel(it).replace('×', '') : '1';
+  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="nm">${esc(dn(it))}</span>${it.ns ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}<span class="sp"></span>${it.note ? `<span class="nt">${esc(it.note)}</span>` : ''}${it.st ? `<span class="stt">${esc(it.st)}</span>` : ''}${s === true ? `<span class="tg">🍃</span>` : s === false ? `<span class="tg warn">✈︎</span>` : ''}${e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : ''}<span class="stp"><i data-a="minus">−</i><b>${esc(q)}</b><i data-a="plus">+</i></span></button>`;
 }
 function renderSum(){
   const L = curList();
@@ -874,8 +950,11 @@ function renderList(){
   let h = '';
   if (!todo.length) h += `<div class="empty"><div class="big">🧺</div><b>${t('empty_t')}</b>${t('empty_d')}</div>`;
   if (carnet() && todo.length){
+    const isOther = i => S.trip && S.trip.chain && i.st && !sameChain(i.st, S.trip.chain) ? 1 : 0;
+    const urg = todo.filter(i => i.urg);
+    if (urg.length) h += `<div class="sec urgsec"><div class="cgh"><span class="e">⚡</span>${t('urgent')}<span class="n">${urg.length}</span></div>${urg.map(carnetRow).join('')}</div>`;
     S.rayonOrder.forEach(rid => {
-      const its = todo.filter(i => i.rayon === rid).sort((a, b) => a.ts - b.ts);
+      const its = todo.filter(i => i.rayon === rid && !i.urg).sort((a, b) => isOther(a) - isOther(b) || a.ts - b.ts);
       if (!its.length) return;
       const r = RAY[rid];
       h += `<div class="sec"><div class="cgh" style="background:${r.c}26"><span class="e">${r.e}</span>${rn(rid)}<span class="n">${its.length}</span></div>${its.map(carnetRow).join('')}</div>`;
@@ -895,6 +974,7 @@ function renderList(){
     if (showRecent) h += `<div class="chips" style="flex-wrap:wrap;padding-top:0">${rec.map(r => `<button class="chip" data-readd="${esc(r.k)}">＋ ${esc(trName(r.name))}${r.qty ? ` <span class="muted">${esc(qtyLabel(r))}</span>` : ''}</button>`).join('')}</div>`;
   }
   $('#list').innerHTML = h;
+  freshId = null;
 }
 function renderChips(){
   const rem = reminders().slice(0, 6), remK = new Set(rem.map(r => r.k));
@@ -949,10 +1029,13 @@ function editItem(id){
   const sh = openSheet(`
     <h3>${esc(dn(it))}</h3>
     ${it.brand || it.ns ? `<div class="small muted">${esc(it.brand)} ${it.ns ? `· Nutri-Score <i class="ns ns-${it.ns}" style="vertical-align:middle">${it.ns}</i>` : ''}</div>` : ''}
+    <div class="phrow">${it.photo ? `<img class="phm" src="${esc(photoSrc(it.photo))}" alt="">` : ''}<button class="btn sm" id="fPh">📷 ${it.photo ? t('ph_change') : t('ph_take')}</button>${it.photo ? `<button class="btn sm ghost" id="fPhD">${t('ph_del')}</button>` : ''}</div>
     <label class="f">${t('e_name')}</label><input id="fName" value="${esc(dn(it))}">
     <div class="grid2"><div><label class="f">${t('e_qty')}</label><input id="fQty" inputmode="decimal" value="${it.qty ?? ''}" placeholder="1"></div><div><label class="f">${t('e_unit')}</label>${unitSelect(it.unit)}</div></div>
     <label class="f">${t('e_ray')}</label>${rayonSelect(it.rayon)}
     <label class="f">${t('e_note')}</label><input id="fNote" value="${esc(it.note)}" placeholder="${t('e_note_ph')}">
+    <div class="grid2"><div><label class="f">${t('e_only')}</label><input id="fOnly" list="dlOnly" value="${esc(it.st || '')}" placeholder="${t('e_only_ph')}"><datalist id="dlOnly">${knownChains().map(c => `<option value="${esc(c)}">`).join('')}</datalist></div>
+    <div><label class="f">&nbsp;</label><button class="btn full ${it.urg ? 'pri' : ''}" id="fUrg" data-on="${it.urg ? 1 : 0}">${t('e_urg')}</button></div></div>
     <div class="grid2"><div><label class="f">${t('e_price')}</label><input id="fPrice" inputmode="decimal" value="${it.price ?? ''}" placeholder="${suggestPrice(it) != null ? '≈ ' + suggestPrice(it).toFixed(2) : '€'}"></div>
     <div><label class="f">${t('store')}</label><input id="fStore" list="dlStore" value="${esc(S.settings.lastStore || '')}" placeholder="Mercadona"><datalist id="dlStore">${[...new Set([...S.prices.map(r => r.c), ...S.favStores.map(chainOf), ...(S.storesCache?.list || []).slice(0, 10).map(chainOf)])].map(c => `<option value="${esc(c)}">`).join('')}</datalist></div></div>
     <p class="small muted" style="margin:6px 2px 0">${t('e_price_d')}</p>
@@ -968,15 +1051,16 @@ function editItem(id){
     const rayon = $('#fRay').value;
     if (rayon !== it.rayon) learn(name, {rayon});
     const np = num($('#fPrice').value), st = $('#fStore').value.trim();
-    Object.assign(it, {name, k:canonK(name), qty:num($('#fQty').value), unit:$('#fUnit').value, rayon, note:$('#fNote').value.trim(), price:np});
-    if (np != null && st){
-      const {up, uu} = unitPrice(np, it.qty, it.unit), d = today();
-      S.prices = S.prices.filter(r => !(r.k === it.k && r.c === st && r.d === d));
-      S.prices.push({k:it.k, n:it.name, s:st, c:st, p:np, q:it.qty, u:it.unit, up, uu, d});
-      S.settings.lastStore = st;
-    }
+    const urg = $('#fUrg').dataset.on === '1';
+    if (urg && !it.urg) logEv(L, 'urg', it.name);
+    Object.assign(it, {name, k:canonK(name), qty:num($('#fQty').value), unit:$('#fUnit').value, rayon, note:$('#fNote').value.trim(), price:np, st:$('#fOnly').value.trim(), urg});
+    if (np != null && st && np !== it._p0){ recordPrice(it.name, it.k, np, it.qty, it.unit, st); S.settings.lastStore = st; }
     touch(L, it); save(); renderList(); closeSheet();
   };
+  it._p0 = it.price;
+  sh.querySelector('#fPh').onclick = () => pickPhoto(it, () => editItem(it.id));
+  const phd = sh.querySelector('#fPhD'); if (phd) phd.onclick = () => { it.photo = null; touch(L, it); save(); renderList(); editItem(it.id); };
+  sh.querySelector('#fUrg').onclick = e => { const b = e.currentTarget; const on = b.dataset.on !== '1'; b.dataset.on = on ? '1' : '0'; b.classList.toggle('pri', on); };
   sh.querySelector('#fDel').onclick = () => {
     const idx = L.items.indexOf(it); removeItem(L, it); save(); renderList(); closeSheet();
     offerUndo(t('deleted', {x:dn(it)}), () => {
@@ -1306,8 +1390,9 @@ function renderPrices(){
   let rows = Object.entries(byK).map(([k, rs]) => { rs.sort((a, b) => b.d.localeCompare(a.d)); return {k, rs, last:rs[0]}; });
   if (priceQ){ const q = keyOf(priceQ); rows = rows.filter(r => keyOf(trName(r.last.n)).includes(q) || keyOf(r.last.n).includes(q)); }
   rows.sort((a, b) => b.last.d.localeCompare(a.last.d));
-  $('#tab-prices').innerHTML = `
-    <div class="row mt"><input id="pq" placeholder="${t('p_search')}" value="${esc(priceQ)}"><button class="btn pri" id="pAdd" style="flex:none">${ic('plus')} ${t('p_seen')}</button></div>
+  $('#tab-prices').innerHTML = expensesHtml() + `
+    <div class="h2">${t('tab_prices')}</div>
+    <div class="row"><input id="pq" placeholder="${t('p_search')}" value="${esc(priceQ)}"><button class="btn pri" id="pAdd" style="flex:none">${ic('plus')} ${t('p_seen')}</button></div>
     ${rows.length ? `<div class="card mt">${rows.map(r => {
       const sameC = r.rs.filter(x => x.c === r.last.c && x.uu === r.last.uu);
       const prev = sameC[1]; let trend = '';
@@ -1320,6 +1405,7 @@ function renderPrices(){
   const pq = $('#pq');
   pq.oninput = () => { priceQ = pq.value; const pos = pq.selectionStart; renderPrices(); const n = $('#pq'); n.focus(); n.setSelectionRange(pos, pos); };
   $('#pAdd').onclick = () => openPriceForm();
+  $$('#xSeg button').forEach(b => b.onclick = () => { xPeriod = +b.dataset.x; renderPrices(); });
   $$('.pr').forEach(b => b.onclick = () => openPriceDetail(b.dataset.k));
 }
 function spark(rs){
@@ -1340,7 +1426,7 @@ function openPriceDetail(k){
     <div class="acts"><button class="btn pri" id="pdAdd">${ic('plus')} ${t('add_list')}</button></div>`);
   sh.querySelector('#pdAdd').onclick = () => { addItem(name); closeSheet(); toast(t('x_added', {x:name})); };
   $$('[data-del]', sh).forEach(b => b.onclick = () => {
-    const r = rs[+b.dataset.del]; S.prices.splice(S.prices.indexOf(r), 1); save(); renderPrices();
+    const r = rs[+b.dataset.del]; dropPrices(x => x !== r); save(); renderPrices();
     if (recordsOf(k).length) openPriceDetail(k); else closeSheet();
   });
   const ob = sh.querySelector('#opBtn2'); if (ob) ob.onclick = () => openPrices(code, $('#opRes2'));
@@ -1361,7 +1447,7 @@ function openPriceForm(){
     if (!n || !s || p == null) return toast(t('pf_req'));
     const q = num($('#fQty').value), u = $('#fUnit').value;
     const {up, uu} = unitPrice(p, q, u);
-    S.prices.push({k:canonK(n), n, s, c:s, p, q, u, up, uu, d:$('#pfD').value || today()});
+    S.prices.push({id:uid(), k:canonK(n), n, s, c:s, p, q, u, up, uu, d:$('#pfD').value || today()});
     learn(n);
     save(); closeSheet(); renderPrices(); toast(t('p_saved'));
   };
@@ -1428,31 +1514,87 @@ async function askAI(){
 }
 
 /* ================= Partage en direct ================= */
-const GS_CODE = `// Cabas — partage en direct (Google Apps Script)
-const SHEET = 'rooms';
-function sh_(){ const ss = SpreadsheetApp.getActive(); return ss.getSheetByName(SHEET) || ss.insertSheet(SHEET); }
-function row_(room){ const f = sh_().getRange('A:A').createTextFinder(room).matchEntireCell(true).findNext(); return f ? f.getRow() : 0; }
-function read_(room){ const r = row_(room); return r ? JSON.parse(sh_().getRange(r, 2).getValue() || 'null') : null; }
-function write_(room, doc){ const s = sh_(); let r = row_(room); if (!r){ r = s.getLastRow() + 1; s.getRange(r, 1).setValue(room); } s.getRange(r, 2, 1, 2).setValues([[JSON.stringify(doc), new Date()]]); }
+const GS_CODE = `// Cabas — partage en direct v2 (Google Apps Script)
+// Liste, placard, menus, prix, dépenses et photos partagés entre deux téléphones.
+const VER = 2, CH = 45000;
+function ss_(){ return SpreadsheetApp.getActive(); }
+function sh_(n){ const s = ss_(); return s.getSheetByName(n) || s.insertSheet(n); }
+function find_(s, col, val, room){
+  const last = s.getLastRow(); if (!last) return 0;
+  const vals = s.getRange(1, 1, last, Math.max(col, 1)).getValues();
+  for (let i = 0; i < vals.length; i++){ if (String(vals[i][col - 1]) === val && (!room || vals[i][0] === room)) return i + 1; }
+  return 0;
+}
 function out_(o){ return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
+function read_(room){
+  const s = sh_('rooms'), r = find_(s, 1, room); if (!r) return null;
+  const v = s.getRange(r, 1, 1, Math.max(3, s.getLastColumn())).getValues()[0];
+  if (typeof v[1] === 'string' && v[1].charAt(0) === '{') return JSON.parse(v[1]);
+  let j = '';
+  for (let i = 2; i < v.length; i++){ const c = String(v[i] || ''); if (!c) break; j += c.charAt(0) === '~' ? c.slice(1) : c; }
+  return j ? JSON.parse(j) : null;
+}
+function write_(room, doc){
+  const s = sh_('rooms'); let r = find_(s, 1, room);
+  if (!r){ r = s.getLastRow() + 1; s.getRange(r, 1).setValue(room); }
+  const j = JSON.stringify(doc), parts = [];
+  for (let i = 0; i < j.length; i += CH) parts.push('~' + j.substr(i, CH));
+  const row = [new Date()].concat(parts);
+  const w = Math.max(s.getLastColumn() - 1, row.length);
+  while (row.length < w) row.push('');
+  const rg = s.getRange(r, 2, 1, row.length); rg.setNumberFormat('@'); rg.setValues([row]);
+}
+function mergeMap_(dst, arr){ (arr || []).forEach(function(it){ const c = dst[it.id]; if (!c || (it.u || 0) > (c.u || 0)) dst[it.id] = it; }); }
+function prune_(m){ const lim = Date.now() - 30 * 864e5; Object.keys(m).forEach(function(k){ if (m[k].del && (m[k].u || 0) < lim) delete m[k]; }); }
 function doGet(e){
   const room = String(e.parameter.room || '').toUpperCase();
-  if (!room) return out_({ok:true, app:'cabas'});
-  const d = read_(room); return out_(d ? {ok:true, doc:d} : {ok:false, err:'notfound'});
+  if (!room) return out_({ok:true, app:'cabas', ver:VER});
+  if (e.parameter.photo){
+    const s = sh_('photos'), r = find_(s, 2, String(e.parameter.photo), room);
+    if (!r) return out_({ok:false, err:'nophoto'});
+    return out_({ok:true, data:String(s.getRange(r, 3).getValue()).replace(/^~/, '')});
+  }
+  const d = read_(room); return out_(d ? {ok:true, ver:VER, doc:d} : {ok:false, err:'notfound', ver:VER});
 }
 function doPost(e){
   const b = JSON.parse(e.postData.contents); const room = String(b.room || '').toUpperCase();
-  const lock = LockService.getScriptLock(); lock.waitLock(15000);
+  const lock = LockService.getScriptLock(); lock.waitLock(20000);
   try {
+    if (b.photo){
+      const s = sh_('photos'); let r = find_(s, 2, String(b.photo.id), room);
+      if (!r) r = s.getLastRow() + 1;
+      const rg = s.getRange(r, 1, 1, 3); rg.setNumberFormat('@'); rg.setValues([[room, String(b.photo.id), '~' + b.photo.data]]);
+      return out_({ok:true, ver:VER});
+    }
+    if (b.data){
+      const s = sh_('data'), now = Date.now();
+      let last = s.getLastRow();
+      let vals = last ? s.getRange(1, 1, last, 5).getValues() : [];
+      const append = [];
+      b.data.forEach(function(x){
+        const row = [room, x.kind, String(x.id), now, '~' + JSON.stringify(x)];
+        let idx = -1;
+        for (let i = 0; i < vals.length; i++){ if (vals[i][0] === room && String(vals[i][2]) === String(x.id)){ idx = i; break; } }
+        if (idx >= 0){
+          let cur = {}; try { cur = JSON.parse(String(vals[idx][4]).replace(/^~/, '')); } catch(err){}
+          if ((x.u || 0) >= (cur.u || 0)){ const rg = s.getRange(idx + 1, 1, 1, 5); rg.setNumberFormat('@'); rg.setValues([row]); vals[idx] = row; }
+        } else append.push(row);
+      });
+      if (append.length){ const rg = s.getRange(s.getLastRow() + 1, 1, append.length, 5); rg.setNumberFormat('@'); rg.setValues(append); vals = vals.concat(append); }
+      const since = Number(b.since || 0), out = [];
+      vals.forEach(function(v){ if (v[0] === room && Number(v[3]) > since){ try { out.push(JSON.parse(String(v[4]).replace(/^~/, ''))); } catch(err){} } });
+      return out_({ok:true, ver:VER, data:out, now:now});
+    }
     let d = read_(room);
-    if (!d){ if (!b.create) return out_({ok:false, err:'notfound'}); d = {name:'', budget:0, u:0, items:{}, log:[], v:0}; }
+    if (!d){ if (!b.create) return out_({ok:false, err:'notfound', ver:VER}); d = {name:'', budget:0, u:0, items:{}, pantry:{}, log:[], v:0}; }
+    d.items = d.items || {}; d.pantry = d.pantry || {}; d.log = d.log || [];
     if (b.meta && (b.meta.u || 0) > (d.u || 0)){ d.name = b.meta.name; d.budget = b.meta.budget; d.u = b.meta.u; }
-    (b.items || []).forEach(it => { const c = d.items[it.id]; if (!c || (it.u || 0) > (c.u || 0)) d.items[it.id] = it; });
-    (b.log || []).forEach(l => d.log.push(l)); d.log = d.log.slice(-80);
-    const lim = Date.now() - 30 * 864e5;
-    Object.keys(d.items).forEach(k => { if (d.items[k].del && d.items[k].u < lim) delete d.items[k]; });
-    d.v++; write_(room, d);
-    return out_({ok:true, doc:d});
+    mergeMap_(d.items, b.items); mergeMap_(d.pantry, b.pantry);
+    if (b.plan && (b.plan.u || 0) > ((d.plan && d.plan.u) || 0)) d.plan = b.plan;
+    (b.log || []).forEach(function(l){ d.log.push(l); }); d.log = d.log.slice(-80);
+    prune_(d.items); prune_(d.pantry);
+    d.v = (d.v || 0) + 1; write_(room, d);
+    return out_({ok:true, ver:VER, doc:d});
   } finally { lock.releaseLock(); }
 }`;
 let syncBusy = false, syncTimer = null, syncState = '';
@@ -1467,41 +1609,59 @@ async function syncList(L, mode){
     const dirty = L.items.filter(i => i.dirty).map(i => [i, i.dirty]);
     const gone = L.gone.filter(g => g.dirty);
     const logs = (L.outLog || []).slice();
+    const pd = (L.pantry || []).filter(i => i.dirty).map(i => [i, i.dirty]), pg = (L.pgone || []).filter(g => g.dirty);
+    const planD = L.planDirty && L.plan ? L.plan.u : 0;
     let res;
-    if (mode === 'create' || dirty.length || gone.length || logs.length || L.metaDirty){
-      const body = {room:L.shared.room, create: mode === 'create', meta:{name:L.name, budget:L.budget || 0, u:L.mu || 0}, items:[...dirty.map(([i]) => strip(i)), ...gone.map(strip)], log:logs};
+    if (mode === 'create' || dirty.length || gone.length || logs.length || L.metaDirty || pd.length || pg.length || planD){
+      const body = {room:L.shared.room, create: mode === 'create', meta:{name:L.name, budget:L.budget || 0, u:L.mu || 0}, items:[...dirty.map(([i]) => strip(i)), ...gone.map(strip)], pantry:[...pd.map(([i]) => strip(i)), ...pg.map(strip)], log:logs};
+      if (planD) body.plan = L.plan;
       res = await (await fetch(url, {method:'POST', body:JSON.stringify(body)})).json();
       if (res.ok){
         dirty.forEach(([i, v]) => { if (i.dirty === v) delete i.dirty; });
         gone.forEach(g => delete g.dirty);
+        pd.forEach(([i, v]) => { if (i.dirty === v) delete i.dirty; });
+        pg.forEach(g => delete g.dirty);
+        if (planD && L.plan && L.plan.u === planD) L.planDirty = false;
         L.outLog = (L.outLog || []).filter(l => !logs.includes(l));
         L.metaDirty = false;
       }
     } else {
       res = await (await fetch(url + (url.includes('?') ? '&' : '?') + 'room=' + encodeURIComponent(L.shared.room))).json();
     }
+    if (res.ver) S.srvVer = res.ver; else if (res.ok) S.srvVer = 1;
     if (!res.ok){ setSyncState('err'); return res; }
     mergeDoc(L, res.doc); setSyncState('ok');
+    if ((S.srvVer || 1) >= 2) dataSync();
     return res;
   } catch(e){ setSyncState('err'); return false; }
   finally { syncBusy = false; }
 }
-function mergeDoc(L, doc){
+function mergeColl(arr, gone, map, isItems){
   let changed = false;
-  for (const id in doc.items){
-    const s = doc.items[id];
-    const li = L.items.find(i => i.id === id);
-    const gi = L.gone.findIndex(g => g.id === id);
+  for (const id in (map || {})){
+    const s = map[id];
+    const li = arr.find(i => i.id === id);
+    const gi = gone.findIndex(g => g.id === id);
     if (s.del){
-      if (li && !li.dirty && (li.u || 0) < s.u){ L.items.splice(L.items.indexOf(li), 1); changed = true; }
-      if (gi < 0 && !L.items.find(i => i.id === id)) L.gone.push({id, u:s.u, del:true});
+      if (li && !li.dirty && (li.u || 0) < s.u){ arr.splice(arr.indexOf(li), 1); changed = true; }
+      if (gi < 0 && !arr.find(i => i.id === id)) gone.push({id, u:s.u, del:true});
       continue;
     }
     if (li){ if (!li.dirty && (s.u || 0) > (li.u || 0)){ Object.assign(li, s); li.k = canonK(li.name); changed = true; } }
-    else if (gi >= 0 && L.gone[gi].u >= (s.u || 0)) { /* supprimé ici plus récemment */ }
-    else if (s.checked) { }
-    else { const n = {...s, k:canonK(s.name)}; L.items.push(n); if (gi >= 0) L.gone.splice(gi, 1); changed = true; }
+    else if (gi >= 0 && gone[gi].u >= (s.u || 0)) { /* supprimé ici plus récemment */ }
+    else if (isItems && s.checked) { }
+    else { const n = {...s, k:canonK(s.name)}; arr.push(n); if (gi >= 0) gone.splice(gi, 1); changed = true; }
   }
+  return changed;
+}
+function mergeDoc(L, doc){
+  let changed = mergeColl(L.items, L.gone, doc.items, true);
+  pantry();
+  const pch = mergeColl(L.pantry, L.pgone, doc.pantry, false);
+  let mch = false;
+  if (doc.plan && (doc.plan.u || 0) > ((L.plan && L.plan.u) || 0) && !L.planDirty){ L.plan = doc.plan; mch = true; }
+  if (pch && $('#tab-pantry').classList.contains('on') && !sheetOpen) renderPantry(); else if (pch) updateBadges();
+  if (mch && $('#tab-menus').classList.contains('on') && !sheetOpen) renderMenus();
   if ((doc.u || 0) > (L.mu || 0)){ L.name = doc.name || L.name; L.budget = doc.budget || 0; L.mu = doc.u; changed = true; }
   L.log = doc.log || [];
   const fresh = L.log.filter(l => l.t > (L.seen || 0) && l.by !== S.dev);
@@ -1517,7 +1677,7 @@ function logText(l){
   return t('lg_' + l.k, {w, x});
 }
 function notifyLog(fresh){
-  const msgs = fresh.filter(l => l.k === 'msg' || l.k === 'done' || l.k === 'join');
+  const msgs = fresh.filter(l => l.k === 'msg' || l.k === 'done' || l.k === 'join' || l.k === 'urg');
   const adds = fresh.filter(l => l.k === 'add'), chks = fresh.filter(l => l.k === 'chk');
   const parts = msgs.map(logText);
   if (adds.length) parts.push(adds.length === 1 ? logText(adds[0]) : t('lg_adds', {w:adds[0].w || t('someone'), n:adds.length}));
@@ -1568,6 +1728,7 @@ function openLive(){
     if (!readSetup()) return;
     L.shared = {room:roomCode()}; L.gone = L.gone || []; L.mu = Date.now(); L.metaDirty = true; L.seen = Date.now();
     L.items.forEach(i => { i.u = i.u || Date.now(); i.dirty = i.u; });
+    pantry().forEach(i => { i.u = i.u || Date.now(); i.dirty = i.u; }); plan(); L.plan.u = L.plan.u || Date.now(); L.planDirty = true;
     logEv(L, 'join', '');
     const r = await syncList(L, 'create');
     if (!r || !r.ok){ L.shared = null; L.outLog = []; L.items.forEach(i => delete i.dirty); save(); toast(t('sh_err')); return; }
@@ -1589,10 +1750,21 @@ async function joinRoom(room){
   const local = L.items.slice(); L.items = [];
   mergeDoc(L, res.doc);
   local.forEach(i => { if (!L.items.some(x => x.k === i.k)){ i.u = Date.now(); i.by = S.dev; i.dirty = i.u; L.items.push(i); } });
+  pantry().forEach(i => { i.u = Date.now(); i.dirty = i.u; });
+  if (res.doc.plan){
+    const mine = L.plan; L.plan = JSON.parse(JSON.stringify(res.doc.plan)); L.planDirty = false;
+    const extra = (mine?.data?.recipes || []).filter(r => !L.plan.data.recipes.some(x => x.name === r.name));
+    if (extra.length){ L.plan.data.recipes.push(...extra); L.plan.u = Date.now(); L.planDirty = true; }
+  } else if (L.plan && L.plan.data.recipes.length){ L.plan.u = Date.now(); L.planDirty = true; }
   queueSync();
   logEv(L, 'join', '');
   save(); closeSheet(); showTab('list'); toast(t('sh_joined', {x:t('def_list')}));
   askNotif();
+}
+function openSrvUpdate(){
+  const sh = openSheet(`<h3>${t('srv_old')}</h3><p class="small">${t('srv_steps')}</p>
+    <pre class="gs">${esc(GS_CODE)}</pre><button class="btn pri full mt" id="suC">${t('copy')}</button>`);
+  sh.querySelector('#suC').onclick = () => navigator.clipboard.writeText(GS_CODE).then(() => toast(t('copied'))).catch(() => toast(t('copy_err')));
 }
 function askNotif(){ try { if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission(); } catch(e){} }
 function openActivity(){
@@ -1648,15 +1820,17 @@ function renderMore(){
   $('#tab-more').innerHTML = `
     <div class="h2">${t('m_sync')}</div>
     <button class="card li" id="mLive" style="border-radius:var(--r)"><span style="font-size:22px">👥</span><div class="bd2"><b>${L.shared ? (members(L).length ? esc(t('sh_members', {x:members(L).join(', ')})) : t('sh_bar_wait')) : t('sh_off')}</b><div class="small muted">${L.shared ? t('sh_msgs') : t('sh_intro')}</div></div><span class="muted">›</span></button>
+    ${L.shared && (S.srvVer || 1) < 2 ? `<button class="card pad mt srvold" id="mSrv"><b>⚠️ ${t('srv_old')}</b><div class="small">${t('srv_old_d')}</div></button>` : ''}
     <div class="h2">${t('budget')}</div>
     <div class="card pad"><input id="mBudget" inputmode="decimal" value="${L.budget || ''}" placeholder="${t('lf_budget')}"></div>
-    <div class="h2">${t('m_tpl')}</div>
-    <div class="card">${S.templates.length ? S.templates.map(x => `<div class="li"><div class="bd2"><b>${esc(x.name)}</b><div class="small muted" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(x.items.map(trName).join(', '))}</div></div><button class="btn sm" data-tadd="${x.id}">${t('m_add')}</button><button class="ib" data-tedit="${x.id}" style="color:var(--muted)">✎</button></div>`).join('') : `<p class="pad muted">${t('m_notpl')}</p>`}</div>
-    <div class="row mt"><button class="btn" id="tNew">${ic('plus')} ${t('m_tnew')}</button><button class="btn" id="tFromList">${t('m_tfrom')}</button></div>
+    <button class="btn full mt" id="mPaste">📋 ${t('paste_t')}</button>
+    <button class="btn full mt" id="mStores">📍 ${t('m_stores')}</button>
     <div class="h2">${t('m_settings')}</div>
     <div class="card pad">
       <label class="f" style="margin-top:0">${t('m_lang')}</label>
       <div class="seg" id="langSeg"><button data-l="fr" class="${LANG === 'fr' ? 'on' : ''}">🇫🇷 Français</button><button data-l="es" class="${LANG === 'es' ? 'on' : ''}">🇪🇸 Español</button></div>
+      <label class="f">${t('m_theme')}</label>
+      <div class="pals" id="palSeg">${Object.keys(PALETTES).map(k => `<button data-p="${k}" class="${(S.settings.pal || 'coral') === k ? 'on' : ''}" style="--c:${PALETTES[k].l[0]}"><i></i>${t('pal_' + k)}</button>`).join('')}</div>
       <label class="f">${t('m_look')}</label>
       <div class="seg" id="themeSeg">${[['auto','th_auto'],['light','th_light'],['dark','th_dark']].map(([k, n]) => `<button data-t="${k}" class="${S.settings.theme === k ? 'on' : ''}">${t(n)}</button>`).join('')}</div>
       <button class="btn full mt" id="mOrder">${t('m_order')}</button>
@@ -1679,12 +1853,12 @@ function renderMore(){
   $('#mVer').onclick = async () => { const v = await remoteVersion(); if (v && v !== APP_VERSION) hardUpdate(); else toast(v ? t('ver_ok') : t('ver_check') + ' : ✗'); };
   $('#mBudget').onchange = e => { L.budget = num(e.target.value) || 0; L.mu = Date.now(); if (L.shared){ L.metaDirty = true; queueSync(); } save(); };
   $('#mLive').onclick = openLive;
-  $('#tNew').onclick = () => tplForm(null);
-  $('#tFromList').onclick = () => { const its = curList().items.map(i => (i.qty ? `${i.qty}${i.unit ? ' ' + i.unit : ''} ` : '') + dn(i)); if (!its.length) return toast(t('empty_list')); tplForm({id:null, name:t('def_list'), items:its}); };
-  $$('[data-tadd]').forEach(b => b.onclick = () => { const x = S.templates.find(y => y.id === b.dataset.tadd); x.items.forEach(i => addItem(trName(i))); toast(t('tpl_added', {n:x.items.length})); });
-  $$('[data-tedit]').forEach(b => b.onclick = () => tplForm(S.templates.find(x => x.id === b.dataset.tedit)));
   $$('#langSeg button').forEach(b => b.onclick = () => { S.settings.lang = b.dataset.l; setLang(b.dataset.l); save(); applyStatic(); renderMore(); });
   $$('#themeSeg button').forEach(b => b.onclick = () => { S.settings.theme = b.dataset.t; save(); applyTheme(); renderMore(); });
+  $$('#palSeg button').forEach(b => b.onclick = () => { S.settings.pal = b.dataset.p; save(); applyTheme(); renderMore(); });
+  $('#mPaste').onclick = () => openPaste('');
+  $('#mStores').onclick = () => showTab('stores');
+  const so = $('#mSrv'); if (so) so.onclick = openSrvUpdate;
   $('#mOrder').onclick = orderForm;
   $('#mMe').onchange = e => { S.settings.me = e.target.value.trim(); save(); };
   $('#mSync').onchange = e => { S.settings.sync = e.target.value.trim(); save(); };
@@ -1748,13 +1922,13 @@ function openListPicker(){
 function recordPrice(name, k, p, qty, unit, chain){
   if (p == null || !chain) return;
   const {up, uu} = unitPrice(p, qty, unit), d = today();
-  S.prices = S.prices.filter(r => !(r.k === k && r.c === chain && r.d === d));
-  S.prices.push({k, n:name, s:chain, c:chain, p, q:qty, u:unit, up, uu, d});
+  dropPrices(r => !(r.k === k && r.c === chain && r.d === d));
+  S.prices.push({id:uid(), k, n:name, s:chain, c:chain, p, q:qty, u:unit, up, uu, d});
 }
 function noteBought(name, k, qty, unit, rayon){
   const d = today();
-  let hst = S.history.find(x => x.auto && x.d === d);
-  if (!hst){ hst = {id:uid(), d, s:'', c:'', items:[], t:0, auto:true}; S.history.push(hst); }
+  let hst = S.history.find(x => x.auto && x.d === d && (x.dev || S.dev) === S.dev);
+  if (!hst){ hst = {id:uid(), d, s:'', c:'', items:[], t:0, auto:true, dev:S.dev}; S.history.push(hst); }
   if (!hst.items.some(x => x.k === k)){ hst.items.push({n:name, k, q:qty, u:unit, p:null}); const cat = learn(name); cat.b = (cat.b || 0) + 1; cat.lb = d; if (!cat.rayon) cat.rayon = rayon; }
   S.recent = [{k, name, qty, unit, rayon, t:Date.now()}, ...(S.recent || []).filter(r => r.k !== k)].slice(0, 24);
 }
@@ -1803,7 +1977,7 @@ function endTrip(){
   if (!S.trip) return;
   const n = S.trip.lines.length, tot = tripTotal(), st = S.trip.chain;
   if (n){
-    S.history.push({id:uid(), d:today(), s:S.trip.store, c:st, items:S.trip.lines.map(l => ({n:l.name, k:l.k, q:l.qty, u:l.unit, p:l.p})), t:tot, trip:true});
+    S.history.push({id:uid(), dev:S.dev, d:today(), s:S.trip.store, c:st, items:S.trip.lines.map(l => ({n:l.name, k:l.k, q:l.qty, u:l.unit, p:l.p})), t:tot, trip:true});
   }
   S.trip = null; setStoreMode(false); save(); renderList();
   if (n) toast(t('trip_ended', {x:`${eur(tot)}${st ? ' · ' + st : ''}`}));
@@ -1835,7 +2009,7 @@ function addLine(o){
     const ln = tr.lines[tr.lines.length - 1];
     save(); renderList(); vib(15);
     offerUndo(t('in_cart', {x:trName(name), t:eur(tripTotal())}), () => {
-      if (S.trip){ S.trip.lines = S.trip.lines.filter(l => l !== ln); if (ln.p != null) S.prices = S.prices.filter(r => !(r.k === ln.k && r.c === S.trip.chain && r.d === today() && r.p === ln.p)); }
+      if (S.trip){ S.trip.lines = S.trip.lines.filter(l => l !== ln); if (ln.p != null) dropPrices(r => !(r.k === ln.k && r.c === S.trip.chain && r.d === today() && r.p === ln.p)); }
       if (it && !L.items.includes(it)){ L.items.push(it); L.gone = L.gone.filter(g => g.id !== it.id); touch(L, it); }
       save(); renderList();
     });
@@ -1866,10 +2040,12 @@ function askPrice(it){
   const sh = openSheet(`<h3>${t('price_of', {x:esc(dn(it))})}</h3>
     ${last ? `<p class="small muted">${t('last_at', {p:eur(last.p), d:fdate(last.d)})}</p>` : ''}
     <div class="row mt"><input id="apP" inputmode="decimal" placeholder="${sug != null ? '≈ ' + sug.toFixed(2) : '€'}" value=""><button class="btn" id="apScan" style="flex:none">${ic('scan')} ${t('scan_label')}</button></div>
+    <div id="apV"></div>
     ${sug != null ? `<button class="chip mt" id="apSug">≈ ${eur(sug)}</button>` : ''}
     <div class="acts"><button class="btn ghost" id="apSkip">${t('skip')}</button><button class="btn pri" id="apOk">${t('add_cart')}</button></div>`);
   const done = p => { closeSheet(); addLine({name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon, p, code:it.code, fromList:true}); };
   sh.querySelector('#apOk').onclick = () => done(num($('#apP').value));
+  sh.querySelector('#apP').oninput = e => { $('#apV').innerHTML = verdictHtml(priceVerdict(it.k, num(e.target.value), it.qty, it.unit, tr.chain)); };
   sh.querySelector('#apSkip').onclick = () => done(null);
   const sb = sh.querySelector('#apSug'); if (sb) sb.onclick = () => done(+sug.toFixed(2));
   sh.querySelector('#apScan').onclick = () => openLabelScan({name:it.name, qty:it.qty, unit:it.unit, rayon:it.rayon, code:it.code, fromList:true});
@@ -1931,17 +2107,20 @@ async function openLabelScan(pre){
     <label class="f">${t('e_name')}</label><input id="lsN" value="${esc(pre.name ? trName(pre.name) : '')}">
     <div class="grid2"><div><label class="f">${t('pf_price')}</label><input id="lsP" inputmode="decimal"></div><div><label class="f">${t('e_qty')}</label><div class="row"><input id="lsQ" inputmode="decimal" value="${pre.qty ?? ''}" placeholder="1"><select id="lsU" style="flex:.9">${[['', LANG === 'es' ? 'ud' : 'pce'],['kg','kg'],['g','g'],['l','L'],['cl','cl'],['ml','ml']].map(([k, n]) => `<option value="${k}" ${k === (pre.unit || '') ? 'selected' : ''}>${n}</option>`).join('')}</select></div></div></div>
     ${S.trip ? '' : `<label class="f">${t('store')}</label><input id="lsS" list="dlLs" value="${esc(S.settings.lastStore || '')}" placeholder="${t('pf_store_ph')}"><datalist id="dlLs">${[...new Set([...S.prices.map(r => r.c), ...S.favStores.map(chainOf)])].map(c => `<option value="${esc(c)}">`).join('')}</datalist>`}
+    <div id="lsV"></div>
     <input type="file" id="lsFile" accept="image/*" capture="environment" style="display:none">
     <div class="acts"><button class="btn ghost" id="lsX">${t('cancel')}</button><button class="btn pri" id="lsOk">${S.trip ? t('add_cart') : t('add_list')}</button></div>`, stopLs);
   let code = pre.code || null, offInfo = null;
   const msg = s => { const m = $('#lsMsg'); if (m) m.textContent = s; };
+  const upV = () => { const v = $('#lsV'); if (v) v.innerHTML = verdictHtml(priceVerdict(canonK($('#lsN').value || ''), num($('#lsP').value), num($('#lsQ').value), $('#lsU').value, S.trip?.chain || ($('#lsS')?.value || '').trim())); };
   const showOcr = res => {
     const box = $('#lsPr'); if (!box) return;
     if (!res.prices.length){ box.innerHTML = ''; msg(t('ocr_none')); return; }
     msg(t('ocr_pick'));
     box.innerHTML = `<div class="chips" style="flex-wrap:wrap">${res.prices.map((p, i) => `<button class="chip ${p === res.main ? 'due' : ''}" data-pp="${i}">${eur(p.v)}${p.unit ? ` <span class="muted">${t('unit_p')}</span>` : ''}</button>`).join('')}</div>`;
-    $$('[data-pp]', box).forEach(b => b.onclick = () => { $('#lsP').value = res.prices[+b.dataset.pp].v.toFixed(2); $$('[data-pp]', box).forEach(x => x.classList.remove('due')); b.classList.add('due'); });
+    $$('[data-pp]', box).forEach(b => b.onclick = () => { $('#lsP').value = res.prices[+b.dataset.pp].v.toFixed(2); $$('[data-pp]', box).forEach(x => x.classList.remove('due')); b.classList.add('due'); upV(); });
     if (res.main) $('#lsP').value = res.main.v.toFixed(2);
+    setTimeout(upV, 0);
     if (!$('#lsN').value && res.name) $('#lsN').value = res.name;
     if (!$('#lsQ').value && res.qty){ $('#lsQ').value = res.qty; $('#lsU').value = res.unit; }
   };
@@ -1961,6 +2140,7 @@ async function openLabelScan(pre){
   };
   sh.querySelector('#lsFile').onchange = e => { const f = e.target.files[0]; if (!f) return; const img = new Image(); img.onload = () => { const c = document.createElement('canvas'); const sc = Math.min(1, 1600 / img.width); c.width = img.width * sc; c.height = img.height * sc; c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); runOcr(c); }; img.src = URL.createObjectURL(f); };
   sh.querySelector('#lsX').onclick = () => closeSheet();
+  ['#lsP', '#lsN', '#lsQ', '#lsU', '#lsS'].forEach(s => { const el = sh.querySelector(s); if (el){ el.addEventListener('input', upV); el.addEventListener('change', upV); } });
   sh.querySelector('#lsOk').onclick = () => {
     const name = $('#lsN').value.trim(); const p = num($('#lsP').value);
     if (!name && p == null) return;
@@ -2008,8 +2188,510 @@ async function openLabelScan(pre){
   loadTess().catch(() => {});
 }
 
+/* ================= Pictogrammes automatiques par produit ================= */
+const EMO_RAW = {
+  '🍎':'pomme|manzana', '🍐':'poire|pera', '🍌':'banane|platano', '🍊':'orange|naranja|mandarine|mandarina|clementine|clementina', '🍋':'citron|limon|lima',
+  '🍇':'raisin|uva', '🍓':'fraise|fresa', '🫐':'myrtille|arandano', '🍒':'cerise|cereza', '🍑':'peche|melocoton|nectarine|nectarina|abricot|albaricoque',
+  '🍈':'melon', '🍉':'pasteque|sandia', '🥝':'kiwi', '🍍':'ananas|pina', '🥭':'mangue|mango', '🥑':'avocat|aguacate', '🍅':'tomate',
+  '🥬':'salade|laitue|lechuga|roquette|rucula|epinard|espinaca|blette|acelga|chou|col', '🥕':'carotte|zanahoria', '🥔':'pomme de terre|patata|patate',
+  '🍠':'patate douce|boniato', '🧅':'oignon|cebolla|echalote|chalota', '🧄':'ail|ajo', '🥒':'concombre|pepino|courgette|calabacin|cornichon|pepinillo',
+  '🍆':'aubergine|berenjena', '🫑':'poivron|pimiento', '🥦':'brocoli|chou fleur|coliflor', '🍄':'champignon|champinon|seta', '🎃':'courge|potiron|calabaza|butternut',
+  '🌽':'mais', '🫛':'petit pois|guisante|haricot vert|judia verde', '🌿':'persil|perejil|coriandre|cilantro|basilic|albahaca|menthe|hierbabuena|thym|romarin',
+  '🫚':'gingembre|jengibre', '🥖':'baguette|barra de pan', '🍞':'pain|pan', '🥐':'croissant|cruasan|viennoiserie|bolleria', '🥯':'bagel', '🫓':'tortilla de ble|tortillas de trigo|pita|naan',
+  '🥛':'lait|leche|bebida de|boisson vegetale|kefir', '🧈':'beurre|mantequilla|margarine|margarina', '🧀':'fromage|queso|emmental|parmesan|parmesano|mozzarella|feta|camembert|brie|manchego|gruyere|comte',
+  '🥚':'oeuf|huevo', '🍦':'glace|helado|creme glacee', '🍶':'yaourt|yogur|skyr|creme|nata|petit suisse|natillas',
+  '🥩':'steak|boeuf|ternera|viande|carne|veau|agneau|cordero|porc|cerdo|cotelette|chuleta|filete', '🍗':'poulet|pollo|dinde|pavo|canard|pato|cuisse|muslo|pechuga|aile',
+  '🥓':'bacon|lardon|jambon|jamon|lomo|serrano', '🌭':'saucisse|salchicha|merguez|chorizo|saucisson|salchichon|fuet|knacki', '🍔':'hamburger|hamburguesa|hache|picada',
+  '🐟':'poisson|pescado|saumon|salmon|cabillaud|bacalao|merlu|merluza|thon|atun|truite|trucha|sardine|sardina|dorade|dorada|bar|lubina', '🦐':'crevette|gambas|gamba|langostino',
+  '🦪':'moule|mejillon', '🦑':'calamar|seiche|sepia|poulpe|pulpo', '🍕':'pizza', '🍟':'frites|patatas fritas', '🥫':'conserve|lata|sauce tomate|tomate frito|tomate triturado|soupe|sopa|bouillon|caldo',
+  '🍝':'pate|pates|pasta|spaghetti|espagueti|macaroni|macarron|lasagne|tagliatelle|penne|fusilli|nouilles', '🍚':'riz|arroz|semoule|couscous|cuscus|quinoa',
+  '🫘':'lentille|lenteja|pois chiche|garbanzo|haricot|alubia', '🫒':'olive|aceituna|huile|aceite', '🧂':'sel|sal|poivre|pimienta|epice|especia|paprika|pimenton|cumin|comino|safran|azafran',
+  '🍯':'miel|confiture|mermelada', '🍫':'chocolat|chocolate|cacao|nutella|pate a tartiner|crema de cacao', '🍪':'biscuit|galleta|cookie|madeleine|magdalena|biscotte|biscote',
+  '🥣':'cereale|cereal|muesli|avoine|avena', '🍬':'bonbon|caramelo|chewing gum|chicle', '🥜':'cacahuete|amande|almendra|noix|nuez|nueces|noisette|avellana|fruits secs',
+  '☕':'cafe|capsule|capsula|dosette', '🍵':'the|te|tisane|infusion|infusion', '🧁':'gateau|bizcocho|brioche', '🍰':'tarte|tarta', '🥤':'soda|coca|cola|refresco|limonade|gaseosa|fanta|tonic|tonica|aquarius',
+  '💧':'eau|agua', '🧃':'jus|zumo|compote|compota', '🍺':'biere|cerveza', '🍷':'vin|vino|rose|rosado', '🍾':'cava|champagne|cidre|sidra', '🥃':'whisky|rhum|ron|vodka|gin',
+  '🧼':'savon|jabon|gel douche|gel de ducha|shampoing|champu|apres shampoing|acondicionador', '🪥':'dentifrice|pasta de dientes|brosse a dents|cepillo de dientes|fil dentaire|hilo dental|bain de bouche|enjuague',
+  '🧻':'papier toilette|papel higienico|essuie tout|papel de cocina|sopalin|mouchoir|panuelo', '🧴':'creme hydratante|crema hidratante|creme solaire|protector solar|deodorant|desodorante|lotion',
+  '🪒':'rasoir|cuchilla|mousse a raser|espuma de afeitar', '🩹':'pansement|tirita', '🧺':'lessive|detergente|adoucissant|suavizante', '🧽':'eponge|estropajo|liquide vaisselle|lavavajillas|nettoyant|limpiador',
+  '🫧':'javel|lejia|vinaigre blanc|vinagre de limpieza|pastille|pastillas', '🗑️':'sac poubelle|bolsas de basura|poubelle', '🔋':'pile|pila', '💡':'ampoule|bombilla', '🕯️':'bougie|vela',
+  '🧊':'surgele|congelad|glacon|hielo', '👶':'couche|panal|biberon|tetine|chupete|petit pot|potito|lait infantile|leche infantil', '🐱':'chat|gato|litiere|arena para gatos', '🐶':'chien|perro|croquette|pienso'
+};
+const EMON = [];
+for (const e in EMO_RAW) EMO_RAW[e].split('|').forEach(k => EMON.push({k:keyOf(k), e}));
+function emojiOf(name){
+  const n = ' ' + keyOf(name) + ' ';
+  let best = null, sc = 0;
+  for (const {k, e} of EMON){
+    const i = n.indexOf(' ' + k + ' ') >= 0 ? n.indexOf(' ' + k + ' ') : (k.length > 4 ? n.indexOf(' ' + k) : -1);
+    if (i < 0) continue;
+    const s = (i === 0 ? 100 : 0) + k.length;
+    if (s > sc){ best = e; sc = s; }
+  }
+  return best;
+}
+
+/* ================= Quantités, magasin réservé, urgent ================= */
+const STEP = {'':1, g:100, kg:.5, l:.5, cl:25, ml:250};
+function stepQty(L, it, dir){
+  const st = STEP[it.unit || ''] || 1;
+  const cur = it.qty ?? (it.unit ? st : 1);
+  let n = Math.round((cur + dir * st) * 1000) / 1000;
+  if (n < st) n = st;
+  if (!it.unit && n === 1) n = null;
+  if (n === it.qty) return;
+  const before = it.qty;
+  it.qty = n; touch(L, it); save(); renderList(); vib(6);
+  UNDO.push({msg:dn(it), fn:() => { it.qty = before; touch(L, it); save(); renderList(); }}); if (UNDO.length > 20) UNDO.shift(); renderUndo();
+}
+const sameChain = (a, b) => { const x = norm(a), y = norm(b); return !!x && !!y && (x.includes(y) || y.includes(x)); };
+const knownChains = () => [...new Set([...S.prices.map(r => r.c), ...S.favStores.map(chainOf), ...(S.storesCache?.list || []).slice(0, 10).map(chainOf), ...curList().items.map(i => i.st).filter(Boolean)])].filter(Boolean);
+
+/* ================= Alerte « bon prix » ================= */
+function priceVerdict(k, p, qty, unit, chain){
+  if (p == null || !k) return null;
+  const {up, uu} = unitPrice(p, qty, unit);
+  const recs = S.prices.filter(r => r.k === k && r.uu === uu && !r.del && daysBetween(r.d, today()) <= 180 && !(r.d === today() && r.c === chain && Math.abs(r.p - p) < .001));
+  if (!recs.length) return null;
+  const avg = recs.reduce((s, r) => s + r.up, 0) / recs.length;
+  const diff = (up - avg) / avg;
+  const out = [];
+  let cls = 'ok';
+  if (diff <= -.05) out.push(t('pv_good', {p:Math.round(-diff * 100)}));
+  else if (diff >= .05){ out.push(t('pv_high', {p:Math.round(diff * 100)})); cls = 'warn'; }
+  else out.push(t('pv_usual'));
+  const others = recs.filter(r => r.c && (!chain || !sameChain(r.c, chain)));
+  if (others.length){
+    const best = others.reduce((a, b) => b.up < a.up ? b : a);
+    if (best.up < up * .95){ out.push(t('pv_cheaper', {c:best.c, p:fmtUnit(best.up, uu)})); if (cls === 'ok' && diff > -.05) cls = 'warn'; }
+  }
+  return {cls, text:out.join(' · ')};
+}
+function verdictHtml(v){ return v ? `<div class="pv ${v.cls}">${esc(v.text)}</div>` : ''; }
+
+/* ================= Coller une liste ================= */
+function cleanPasted(text){
+  return text.split(/\r?\n/).map(l => l.trim()).filter(Boolean).map(l => {
+    if (/^\W*\*[^*]+\*\W*(\(.*\))?$/.test(l)) return '';
+    l = l.replace(/^[\s\p{Extended_Pictographic}️‍•·\-–—*>+□☐✓✔]+/u, '').replace(/\s*\([^)]*\)\s*$/, '').trim();
+    if (!l || /:$/.test(l)) return '';
+    const m = l.match(/^(.*?)\s+[—–-]\s+(.+)$/);
+    if (m){ const q = m[2].trim(); if (/^×\s*\d/.test(q)) return `${m[1]} x${q.replace(/\D/g, '')}`; if (/^\d/.test(q)) return `${q} ${m[1]}`; }
+    return l.replace(/\s*×\s*(\d+)$/, ' x$1');
+  }).filter(Boolean);
+}
+function openPaste(text){
+  const lines = text ? cleanPasted(text) : [];
+  const sh = openSheet(`<h3>${t('paste_t')}</h3><p class="small muted">${t('paste_d')}</p>
+    <textarea id="pasteT" rows="9" placeholder="${esc(t('paste_ph'))}">${esc(lines.join('\n'))}</textarea>
+    <div class="acts"><button class="btn ghost" id="pX">${t('cancel')}</button><button class="btn pri" id="pOk">${t('paste_btn', {n:lines.length})}</button></div>`);
+  const ta = sh.querySelector('#pasteT');
+  const upd = () => { $('#pOk').textContent = t('paste_btn', {n:cleanPasted(ta.value).length}); };
+  ta.oninput = upd;
+  ta.onpaste = () => setTimeout(() => { ta.value = cleanPasted(ta.value).join('\n'); upd(); }, 0);
+  sh.querySelector('#pX').onclick = () => closeSheet();
+  sh.querySelector('#pOk').onclick = () => {
+    const ls = cleanPasted(ta.value); if (!ls.length) return;
+    const before = new Set(curList().items.map(i => i.id));
+    ls.forEach(l => addItem(l));
+    const L = curList(); const added = L.items.filter(i => !before.has(i.id));
+    closeSheet();
+    offerUndo(t('n_added', {n:ls.length}), () => { added.forEach(i => { if (L.items.includes(i)) removeItem(L, i); }); save(); renderList(); });
+  };
+  if (!text) setTimeout(() => ta.focus(), 250);
+}
+
+/* ================= Animations ================= */
+const calm = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+let freshId = null;
+function confetti(){
+  if (calm()) return;
+  const box = document.createElement('div'); box.className = 'confetti';
+  const em = ['🎉','✨','🥕','🍎','🥖','🧀','🍋','🌿'];
+  for (let i = 0; i < 26; i++){
+    const s = document.createElement('span');
+    s.textContent = em[i % em.length];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.animationDelay = Math.random() * .35 + 's';
+    s.style.fontSize = 16 + Math.random() * 16 + 'px';
+    s.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+    s.style.setProperty('--rot', (Math.random() * 540 - 270) + 'deg');
+    box.appendChild(s);
+  }
+  document.body.appendChild(box);
+  setTimeout(() => box.remove(), 2200);
+}
+
+/* ================= Thèmes de couleur ================= */
+const PALETTES = {
+  coral:{l:['#e5795c','#fdeee8','#fbf7f3'], d:['#f09479','#3c2a24','#1d1917']},
+  sage:{l:['#4f9470','#e3f0e8','#f5f8f4'], d:['#7cc39a','#22352a','#151a17']},
+  lav:{l:['#8070c4','#eeeafa','#f8f6fc'], d:['#a898e6','#2e2944','#18161f']},
+  sky:{l:['#3f86c4','#e3eff9','#f4f8fc'], d:['#6fb0e6','#1f3144','#141a20']}
+};
+
+/* ================= Raccourcis de l'icône ================= */
+function handleShortcut(){
+  const a = new URLSearchParams(location.search).get('a'); if (!a) return;
+  history.replaceState(null, '', location.pathname);
+  setTimeout(() => {
+    if (a === 'add'){ showTab('list'); addIn.focus(); }
+    else if (a === 'shop'){ showTab('list'); if (!S.trip) startTrip(); }
+    else if (a === 'label'){ showTab('list'); openLabelScan({}); }
+    else if (a === 'paste'){ showTab('list'); openPaste(''); }
+  }, 300);
+}
+
+/* ================= Placard (garde-manger) ================= */
+function pantry(){ const L = curList(); L.pantry = L.pantry || []; L.pgone = L.pgone || []; return L.pantry; }
+function ptouch(p){ const L = curList(); p.u = Date.now(); p.by = S.dev; if (L.shared){ p.dirty = p.u; queueSync(); } }
+function premove(p){
+  const L = curList(); pantry(); L.pantry = L.pantry.filter(x => x !== p);
+  if (L.shared){ L.pgone.push({id:p.id, u:Date.now(), del:true, dirty:1}); if (L.pgone.length > 300) L.pgone.splice(0, L.pgone.length - 300); queueSync(); }
+}
+function addPantry(text, extra = {}){
+  const p = extra.name ? {name:extra.name, qty:extra.qty ?? null, unit:extra.unit || ''} : parseInput(text);
+  if (!p.name) return null;
+  const k = canonK(p.name), exp = extra.exp || '';
+  const ex = pantry().find(x => x.k === k && (x.exp || '') === exp);
+  if (ex){
+    if (!ex.unit && !p.unit) ex.qty = (ex.qty || 1) + (p.qty || 1);
+    else if (p.qty && ex.unit === p.unit) ex.qty = Math.round(((ex.qty || 0) + p.qty) * 1000) / 1000;
+    else if (p.qty){ ex.qty = p.qty; ex.unit = p.unit; }
+    ptouch(ex); save(); renderPantry(); return ex;
+  }
+  const it = {id:uid(), name:p.name, k, qty:p.qty, unit:p.unit, exp, rayon:extra.rayon || guessRayon(p.name), ts:Date.now()};
+  pantry().push(it); ptouch(it); save(); renderPantry(); return it;
+}
+const daysLeft = d => d ? daysBetween(today(), d) : null;
+function expBadge(p){
+  const n = daysLeft(p.exp); if (n == null) return '';
+  if (n < 0) return `<span class="xp bad">${t('px_out')}</span>`;
+  if (n === 0) return `<span class="xp bad">${t('px_today')}</span>`;
+  if (n <= 3) return `<span class="xp warn">${t('px_in', {n})}</span>`;
+  return `<span class="xp">${fdate(p.exp)}</span>`;
+}
+function pantryRow(p){
+  return `<div class="prow" data-pid="${p.id}"><button class="pmain" data-pa="edit"><span class="em">${emojiOf(p.name) || RAY[p.rayon]?.e || '🛒'}</span><span class="nm">${esc(trName(p.name))}</span>${p.qty ? `<span class="q">${esc(qtyLabel(p).replace('×', ''))}</span>` : ''}<span class="sp"></span>${expBadge(p)}</button><button class="pfin" data-pa="done" aria-label="${t('p_done')}">${ic('cart')}</button></div>`;
+}
+const pantrySoon = () => pantry().filter(p => p.exp && daysLeft(p.exp) <= 3);
+function renderPantry(){
+  const el = $('#tab-pantry'); if (!el) return;
+  const P = pantry().slice();
+  const soon = pantrySoon().sort((a, b) => a.exp.localeCompare(b.exp));
+  const keepFocus = document.activeElement && document.activeElement.id === 'pIn';
+  let h = `<div class="add"><div class="addrow"><input id="pIn" placeholder="${t('p_add_ph')}" autocomplete="off" autocapitalize="sentences" enterkeyhint="done"><input id="pExp" type="date" class="pdate" aria-label="${t('p_exp')}"></div><p class="small muted" style="margin:6px 4px 0">${t('p_hint')}</p></div>`;
+  if (!P.length) h += `<div class="empty"><div class="big">🥫</div><b>${t('p_empty_t')}</b>${t('p_empty_d')}</div>`;
+  if (soon.length) h += `<div class="sec urgsec"><div class="cgh"><span class="e">⏳</span>${t('p_soon')}<span class="n">${soon.length}</span></div>${soon.map(pantryRow).join('')}</div>`;
+  S.rayonOrder.forEach(rid => {
+    const its = P.filter(p => p.rayon === rid && !soon.includes(p)).sort((a, b) => trName(a.name).localeCompare(trName(b.name)));
+    if (!its.length) return;
+    const r = RAY[rid];
+    h += `<div class="sec"><div class="cgh" style="background:${r.c}26"><span class="e">${r.e}</span>${rn(rid)}<span class="n">${its.length}</span></div>${its.map(pantryRow).join('')}</div>`;
+  });
+  h += `<div class="card pad mt"><label class="tgl"><input type="checkbox" id="pAuto" ${S.settings.autoPantry ? 'checked' : ''}><span>${t('p_auto')}</span></label></div>`;
+  el.innerHTML = h;
+  const inp = $('#pIn');
+  inp.onkeydown = e => { if (e.key === 'Enter' && inp.value.trim()){ const v = inp.value, x = $('#pExp').value; addPantry(v, {exp:x}); vib(8); setTimeout(() => $('#pIn')?.focus(), 0); } };
+  if (keepFocus) inp.focus();
+  $('#pAuto').onchange = e => { S.settings.autoPantry = e.target.checked; save(); };
+  $$('[data-pa]', el).forEach(b => b.onclick = () => { const p = pantry().find(x => x.id === b.closest('.prow').dataset.pid); if (!p) return; if (b.dataset.pa === 'done') pantryDone(p); else editPantry(p); });
+  updateBadges();
+}
+function pantryDone(p){
+  const L = curList(); const before = new Set(L.items.map(i => i.id));
+  premove(p);
+  const it = addItem('', {name:trName(p.name), qty:p.qty, unit:p.unit, rayon:p.rayon});
+  const isNew = it && !before.has(it.id);
+  save(); renderPantry();
+  offerUndo(t('p_moved', {x:trName(p.name)}), () => {
+    pantry().push(p); L.pgone = L.pgone.filter(g => g.id !== p.id); ptouch(p);
+    if (isNew && L.items.includes(it)) removeItem(L, it);
+    save(); renderPantry(); renderList();
+  });
+}
+function editPantry(p){
+  const sh = openSheet(`<h3>${esc(trName(p.name))}</h3>
+    <label class="f">${t('e_name')}</label><input id="peN" value="${esc(trName(p.name))}">
+    <div class="grid2"><div><label class="f">${t('e_qty')}</label><input id="fQty" inputmode="decimal" value="${p.qty ?? ''}" placeholder="1"></div><div><label class="f">${t('e_unit')}</label>${unitSelect(p.unit)}</div></div>
+    <label class="f">${t('p_exp')}</label><input id="peX" type="date" value="${esc(p.exp || '')}">
+    <label class="f">${t('e_ray')}</label>${rayonSelect(p.rayon)}
+    <button class="btn full mt" id="peL">${ic('cart')} ${t('p_to_list')}</button>
+    <div class="acts"><button class="btn danger" id="peD">${ic('trash')} ${t('delete')}</button><button class="btn pri" id="peO">${t('save')}</button></div>`);
+  sh.querySelector('#peO').onclick = () => {
+    const nn = cap($('#peN').value.trim()) || p.name;
+    Object.assign(p, {name: canonK(nn) === p.k ? p.name : nn, k:canonK(nn), qty:num($('#fQty').value), unit:$('#fUnit').value, exp:$('#peX').value || '', rayon:$('#fRay').value});
+    ptouch(p); save(); closeSheet(); renderPantry();
+  };
+  sh.querySelector('#peL').onclick = () => { closeSheet(); pantryDone(p); };
+  sh.querySelector('#peD').onclick = () => {
+    premove(p); save(); closeSheet(); renderPantry();
+    offerUndo(t('deleted', {x:trName(p.name)}), () => { const L = curList(); pantry().push(p); L.pgone = L.pgone.filter(g => g.id !== p.id); ptouch(p); save(); renderPantry(); });
+  };
+}
+function updateBadges(){
+  const b = document.querySelector('#nav [data-tab=pantry]'); if (b) b.classList.toggle('dot', pantrySoon().length > 0);
+}
+function expiryNotice(){
+  const n = pantrySoon().length;
+  if (n && S.expNote !== today()){ S.expNote = today(); save(); setTimeout(() => toast(t('p_alert', {n})), 1800); }
+  updateBadges();
+}
+
+/* ================= Menus de la semaine & recettes ================= */
+function plan(){
+  const L = curList();
+  if (!L.plan) L.plan = {u:0, data:{recipes:[], days:{}, pers:2}};
+  const d = L.plan.data; d.recipes = d.recipes || []; d.days = d.days || {}; d.pers = d.pers || 2;
+  if (!S.tplMigrated){
+    S.tplMigrated = true;
+    (S.templates || []).forEach(x => { if (!d.recipes.some(r => r.name === x.name)) d.recipes.push({id:x.id || uid(), name:x.name, serv:/4 pers/.test(x.name) ? 4 : null, items:x.items.slice()}); });
+    L.plan.u = Date.now(); if (L.shared) L.planDirty = true;
+  }
+  return d;
+}
+function planTouch(){ const L = curList(); L.plan.u = Date.now(); if (L.shared){ L.planDirty = true; queueSync(); } save(); }
+const addDays = (iso, n) => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
+const weekDays = () => Array.from({length:7}, (_, i) => addDays(today(), i));
+const dayLabel = iso => new Date(iso + 'T12:00:00').toLocaleDateString(LOC, {weekday:'long', day:'numeric', month:'short'});
+function slotLabel(s){
+  if (!s) return `<span class="muted">＋</span>`;
+  const r = s.rid && plan().recipes.find(x => x.id === s.rid);
+  return `${esc(r ? r.name : (s.txt || ''))}${s.pers ? ` <span class="muted">· 👥${s.pers}</span>` : ''}`;
+}
+function renderMenus(){
+  const el = $('#tab-menus'); if (!el) return;
+  const d = plan();
+  Object.keys(d.days).forEach(k => { if (k < addDays(today(), -14)) delete d.days[k]; });
+  let h = `<div class="h2">${t('mn_week')}</div>`;
+  h += weekDays().map(iso => {
+    const day = d.days[iso] || {};
+    return `<div class="card mday"><div class="mdh">${esc(cap(dayLabel(iso)))}</div>
+      <button class="mslot" data-day="${iso}" data-slot="l"><small>${t('mn_lunch')}</small><span>${slotLabel(day.l)}</span></button>
+      <button class="mslot" data-day="${iso}" data-slot="d"><small>${t('mn_dinner')}</small><span>${slotLabel(day.d)}</span></button></div>`;
+  }).join('');
+  h += `<button class="btn pri full mt" id="mnWeek">${ic('cart')} ${t('mn_add_week')}</button>`;
+  h += `<div class="h2">${t('mn_recipes')}</div><div class="card">${d.recipes.length ? d.recipes.map(r => `<div class="li"><div class="bd2"><b>${esc(r.name)}</b><div class="small muted" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.serv ? t('mn_serv_n', {n:r.serv}) + ' · ' : ''}${esc(r.items.map(trName).join(', '))}</div></div><button class="btn sm" data-radd="${r.id}">${t('m_add')}</button><button class="ib" data-redit="${r.id}" style="color:var(--muted)">✎</button></div>`).join('') : `<p class="pad muted">${t('m_notpl')}</p>`}</div>
+    <div class="row mt"><button class="btn" id="mnNew">${ic('plus')} ${t('mn_new')}</button><button class="btn" id="mnFrom">${t('m_tfrom')}</button></div>`;
+  el.innerHTML = h;
+  $$('.mslot', el).forEach(b => b.onclick = () => editSlot(b.dataset.day, b.dataset.slot));
+  $('#mnWeek').onclick = () => previewIngredients(weekIngredients(), t('mn_add_week'));
+  $('#mnNew').onclick = () => recipeForm(null);
+  $('#mnFrom').onclick = () => { const its = curList().items.map(i => (i.qty ? `${i.qty}${i.unit ? ' ' + i.unit : ''} ` : '') + dn(i)); if (!its.length) return toast(t('empty_list')); recipeForm({id:null, name:'', serv:null, items:its}); };
+  $$('[data-radd]', el).forEach(b => b.onclick = () => { const r = d.recipes.find(x => x.id === b.dataset.radd); previewIngredients(ingredientsOf([{r, factor:1}]), r.name); });
+  $$('[data-redit]', el).forEach(b => b.onclick = () => recipeForm(d.recipes.find(x => x.id === b.dataset.redit)));
+}
+function editSlot(iso, slot){
+  const d = plan(); const cur = (d.days[iso] || {})[slot] || {};
+  let rid = cur.rid || null, pers = cur.pers || d.pers;
+  const sh = openSheet(`<h3>${esc(cap(dayLabel(iso)))} · ${slot === 'l' ? t('mn_lunch') : t('mn_dinner')}</h3>
+    <div class="chips" style="flex-wrap:wrap" id="slR">${d.recipes.map(r => `<button class="chip ${r.id === rid ? 'due' : ''}" data-r="${r.id}">${esc(r.name)}</button>`).join('') || `<span class="small muted">${t('m_notpl')}</span>`}</div>
+    <label class="f">${t('mn_free')}</label><input id="slT" value="${esc(cur.txt || '')}" placeholder="${t('mn_free_ph')}">
+    <label class="f">${t('mn_pers')}</label>
+    <div class="row" style="justify-content:flex-start;gap:14px"><button class="btn sm" id="slM" style="flex:none">−</button><b id="slP" style="flex:none;font-size:20px">${pers}</b><button class="btn sm" id="slA" style="flex:none">+</button></div>
+    <div class="acts"><button class="btn ghost" id="slC">${t('mn_clear')}</button><button class="btn pri" id="slO">${t('ok')}</button></div>`);
+  $$('[data-r]', sh).forEach(b => b.onclick = () => { rid = rid === b.dataset.r ? null : b.dataset.r; $$('[data-r]', sh).forEach(x => x.classList.toggle('due', x.dataset.r === rid)); if (rid) $('#slT').value = ''; });
+  sh.querySelector('#slM').onclick = () => { pers = Math.max(1, pers - 1); $('#slP').textContent = pers; };
+  sh.querySelector('#slA').onclick = () => { pers = Math.min(20, pers + 1); $('#slP').textContent = pers; };
+  const setSlot = v => { d.days[iso] = d.days[iso] || {}; if (v) d.days[iso][slot] = v; else delete d.days[iso][slot]; planTouch(); closeSheet(); renderMenus(); };
+  sh.querySelector('#slC').onclick = () => setSlot(null);
+  sh.querySelector('#slO').onclick = () => { const txt = $('#slT').value.trim(); if (!rid && !txt) return setSlot(null); d.pers = pers; setSlot(rid ? {rid, pers} : {txt, pers}); };
+}
+function recipeForm(r){
+  const sh = openSheet(`<h3>${r && r.id ? t('tf_edit') : t('mn_new')}</h3>
+    <label class="f">${t('e_name')}</label><input id="rfN" value="${esc(r?.name || '')}" placeholder="${t('tf_ph')}">
+    <label class="f">${t('mn_serv')}</label><input id="rfS" inputmode="numeric" value="${r?.serv || ''}" placeholder="4">
+    <label class="f">${t('tf_items')}</label><textarea id="rfI" rows="9" placeholder="500 g riz&#10;1 poivron&#10;Safran">${esc((r?.items || []).join('\n'))}</textarea>
+    <p class="small muted">${t('mn_paste_d')}</p>
+    <div class="acts">${r && r.id ? `<button class="btn danger" id="rfD">${t('delete')}</button>` : '<span></span>'}<button class="btn pri" id="rfO">${t('save')}</button></div>`);
+  const ta = sh.querySelector('#rfI');
+  ta.onpaste = () => setTimeout(() => { ta.value = cleanPasted(ta.value).join('\n'); }, 0);
+  sh.querySelector('#rfO').onclick = () => {
+    const name = $('#rfN').value.trim(), items = cleanPasted(ta.value), serv = parseInt($('#rfS').value) || null;
+    if (!name || !items.length) return toast(t('tf_req'));
+    const d = plan();
+    if (r && r.id) Object.assign(r, {name, items, serv}); else d.recipes.push({id:uid(), name, serv, items});
+    planTouch(); closeSheet(); renderMenus();
+  };
+  const del = sh.querySelector('#rfD');
+  if (del) del.onclick = () => { const d = plan(); d.recipes = d.recipes.filter(x => x !== r); Object.values(d.days).forEach(day => ['l', 'd'].forEach(s => { if (day[s]?.rid === r.id) delete day[s]; })); planTouch(); closeSheet(); renderMenus(); };
+}
+function ingredientsOf(entries){
+  const acc = {};
+  entries.forEach(({r, factor}) => r.items.forEach(line => {
+    const p = parseInput(line); if (!p.name) return;
+    const k = canonK(p.name), key = k + '|' + (p.unit || '');
+    const a = acc[key] || (acc[key] = {name:p.name, k, unit:p.unit || '', qty:0, has:false, from:new Set()});
+    if (p.qty != null){ a.qty += p.qty * factor; a.has = true; } else if (!p.unit){ a.qty += factor; }
+    a.from.add(r.name);
+  }));
+  const rnd = (q, u) => u === 'g' || u === 'ml' ? Math.ceil(q / 10) * 10 : u === 'cl' ? Math.ceil(q) : u === 'kg' || u === 'l' ? Math.ceil(q * 10) / 10 : Math.ceil(q - 1e-9);
+  return Object.values(acc).map(a => ({...a, qty: a.qty ? rnd(a.qty, a.unit) : null, from:[...a.from]}));
+}
+function weekIngredients(){
+  const d = plan(); const entries = [];
+  weekDays().forEach(iso => ['l', 'd'].forEach(s => {
+    const sl = (d.days[iso] || {})[s]; if (!sl || !sl.rid) return;
+    const r = d.recipes.find(x => x.id === sl.rid); if (!r) return;
+    entries.push({r, factor: r.serv ? (sl.pers || d.pers) / r.serv : 1});
+  }));
+  return ingredientsOf(entries);
+}
+function previewIngredients(list, title){
+  if (!list.length) return toast(t('mn_nothing'));
+  const L = curList(); const inP = new Set(pantry().map(p => p.k)), inL = new Set(L.items.map(i => i.k));
+  const sh = openSheet(`<h3>${esc(title)}</h3><p class="small muted">${t('mn_preview_d')}</p>
+    <div class="card mt">${list.map((a, i) => `<label class="li ingr"><input type="checkbox" data-i="${i}" ${inP.has(a.k) || inL.has(a.k) ? '' : 'checked'}><div class="bd2"><b>${esc(trName(a.name))}</b>${a.qty ? ` <span class="muted">${esc(qtyLabel(a).replace('×', ''))}</span>` : ''}<div class="small muted">${inP.has(a.k) ? '🥫 ' + t('mn_in_pantry') : inL.has(a.k) ? '✓ ' + t('mn_in_list') : esc(a.from.join(', '))}</div></div></label>`).join('')}</div>
+    <div class="acts"><button class="btn ghost" id="ipX">${t('cancel')}</button><button class="btn pri" id="ipO">${t('add_list')}</button></div>`);
+  sh.querySelector('#ipX').onclick = () => closeSheet();
+  sh.querySelector('#ipO').onclick = () => {
+    const before = new Set(L.items.map(i => i.id)); let n = 0;
+    $$('input[data-i]', sh).forEach(c => { if (!c.checked) return; const a = list[+c.dataset.i]; addItem('', {name:trName(a.name), qty:a.qty, unit:a.unit}); n++; });
+    closeSheet();
+    const added = L.items.filter(i => !before.has(i.id));
+    if (n) offerUndo(t('n_added', {n}), () => { added.forEach(i => { if (L.items.includes(i)) removeItem(L, i); }); save(); renderList(); });
+  };
+}
+
+/* ================= Dépenses ================= */
+let xPeriod = 1;
+function expensesHtml(){
+  const trips = S.history.filter(h => h.trip && h.t > 0 && !h.del);
+  if (!trips.length) return `<div class="card pad mt"><b>💶 ${t('x_title')}</b><p class="small muted" style="margin:6px 0 0">${t('x_empty')}</p></div>`;
+  const now = new Date(); const mk = d => d.slice(0, 7);
+  const ymOf = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  const months = Array.from({length:6}, (_, i) => ymOf(new Date(now.getFullYear(), now.getMonth() - 5 + i, 1)));
+  const tot = {}; trips.forEach(h => { tot[mk(h.d)] = (tot[mk(h.d)] || 0) + h.t; });
+  const cur = tot[months[5]] || 0, prev = tot[months[4]] || 0;
+  const mx = Math.max(1, ...months.map(m => tot[m] || 0));
+  const from = ymOf(new Date(now.getFullYear(), now.getMonth() - (xPeriod - 1), 1)) + '-01';
+  const inP = trips.filter(h => h.d >= from);
+  const byS = {}, byR = {};
+  inP.forEach(h => { byS[h.c || '—'] = (byS[h.c || '—'] || 0) + h.t; (h.items || []).forEach(i => { if (i.p == null) return; const r = S.catalog[i.k]?.rayon || guessRayon(i.n); byR[r] = (byR[r] || 0) + i.p; }); });
+  const bars = (obj, lab, col) => { const arr = Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, 8); const m = Math.max(1, ...arr.map(x => x[1])); return arr.map(([k, v]) => `<div class="hb"><span class="hbl">${lab(k)}</span><span class="hbt"><i style="width:${v / m * 100}%;background:${col(k)}"></i></span><b>${eur(v)}</b></div>`).join(''); };
+  const diff = prev ? Math.round((cur - prev) / prev * 100) : null;
+  return `<div class="card pad mt xp-card">
+    <div class="row" style="align-items:flex-end"><div><small class="muted">💶 ${t('x_month')}</small><div class="xbig">${eur(cur)}</div>${diff != null ? `<small class="${diff > 0 ? 'up' : 'down'}">${diff > 0 ? '▲' : '▼'} ${Math.abs(diff)} % ${t('x_vs')}</small>` : ''}</div>
+    <svg class="xbars" viewBox="0 0 180 70" preserveAspectRatio="none">${months.map((m, i) => { const v = tot[m] || 0, hh = Math.max(2, v / mx * 52); return `<rect x="${i * 30 + 4}" y="${56 - hh}" width="22" height="${hh}" rx="4" fill="var(--brand)" opacity="${i === 5 ? 1 : .45}"><title>${m} : ${eur(v)}</title></rect><text x="${i * 30 + 15}" y="68" text-anchor="middle" font-size="8" fill="currentColor" opacity=".6">${new Date(m + '-15').toLocaleDateString(LOC, {month:'short'}).slice(0, 3)}</text>`; }).join('')}</svg></div>
+    <div class="seg mt" id="xSeg">${[[1, 'x_p1'], [3, 'x_p3'], [12, 'x_p12']].map(([n, k]) => `<button data-x="${n}" class="${xPeriod === n ? 'on' : ''}">${t(k)}</button>`).join('')}</div>
+    <div class="small muted mt">${t('x_trips', {n:inP.length})}</div>
+    ${Object.keys(byS).length ? `<div class="h2" style="margin-top:12px">${t('x_by_store')}</div>${bars(byS, k => esc(k), k => brandColor(k))}` : ''}
+    ${Object.keys(byR).length ? `<div class="h2">${t('x_by_ray')}</div>${bars(byR, k => RAY[k] ? RAY[k].e + ' ' + esc(rn(k)) : esc(k), k => RAY[k]?.c || '#999')}` : ''}
+  </div>`;
+}
+
+/* ================= Photos de produits ================= */
+const PH = {}, PHC = 'cabas-photos', phLoading = new Set();
+const PH_BLANK = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+function photoSrc(id){ if (PH[id]) return PH[id]; loadPhoto(id); return PH_BLANK; }
+async function loadPhoto(id){
+  if (phLoading.has(id)) return; phLoading.add(id);
+  try {
+    let data = null;
+    if ('caches' in window){ const c = await caches.open(PHC); const r = await c.match('./ph/' + id); if (r) data = await r.text(); }
+    if (!data){
+      const L = curList(), url = S.settings.sync; if (!L.shared || !url) return;
+      const j = await (await fetch(url + (url.includes('?') ? '&' : '?') + 'room=' + encodeURIComponent(L.shared.room) + '&photo=' + encodeURIComponent(id))).json();
+      if (!j.ok || !j.data) return;
+      data = j.data;
+      if ('caches' in window) (await caches.open(PHC)).put('./ph/' + id, new Response(data));
+    }
+    PH[id] = data;
+    $$(`[data-id] .em.ph img`).forEach(im => { const it = curList().items.find(i => i.id === im.closest('[data-id]').dataset.id); if (it && it.photo === id) im.src = data; });
+    const big = $('#bigPh'); if (big && big.dataset.ph === id) big.src = data;
+  } catch(e){}
+}
+function shrink(file){
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => {
+      const max = 420, sc = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      let q = .75, d = c.toDataURL('image/jpeg', q);
+      while (d.length > 44000 && q > .3){ q -= .1; d = c.toDataURL('image/jpeg', q); }
+      if (d.length > 44000){ const c2 = document.createElement('canvas'); c2.width = c.width * .7; c2.height = c.height * .7; c2.getContext('2d').drawImage(c, 0, 0, c2.width, c2.height); d = c2.toDataURL('image/jpeg', .6); }
+      res(d);
+    };
+    img.onerror = rej; img.src = URL.createObjectURL(file);
+  });
+}
+function pickPhoto(it, after){
+  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*'; inp.capture = 'environment';
+  inp.onchange = async () => {
+    const f = inp.files[0]; if (!f) return;
+    try {
+      const data = await shrink(f), id = uid();
+      PH[id] = data;
+      if ('caches' in window) (await caches.open(PHC)).put('./ph/' + id, new Response(data));
+      const L = curList(); it.photo = id; touch(L, it); save(); renderList();
+      if (L.shared && S.settings.sync){ fetch(S.settings.sync, {method:'POST', body:JSON.stringify({room:L.shared.room, photo:{id, data}})}).catch(() => {}); }
+      if (after) after();
+    } catch(e){ toast(t('ph_err')); }
+  };
+  inp.click();
+}
+function showPhoto(it){
+  const sh = openSheet(`<h3>${esc(dn(it))}</h3><img id="bigPh" class="bigph" data-ph="${esc(it.photo)}" src="${esc(photoSrc(it.photo))}" alt="">
+    <div class="acts"><button class="btn danger" id="bpD">${t('ph_del')}</button><button class="btn" id="bpC">${t('ph_change')}</button></div>`);
+  sh.querySelector('#bpC').onclick = () => pickPhoto(it, () => showPhoto(it));
+  sh.querySelector('#bpD').onclick = () => { const L = curList(); it.photo = null; touch(L, it); save(); renderList(); closeSheet(); };
+}
+
+/* ================= Sauvegarde et historique partagés ================= */
+var dataBusy = false, dataTimer = null, dataLast = 0;
+function queueData(){ clearTimeout(dataTimer); dataTimer = setTimeout(dataSync, 2500); }
+const hsig = h => (h.items || []).length + ':' + (h.t || 0) + ':' + (h.s || '');
+function dropPrices(keep){
+  const rm = S.prices.filter(r => !keep(r));
+  S.prices = S.prices.filter(keep);
+  S.dataOut = S.dataOut || [];
+  rm.forEach(r => { if (r.id) S.dataOut.push({kind:'p', id:r.id, del:true, u:Date.now()}); });
+}
+async function dataSync(force){
+  const L = curList(), url = S.settings.sync;
+  if (!L.shared || !url || dataBusy || (S.srvVer || 1) < 2) return;
+  S.prices.forEach(r => { if (!r.id){ r.id = uid(); r.u = r.u || Date.now(); } });
+  S.history.forEach(h => { if (!h.id) h.id = uid(); });
+  const ps = S.prices.filter(r => !r.sy).slice(0, 200);
+  const hs = S.history.filter(h => h._sig !== hsig(h)).slice(0, 60);
+  const outs = (S.dataOut || []).slice(0, 100);
+  if (!force && !ps.length && !hs.length && !outs.length && Date.now() - dataLast < 60000) return;
+  dataBusy = true;
+  try {
+    const clean = o => { const x = {...o}; delete x.sy; delete x._sig; return x; };
+    const sent = hs.map(h => [h, hsig(h)]);
+    const body = {room:L.shared.room, since:S.dataSince || 0, data:[...ps.map(r => ({kind:'p', ...clean(r)})), ...sent.map(([h]) => ({kind:'h', ...clean(h), u:Date.now()})), ...outs]};
+    const res = await (await fetch(url, {method:'POST', body:JSON.stringify(body)})).json();
+    if (!res.ok) return;
+    dataLast = Date.now();
+    ps.forEach(r => r.sy = true);
+    sent.forEach(([h, sg]) => { h._sig = sg; });
+    S.dataOut = (S.dataOut || []).filter(o => !outs.includes(o));
+    let ch = false;
+    (res.data || []).forEach(x => {
+      const kind = x.kind; delete x.kind;
+      if (kind === 'p'){
+        const i = S.prices.findIndex(r => r.id === x.id);
+        if (x.del){ if (i >= 0){ S.prices.splice(i, 1); ch = true; } }
+        else if (i < 0){ S.prices.push({...x, sy:true}); ch = true; }
+      } else if (kind === 'h'){
+        const i = S.history.findIndex(h => h.id === x.id);
+        if (x.del){ if (i >= 0){ S.history.splice(i, 1); ch = true; } }
+        else if (i < 0){ const n = {...x}; n._sig = hsig(n); S.history.push(n); ch = true; }
+        else { const l = S.history[i]; if ((x.u || 0) > (l.u || 0) && l._sig === hsig(l) && l.dev !== S.dev){ Object.assign(l, x); l._sig = hsig(l); ch = true; } }
+      }
+    });
+    S.dataSince = res.now || S.dataSince;
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
+    if (ch){ if ($('#tab-prices').classList.contains('on') && !sheetOpen) renderPrices(); if ($('#tab-list').classList.contains('on') && !sheetOpen) renderChips(); }
+    if (S.prices.some(r => !r.sy) || S.history.some(h => h._sig !== hsig(h)) || (S.dataOut || []).length) queueData();
+  } catch(e){}
+  finally { dataBusy = false; }
+}
+setInterval(() => { if (document.visibilityState === 'visible') dataSync(); }, 30000);
+
 /* ================= Navigation & évènements ================= */
-const TABS = {list:'list', stores:'pin', prices:'chart', tips:'bulb', more:'more'};
+const TABS = {list:'list', pantry:'box', menus:'chef', prices:'chart', tips:'bulb', more:'more'};
 function applyStatic(){
   $$('#nav button').forEach(b => { b.innerHTML = ic(TABS[b.dataset.tab]) + t('tab_' + b.dataset.tab); });
   $('#addIn').placeholder = t('add_ph');
@@ -2033,6 +2715,8 @@ function showTab(tb){
   if (tb === 'prices') renderPrices();
   if (tb === 'tips') renderTips();
   if (tb === 'more') renderMore();
+  if (tb === 'pantry') renderPantry();
+  if (tb === 'menus') renderMenus();
   window.scrollTo(0, 0);
 }
 function renderAll(){ showTab($$('#nav button').find(b => b.classList.contains('on')).dataset.tab); }
@@ -2080,6 +2764,10 @@ function renderAC(){
   ac.innerHTML = h; ac.classList.add('on');
 }
 addIn.oninput = renderAC;
+addIn.addEventListener('paste', e => {
+  const txt = (e.clipboardData || window.clipboardData)?.getData('text') || '';
+  if (/\n/.test(txt.trim())){ e.preventDefault(); openPaste(txt); }
+});
 addIn.onkeydown = e => { if (e.key === 'Enter' && addIn.value.trim()){ addItem(addIn.value); addIn.value = ''; ac.classList.remove('on'); } };
 addIn.onblur = () => setTimeout(() => ac.classList.remove('on'), 150);
 ac.addEventListener('pointerdown', e => e.preventDefault());
@@ -2096,6 +2784,8 @@ $('#list').onclick = e => {
   const act = a.dataset.a;
   if (act === 'toggleRecent'){ showRecent = !showRecent; renderList(); return; }
   const L = curList(); const id = (a.closest('.item') || a.closest('.citem'))?.dataset.id; const it = L.items.find(i => i.id === id); if (!it) return;
+  if (act === 'plus' || act === 'minus'){ e.stopPropagation(); if (lpFired){ lpFired = false; return; } stepQty(L, it, act === 'plus' ? 1 : -1); return; }
+  if (act === 'photo'){ if (lpFired){ lpFired = false; return; } showPhoto(it); return; }
   if (act === 'take'){
     if (lpFired){ lpFired = false; return; }
     if (a.classList.contains('gone')) return;
@@ -2124,7 +2814,10 @@ function applyTheme(){
   const th = S.settings.theme;
   if (th === 'auto') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = th;
   const dark = th === 'dark' || (th === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
-  document.querySelector('meta[name=theme-color]').content = dark ? '#1d1917' : '#fbf7f3';
+  const p = (PALETTES[S.settings.pal] || PALETTES.coral)[dark ? 'd' : 'l'];
+  const st = document.documentElement.style;
+  st.setProperty('--brand', p[0]); st.setProperty('--soft', p[1]); st.setProperty('--bg', p[2]);
+  document.querySelector('meta[name=theme-color]').content = p[2];
 }
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', applyTheme);
 
@@ -2133,6 +2826,8 @@ applyStatic();
 if (S.settings.storeMode || S.trip) setStoreMode(!!S.trip);
 renderList();
 handleInvite();
+handleShortcut();
+plan(); expiryNotice();
 /* Nutri-Score manquant pour les articles déjà scannés */
 setTimeout(async () => {
   const L = curList(); let ch = false;
@@ -2161,7 +2856,7 @@ async function remoteVersion(){
 }
 async function hardUpdate(){
   try { const regs = await navigator.serviceWorker?.getRegistrations() || []; await Promise.all(regs.map(r => r.unregister())); } catch(e){}
-  try { const ks = await caches.keys(); await Promise.all(ks.map(k => caches.delete(k))); } catch(e){}
+  try { const ks = await caches.keys(); await Promise.all(ks.filter(k => k !== 'cabas-photos').map(k => caches.delete(k))); } catch(e){}
   location.replace(location.pathname + '?v=' + Date.now());
 }
 function showUpd(v){
