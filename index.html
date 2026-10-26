@@ -393,7 +393,7 @@ body.store .citem{font-size:19px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.2.1';
+const APP_VERSION = '2.2.2';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -670,10 +670,10 @@ const vib = n => { try { navigator.vibrate && navigator.vibrate(n); } catch(e){}
 
 const KWN = [];
 for (const r in KW) KW[r].split('|').forEach(k => KWN.push({kw: norm(k), r}));
-const SEED = [], SEEDK = {};
+const SEED = [], SEEDK = {}, SEEDX = {};
 for (const r in SEED_RAW) SEED_RAW[r].split('|').forEach(p => {
   const [fr, es] = p.split('/'); const e = {k: keyOf(fr), fr, es, r, nf: keyOf(fr), ne: keyOf(es)};
-  SEED.push(e); if (!SEEDK[e.nf]) SEEDK[e.nf] = e; if (!SEEDK[e.ne]) SEEDK[e.ne] = e;
+  SEED.push(e); if (!SEEDK[e.nf]) SEEDK[e.nf] = e; if (!SEEDK[e.ne]) SEEDK[e.ne] = e; SEEDX[norm(fr)] = SEEDX[norm(fr)] || e; SEEDX[norm(es)] = SEEDX[norm(es)] || e;
 });
 const SEASONN = [];
 SEASON.forEach(([fr, es, m]) => { const v = {fr, es, m}; SEASONN.push({k:keyOf(fr), v}, {k:keyOf(es), v}); });
@@ -695,18 +695,17 @@ const SHELF_RAW = {
   90:'lait|leche|leche entera|leche semidesnatada|leche desnatada|bebida de avena|boisson vegetale|bebida vegetal|cafe moulu|cafe molido',
   180:'surgele|congelado|glace|helado|cereale|cereales|biscuit|galleta|vin blanc|cerveza|biere',
   270:'chocolat|chocolate|farine|harina|levure|levadura',
-  365:'pate|pasta|spaghetti|espagueti|macarron|riz|arroz|lentille|lenteja|pois chiche|garbanzo|haricot sec|alubia|huile|aceite|vinaigre|vinagre|eau|agua|cafe|the|te|infusion|confiture|mermelada|miel|tomate frite|tomate frito',
+  365:'pan rallado|chapelure|pan tostado|biscotte|pate|pasta|spaghetti|espagueti|macarron|riz|arroz|lentille|lenteja|pois chiche|garbanzo|haricot sec|alubia|huile|aceite|vinaigre|vinagre|eau|agua|cafe|the|te|infusion|confiture|mermelada|miel|tomate frite|tomate frito',
   730:'conserve|lata|thon|atun|sardine|sardina|sucre|azucar|sel|sal|vin|vino|epice|especia|poivre|pimienta'
 };
 const SHELFN = [];
 for (const d in SHELF_RAW) SHELF_RAW[d].split('|').forEach(k => SHELFN.push({k:keyOf(k), d:+d}));
 function shelfAuto(name, rayon){
   const n = ' ' + keyOf(name) + ' ';
-  let best = null, len = 0;
-  for (const {k, d} of SHELFN){
-    if (k.length <= len) continue;
-    if (n.includes(' ' + k + ' ') || (k.length > 4 && n.includes(' ' + k))){ best = d; len = k.length; }
-  }
+  /* Tous les mots-clés trouvés, sauf ceux inclus dans un plus précis ; puis la durée la plus courte (prudence) */
+  let m = SHELFN.filter(({k}) => n.includes(' ' + k + ' ') || (k.length > 4 && n.includes(' ' + k)));
+  m = m.filter(a => !m.some(b => b.k !== a.k && b.k.includes(a.k)));
+  const best = m.length ? Math.min(...m.map(x => x.d)) : null;
   const r = rayon || guessRayon(name);
   if (/(^|\s)pâté(\s|$)/i.test(name.trim())) return 14;
   if (best != null) return best;
@@ -783,12 +782,26 @@ const curList = () => S.lists.find(l => l.id === S.cur) || S.lists[0];
 function guessRayon(name, cats){
   const k = canonK(name);
   if (S.catalog[k]?.rayon) return S.catalog[k].rayon;
-  const sd = SEEDK[keyOf(name)]; if (sd) return sd.r;
+  const sd = SEEDX[norm(name)] || SEEDK[keyOf(name)]; if (sd) return sd.r;
   if (cats && cats.length) for (let i = cats.length - 1; i >= 0; i--) if (OFF_CAT[cats[i]]) return OFF_CAT[cats[i]];
+  return kwRayon(name) || 'aut';
+}
+/* Mots-clés : on écarte ceux inclus dans un mot-clé plus précis, puis le rayon frais l'emporte sur l'épicerie */
+const FRESH = new Set(['cre', 'via', 'tra', 'fl', 'bou', 'sur']);
+function kwRayon(name){
+  const n = ' ' + norm(name) + ' ';
+  let m = KWN.filter(({kw}) => n.includes(' ' + kw));
+  m = m.filter(a => !m.some(b => b.kw !== a.kw && b.kw.includes(a.kw)));
+  if (!m.length) return null;
+  const f = m.filter(x => FRESH.has(x.r)), pool = f.length ? f : m;
+  return pool.reduce((a, b) => b.kw.length > a.kw.length ? b : a).r;
+}
+/* Ancienne règle (mot-clé le plus long), pour le rattrapage */
+function kwRayonOld(name){
   const n = ' ' + norm(name) + ' ';
   let best = null, len = 0;
   for (const {kw, r} of KWN) if (kw.length > len && n.includes(' ' + kw)) { best = r; len = kw.length; }
-  return best || 'aut';
+  return best;
 }
 function seasonOf(name){
   const n = ' ' + keyOf(name) + ' ';
@@ -1123,7 +1136,7 @@ function editItem(id){
     const nn = cap($('#fName').value.trim()) || it.name;
     const name = canonK(nn) === it.k ? it.name : nn;
     const rayon = $('#fRay').value;
-    if (rayon !== it.rayon) learn(name, {rayon});
+    if (rayon !== it.rayon) learn(name, {rayon, ru:1});
     const np = num($('#fPrice').value), st = $('#fStore').value.trim();
     const urg = $('#fUrg').dataset.on === '1';
     if (urg && !it.urg) logEv(L, 'urg', it.name);
@@ -2678,6 +2691,22 @@ function editPantry(p){
 function updateBadges(){
   const b = document.querySelector('#nav [data-tab=pantry]'); if (b) b.classList.toggle('dot', pantrySoon().length > 0);
 }
+/* Rattrapage unique (v2.2.2) : rayons et dates estimées calculés avec l'ancienne règle */
+function migrateShelf2(){
+  if (S.mig2) return; S.mig2 = 1;
+  const fix = o => {
+    if (!o || !o.name) return;
+    const old = kwRayonOld(o.name), nw = kwRayon(o.name);
+    if (old && nw && old !== nw && o.rayon === old) o.rayon = nw;
+  };
+  Object.values(S.catalog).forEach(c => { if (!c.ru && c.rayon) fix(c); });
+  S.lists.forEach(L => { L.items.forEach(i => { const c = S.catalog[i.k]; if (!(c && c.ru)) fix(i); }); (L.pantry || []).forEach(p => {
+    const c = S.catalog[p.k]; if (!(c && c.ru)) fix(p);
+    if (p.est && p.bought){ const n = shelfDays(p); p.exp = n != null ? addDays(p.bought, n) : ''; if (!p.exp) p.est = false; }
+    if (L.shared){ p.u = Date.now(); p.dirty = p.u; }
+  }); });
+  save();
+}
 function expiryNotice(){
   const n = pantrySoon().length;
   if (n && S.expNote !== today()){ S.expNote = today(); save(); setTimeout(() => toast(t('p_alert', {n})), 1800); }
@@ -3074,7 +3103,7 @@ if (S.settings.storeMode || S.trip) setStoreMode(!!S.trip);
 renderList();
 handleInvite();
 handleShortcut();
-plan(); expiryNotice();
+plan(); migrateShelf2(); expiryNotice();
 /* Nutri-Score manquant pour les articles déjà scannés */
 setTimeout(async () => {
   const L = curList(); let ch = false;
