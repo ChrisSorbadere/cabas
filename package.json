@@ -1,0 +1,14 @@
+{
+  "name": "cabas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cabas — appli Android (Capacitor) qui charge chrissorbadere.github.io/cabas",
+  "dependencies": {
+    "@capacitor-mlkit/barcode-scanning": "8.2.1",
+    "@capacitor/android": "8.5.3",
+    "@capacitor/cli": "8.5.3",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/local-notifications": "8.3.1",
+    "@pantrist/capacitor-plugin-ml-kit-text-recognition": "8.1.1"
+  }
+}
