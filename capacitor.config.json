@@ -1,0 +1,14 @@
+{
+  "appId": "io.github.chrissorbadere.cabas",
+  "appName": "Cabas",
+  "webDir": "app-shell",
+  "server": {
+    "url": "https://chrissorbadere.github.io/cabas/",
+    "errorPath": "offline.html",
+    "androidScheme": "https"
+  },
+  "android": { "allowMixedContent": false },
+  "plugins": {
+    "LocalNotifications": { "smallIcon": "ic_stat_cabas", "iconColor": "#e5795c" }
+  }
+}
