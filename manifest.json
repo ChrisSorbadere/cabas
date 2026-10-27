@@ -76,6 +76,18 @@
           "type": "image/png"
         }
       ]
+    },
+    {
+      "name": "Scanner un ticket de caisse",
+      "short_name": "Ticket",
+      "url": "./?a=receipt",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
