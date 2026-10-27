@@ -23,6 +23,13 @@ Application : https://chrissorbadere.github.io/cabas/
 
 Toute personne qui possède l'URL du script et le code de la liste peut lire et modifier cette liste.
 
+## Appli Android (Capacitor)
+
+- `android/`, `capacitor.config.json`, `package.json` : projet Capacitor. L'appli charge `chrissorbadere.github.io/cabas/` : les mises à jour web arrivent sans réinstaller.
+- Fonctions natives : reconnaissance de texte Google ML Kit (étiquettes, tickets), lecteur de code-barres Google, rappels de péremption.
+- `.github/workflows/apk.yml` : à chaque modification de la partie Android, GitHub construit l'APK signé (`android/app/cabas.jks`) et le publie dans **Releases**.
+- Installer : page **Releases** › dernier `Cabas-….apk` › ouvrir › autoriser l'installation. Puis Plus › Partage en direct › coller le lien d'invitation.
+
 ## Sources de données
 
 - Magasins : © contributeurs OpenStreetMap (Overpass, Nominatim)
