@@ -9,7 +9,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_VERSION && k !== 'cabas-photos').map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k.startsWith('cabas-') && k !== CACHE_VERSION && k !== 'cabas-photos').map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -45,3 +45,4 @@ self.addEventListener('fetch', e => {
   }
   // API externes (OpenStreetMap, Open Food Facts…) : réseau direct
 });
+// Ne supprime que ses propres caches : toutes les applis partagent chrissorbadere.github.io.
