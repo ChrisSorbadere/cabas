@@ -1,6 +1,6 @@
 {
   "name": "cabas",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Cabas — appli Android (Capacitor) qui charge chrissorbadere.github.io/cabas",
   "dependencies": {
