@@ -54,10 +54,6 @@ main{max-width:640px;margin:0 auto;padding:0 16px}
 label.f{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:12px 0 5px}
 
 /* Résumé */
-.sum{display:flex;gap:10px;align-items:stretch;margin:4px 0 10px}
-.sum .k{flex:1;padding:10px 12px}
-.sum .k b{display:block;font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.sum .k small{color:var(--muted);font-size:12px;font-weight:600}
 .bar{height:6px;border-radius:9px;background:var(--line);overflow:hidden;margin-top:6px}
 .bar i{display:block;height:100%;background:var(--brand);border-radius:9px;transition:width .3s}
 .bar.over i{background:var(--danger)}
@@ -81,20 +77,11 @@ label.f{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:1
 .chip:active{transform:scale(.97)}
 
 /* Liste */
-.gh{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:16px 4px 7px}
-.gh .dot{width:10px;height:10px;border-radius:4px;flex:none}
-.gh .n{margin-left:auto;font-weight:700}
 .items{overflow:hidden}
-.item{display:flex;align-items:center;gap:12px;padding:10px 12px 10px 14px;border-top:1px solid var(--line);min-height:58px}
-.item:first-child{border-top:0}
 .chk{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;color:transparent;transition:.15s}
 .chk svg{width:16px;height:16px}
-.item.done .chk{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
-.item.done .in{text-decoration:line-through;color:var(--muted)}
-.ibd{flex:1;min-width:0;text-align:left}
 .in{font-weight:650;display:flex;align-items:center;gap:6px}
 .in span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.isub{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
 .qty{display:inline-block;background:var(--soft);color:var(--brand);font-weight:800;font-size:12px;padding:1px 8px;border-radius:999px;margin-right:4px}
 .tag{flex:none;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--soft);color:var(--brand)}
 .tag.warn{background:var(--accent-soft);color:var(--accent)}
@@ -106,8 +93,6 @@ label.f{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:1
 .empty .big{font-size:56px;line-height:1;margin-bottom:12px}
 .empty b{display:block;color:var(--ink);font-size:18px;margin-bottom:6px}
 .donebar{display:flex;align-items:center;justify-content:space-between;margin:18px 4px 8px;color:var(--muted);font-weight:700;font-size:14px}
-.finish{position:sticky;bottom:calc(84px + env(safe-area-inset-bottom));margin-top:14px;z-index:10;box-shadow:0 8px 24px rgba(0,0,0,.18)}
-body.store .item{min-height:70px;padding:14px 14px 14px 16px}
 body.store .in{font-size:19px}
 body.store .chk{width:34px;height:34px}
 body.store .chips{display:none}
@@ -203,13 +188,10 @@ tr.best td{color:var(--brand);font-weight:700}
 .log.msg{background:var(--soft)}
 .log time{float:right;color:var(--muted);font-size:12px;margin-left:8px}
 .code{font:800 30px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;text-align:center;padding:16px;border-radius:14px;background:var(--soft);color:var(--brand);margin-top:12px}
-.finP::placeholder{color:var(--muted);opacity:.75;font-style:italic}
 pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;max-height:30vh;overflow:auto}
 
 /* Présentation épurée : sections douces, toucher pour rayer */
 .lt{font-weight:750;color:var(--ink)}
-.sum .k{border:0;box-shadow:var(--sh)}
-.sum .k b{font-weight:700}
 .addrow{border-color:transparent;box-shadow:var(--sh);border-radius:18px}
 .card{border-color:transparent}
 .nav{border-top:0;box-shadow:0 -6px 20px rgba(120,80,60,.06)}
@@ -251,9 +233,6 @@ pre.gs{white-space:pre-wrap;font-size:12px;background:var(--card);border:1px sol
 .rmain input{padding:7px 9px;font-size:15px}
 .rrow.new .rmain input{border-color:var(--accent)}
 .rok{color:var(--brand)}
-.rnum{display:grid;grid-template-columns:58px 74px;gap:4px;align-items:center;flex:none}
-.rnum input{padding:7px 6px;text-align:right;font-size:15px}
-.rnum small{grid-column:1;grid-row:2;text-align:center;font-size:11px;color:var(--muted);margin-top:-2px}
 .rsum{margin:12px 4px 0;font-weight:700}
 body.store .citem{min-height:62px;font-size:20px}
 .undob{color:var(--brand)}
@@ -269,7 +248,6 @@ body.store .citem{min-height:62px;font-size:20px}
 .verbox b{display:block;font-size:22px;letter-spacing:-.01em}
 .verbox .btn{margin-top:10px}
 .citem .nm{flex:0 1 auto}
-.citem .sp{flex:1}
 .citem .ns{width:22px;height:22px;font-size:13px;border-radius:6px;flex:none;align-self:center}
 
 /* Lot A */
@@ -325,8 +303,6 @@ body.store .citem{font-size:19px}
 .pmain .psub .sq{font-weight:700;color:var(--brand)}
 .psort button{font-size:13px;padding:7px 4px}
 .pmain .q{font-size:13px;font-weight:700;color:var(--brand);background:var(--soft);border-radius:999px;padding:1px 8px;white-space:nowrap}
-.pfin{width:48px;height:48px;display:grid;place-items:center;color:var(--brand);flex:none}
-.pfin svg{width:21px;height:21px}
 .xp{font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap}
 .xp.warn{color:var(--accent)}
 .xp.bad{color:#fff;background:var(--danger);border-radius:999px;padding:1px 8px}
@@ -351,7 +327,6 @@ body.store .citem{font-size:19px}
 .phm{width:56px;height:56px;border-radius:12px;object-fit:cover;background:var(--soft)}
 .bigph{display:block;width:100%;max-height:60vh;object-fit:contain;border-radius:16px;background:var(--soft);margin-top:10px}
 .srvold{text-align:left;width:100%;background:var(--accent-soft);color:var(--ink)}
-.apkcard{display:block;text-decoration:none;color:var(--ink);background:var(--soft)}
 .cam.rc{aspect-ratio:3/4;max-height:58vh;margin:8px auto 0}
 .cam.rc::after{left:14%;right:14%;top:3%;height:94%;border-style:dashed}
 .rqty{display:flex;align-items:flex-end;gap:5px;margin-top:6px;flex-wrap:wrap}
@@ -386,6 +361,45 @@ body.store .citem{font-size:19px}
 .pexact{margin-top:10px}
 .pexact summary{color:var(--muted);cursor:pointer;padding:4px 2px}
 .pexact input{margin-top:6px}
+/* v2.8 : habillage */
+:root{--r:22px;--sh:0 1px 2px rgba(60,40,30,.04),0 10px 30px -14px rgba(60,40,30,.18)}
+body{padding-bottom:calc(98px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+.lt{font-size:27px;font-weight:800;letter-spacing:-.03em}
+input,select,textarea{border-radius:14px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 16%,transparent)}
+.addrow{border-radius:20px;padding:5px 5px 5px 16px;border:1.5px solid transparent}
+.addrow input:focus,.pdate:focus{box-shadow:none}
+.addrow:focus-within{border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 14%,transparent),var(--sh)}
+.btn{border-radius:16px}
+.btn.pri,.pill.on{box-shadow:0 8px 18px -8px color-mix(in srgb,var(--brand) 75%,transparent)}
+.h2{font-size:12px;letter-spacing:.08em;margin:26px 6px 8px}
+.nav{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));max-width:620px;margin:0 auto;padding:6px;border-radius:26px;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 86%,transparent);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);box-shadow:0 14px 34px -12px rgba(40,25,15,.32)}
+.nav button{padding:7px 0 6px;border-radius:20px;transition:background .2s,color .2s}
+.nav button.on{background:var(--soft)}
+.nav svg{width:23px;height:23px}
+.toast{bottom:calc(104px + env(safe-area-inset-bottom));border-radius:16px}
+.sum{display:flex;align-items:center;gap:14px;padding:12px 16px;margin:4px 0 10px}
+.sum small{display:block;color:var(--muted);font-size:12px;font-weight:650}
+.sum .sn{flex:none;text-align:center;min-width:54px}
+.sum .sn b{display:block;font-size:30px;line-height:1;font-weight:800;letter-spacing:-.03em;color:var(--brand);font-variant-numeric:tabular-nums}
+.sum .sn small{text-transform:lowercase;margin-top:3px}
+.sum .se{flex:1;min-width:0;border-left:1px solid var(--line);padding-left:14px}
+.sum .se b{display:block;font-size:20px;font-weight:750;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sec{margin-top:12px}
+.cgh{padding:9px 16px;font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.cgh .n{font-size:12px;letter-spacing:0}
+.citem .em{width:46px;height:46px;font-size:29px;border-radius:15px;background:var(--bg)}
+.pmain .em{width:44px;height:44px;font-size:27px;border-radius:14px;background:var(--bg)}
+.citem .stp{background:transparent;border:1.5px solid var(--line)}
+.citem .stp i{color:var(--muted)}
+.sheet{border-radius:28px 28px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.18)}
+.sw .bd{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.seg{border-radius:14px}
+.seg button{border-radius:11px}
+.menu{overflow:hidden}
+.menu .li{color:inherit;text-decoration:none}
+.mi{width:40px;height:40px;border-radius:13px;background:var(--soft);display:grid;place-items:center;font-size:20px;flex:none}
+.emrow .em{background:var(--bg);border-radius:12px;width:40px;height:40px}
 </style>
 </head>
 <body>
@@ -441,7 +455,7 @@ body.store .citem{font-size:19px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.7.1';
+const APP_VERSION = '2.8.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -449,10 +463,10 @@ const T = {
 fr:{
   tab_list:'Liste', tab_stores:'Magasins', tab_prices:'Prix', tab_tips:'Conseils', tab_more:'Plus',
   add_ph:'Ajouter un article…', a_store:'Mode courses', a_send:'Envoyer la liste', a_sync:'Partage en direct', a_mic:'Dicter', a_scan:'Scanner un code-barres',
-  s_todo:'À prendre', s_est:'Estimation', s_basket:'Dans le panier', budget:'Budget',
+  s_todo:'À prendre', s_est:'Estimation', budget:'Budget',
   empty_t:'Ta liste est vide', empty_d:'Tape un article, dicte-le ou scanne un code-barres.<br>Les articles se rangent tout seuls par rayon.',
-  all_done:'Tout est dans le panier', in_basket:'Dans le panier ({n})', hide:'Masquer', show:'Afficher', finish:'Terminer les courses',
-  season:'de saison', offseason:'hors saison', qty_upd:'{x} : quantité mise à jour', deleted:'{x} supprimé', undo:'Annuler',
+  hide:'Masquer', show:'Afficher', 
+  qty_upd:'{x} : quantité mise à jour', deleted:'{x} supprimé', undo:'Annuler',
   bought_every:'Acheté tous les {n} j environ', mem_full:'Mémoire pleine : exporte puis efface l\'historique',
   e_name:'Nom', e_qty:'Quantité', e_unit:'Unité', e_ray:'Rayon', e_note:'Note', e_note_ph:'marque, taille, bio…', e_price:'Prix (€)',
   e_season:'Saison en Espagne (indicatif) : {m}', e_where:'Où l\'acheter', e_info:'Infos produit (Open Food Facts)', e_code:'Code-barres {c}',
@@ -465,9 +479,9 @@ fr:{
   scan_t:'Scanner un code-barres', scan_aim:'Vise le code-barres dans le cadre.', scan_nosup:'Le scan caméra n\'est pas pris en charge par ce navigateur. Tape le code :', scan_ph:'Code EAN (13 chiffres)', cam_err:'Caméra inaccessible',
   mic_na:'Dictée non disponible sur ce navigateur', n_added:'{n} article(s) ajouté(s)', mic_err:'Je n\'ai pas compris',
   articles:'{n} article(s)', nothing_send:'Rien à envoyer : la liste est vide', send_t:'Envoyer la liste', copy:'Copier', other_app:'Autre appli', wa:'Envoyer par WhatsApp', copied:'Liste copiée', copy_err:'Copie impossible',
-  store:'Magasin', other_store:'Autre magasin…', fin_d:'Indique où tu as acheté et les prix : ils serviront à comparer les magasins.', fin_ph:'Nom du magasin (ex. Lidl Delicias)',
-  paid:'Prix payés', total:'Total', sug_hint:'Les prix en gris sont des suggestions (dernier prix connu) : touche une case pour l\'accepter.', sug_all:'Accepter toutes les suggestions',
-  need_store:'Indique le magasin', fin_ok:'Courses enregistrées', store_on:'Mode magasin : écran toujours allumé', store_off:'Mode magasin désactivé',
+  store:'Magasin', fin_ph:'Nom du magasin (ex. Lidl Delicias)',
+  total:'Total', 
+  need_store:'Indique le magasin', 
   around:'Magasins autour de moi', addr_ph:'…ou une adresse, un quartier', supers:'Supermarchés', food_shops:'+ commerces de bouche', my_stores:'Mes magasins',
   n_stores:'{n} magasin(s) · {w}', around_you:'autour de toi', nearby:'À proximité', no_other:'Aucun autre magasin.',
   stores_help:'Lance une recherche pour voir les supermarchés proches, leur distance, leurs horaires et un itinéraire. Ajoute tes habituels en favoris ⭐ : ils seront proposés quand tu termines tes courses.',
@@ -484,19 +498,19 @@ fr:{
   t_split:'Acheter {n} article(s) chez {c} économiserait environ <b>{s}</b>. Ça vaut le détour si c\'est sur ton chemin.',
   t_rebuy:'À racheter bientôt', t_rebuy_d:'acheté environ tous les {a} jours · dernier achat il y a {s} j', t_inlist:'Dans ta liste', t_off:'<b>{x}</b> n\'est pas de saison en {m} : souvent importé, plus cher et moins goûteux.',
   t_seas:'De saison en {m}', t_cmp:'Comparer deux formats', t_cmp_d:'Lequel est le moins cher au kilo / au litre ?', t_price_n:'Prix {n} (€)', t_qty:'Qté',
-  t_ai:'Conseiller IA', t_ai_btn:'💬 Demander conseil pour cette liste', t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
-  ai_think:'Réflexion…', ai_down:'Le service IA ne répond pas.', ai_ask:'Donne des conseils d\'achat concrets et courts, en français, pour cette liste de courses à Saragosse : où acheter, quoi substituer, comment économiser.',
-  m_lists:'Mes listes', m_new:'Nouvelle liste', m_edit:'Modifier « {x} »', m_tpl:'Modèles & recettes', m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tnew:'Nouveau modèle', m_tfrom:'Depuis la liste',
-  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', m_view:'Présentation', v_carnet:'Épurée', v_modern:'Avec cases', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', bc_price:'code-barres', bc_weighed:'Produit pesé : prix lu dans le code-barres ({p})', ocr_raw:'Voir le texte lu', ocr_der:'calculé', src_bc:'Prix lu dans le code-barres', src_lbl:'Prix lu sur l\'étiquette', src_calc:'Prix calculé', src_ok:'cohérent avec le prix au kilo', src_warn:'à vérifier : ne correspond pas au prix au kilo × poids', ocr_blank:'Aucun texte lu : rapproche-toi de l\'étiquette et évite les reflets.', ocr_photo:'Photo…', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', tab_pantry:'Placard', ps_ray:'Rayon', ps_az:'A-Z', ps_exp_a:'Péremp. ↑', ps_exp_d:'Péremp. ↓', sl_lbl:'Conservation après achat', sl_unit:'jours', sl_days:'auto : {n} j', sl_none:'auto : sans date', cv_hint:'Sert à dater le produit quand il passe au placard. Laisse vide pour l\'estimation automatique, 0 = sans date.', sl_est:'estimée', ap_exp:'Date de péremption (facultatif)', tab_menus:'Menus', p_add_ph:'Ajouter au placard…', p_exp:'Date de péremption', p_hint:'Date facultative à droite. Touche un produit consommé : il part dans la liste. Appui long pour le modifier.', p_empty_t:'Le placard est vide', p_empty_d:'Note ce que vous avez à la maison, avec la date de péremption si besoin.<br>Quand un produit est consommé, touche-le : il passe dans la liste.', p_soon:'À consommer vite', p_auto:'Ranger automatiquement au placard les articles pris dans la liste', p_done:'Fini : ajouter à la liste', p_moved:'{x} : consommé, ajouté à la liste', px_out:'périmé', px_today:'aujourd\'hui', px_in:'J-{n}', p_alert:'⏳ {n} produit(s) du placard à consommer vite', p_to_list:'Fini : ajouter à la liste', mn_week:'Cette semaine', mn_lunch:'Déjeuner', mn_dinner:'Dîner', mn_pers:'Personnes', mn_add_week:'Ingrédients de la semaine → liste', mn_recipes:'Recettes', mn_new:'Nouvelle recette', mn_serv:'Nombre de personnes de la recette', mn_serv_n:'{n} pers.', mn_free:'…ou un plat sans recette', mn_free_ph:'ex. Restes, Restaurant', mn_clear:'Effacer', mn_paste_d:'Tu peux coller les ingrédients d\'une recette trouvée sur internet : un ingrédient par ligne.', mn_preview_d:'Décoche ce que vous avez déjà. Les quantités sont ajustées au nombre de personnes.', mn_in_pantry:'au placard', mn_in_list:'déjà dans la liste', mn_nothing:'Aucune recette prévue', x_title:'Dépenses', x_empty:'Les dépenses se calculent à partir du mode magasin : prends tes articles avec leur prix, puis touche « Quitter ».', x_month:'Ce mois-ci', x_vs:'vs mois dernier', x_by_store:'Par magasin', x_by_ray:'Par rayon', x_p1:'Ce mois', x_p3:'3 mois', x_p12:'12 mois', x_trips:'{n} passage(s) en caisse', ph_take:'Photo', ph_change:'Changer la photo', ph_del:'Retirer', ph_err:'Photo impossible', m_stores:'Magasins autour de moi', srv_old:'Script de partage à mettre à jour', srv_old_d:'Pour partager aussi le placard, les menus, les prix, les dépenses et les photos.', srv_steps:'1. Ouvre ta feuille Google › Extensions › Apps Script.<br>2. Remplace tout le code par celui-ci et enregistre.<br>3. Déployer › Gérer les déploiements › ✎ Modifier › Version : Nouvelle version › Déployer.<br>L\'URL ne change pas : rien à faire sur les téléphones.', bc_install:'Installation du lecteur de code-barres Google… réessaie dans un instant.', a_scan_s:'Code-barres', nt_tomorrow:'À consommer demain : {x}', nt_today:'Périme aujourd\'hui : {x}', apk_t:'Appli Android', apk_d:'Lecture d\'étiquettes et de tickets plus fiable, code-barres natif, rappels de péremption. Télécharge le dernier fichier .apk, installe-le, puis rejoins la liste en collant le lien d\'invitation (Plus › Partage en direct).', rc_hint:'Tiens le téléphone en hauteur, le ticket bien à plat dans le cadre vertical, puis touche « Prendre la photo ». Ticket long : photographie d\'abord le haut, puis « Photo suivante ».', rc_next_h:'Cadre la suite du ticket, puis « Prendre la photo ».', rc_shot:'Prendre la photo', rc_back:'Retour à la vérification', rc_nocam:'Caméra indisponible : « Prendre la photo » ouvre l\'appareil photo du téléphone.', sc_t:'Que veux-tu scanner ?', sc_lbl:'Étiquette de rayon', sc_lbl_d:'Prix et nom d\'un produit en magasin', sc_rc:'Ticket de caisse', sc_rc_d:'Tous les prix d\'un coup, après les courses', em_lbl:'Pictogramme', em_t:'Pictogramme de « {x} »', em_custom:'Choisi par toi', em_auto:'Automatique', em_more:'Autres', em_other:'Autre emoji', em_type:'Tape ou colle un emoji', em_img:'Image perso', em_img_d:'Une image trouvée ou créée sur internet (PNG, idéalement carrée et à fond transparent) : depuis la galerie, ou en collant son lien.', em_link:'Lien', em_link_err:'Image inaccessible depuis ce lien : télécharge-la puis choisis-la dans la galerie.', em_reset:'Automatique ({x})', p_exact:'Date exacte imprimée (facultatif)', p_exp_is:'Périme le {d}', p_bought_exp:'Acheté le {b} → à consommer avant le {d}', rc_n:'Nombre', rc_pack:'Contenu', rc_pantry:'Ranger les produits achetés au placard', rc_shelved:'rangés au placard', pe_t:'Modifier le prix', pe_all:'Renommer aussi les {n} autres prix de ce produit', pe_qty:'Quantité achetée (ex. 12 œufs, 500 g)', pe_unit:'Soit {x}', pe_hint:'✎ pour corriger le nom, le magasin, le prix ou la quantité.', rc_t:'Scanner un ticket de caisse', rc_short:'Ticket', rc_d:'Photographie le ticket bien à plat, en entier, droit et bien éclairé. Tout est lu sur le téléphone : aucune image n\'est envoyée.', rc_photo:'Photographier', rc_gal:'Galerie', rc_reading:'Lecture du ticket… (quelques secondes)', rc_none:'Aucune ligne d\'article reconnue. Essaie une photo plus nette et plus droite.', rc_review:'Vérifie le ticket', rc_review_d:'Décoche les lignes à ignorer et corrige les noms si besoin : l\'appli s\'en souviendra au prochain ticket.', rc_disc:'remise déduite', rc_inlist:'dans ta liste : sera retiré', rc_new:'non reconnu : vérifie le nom', rc_sum:'Coché : {s}', rc_total:'total du ticket : {t}', rc_gap:'écart {g}', rc_exp:'Compter dans les dépenses', rc_exp_dup:'Déjà compté dans les dépenses ce jour-là (mode magasin) : coche pour compter quand même', rc_take:'Retirer de la liste les articles achetés', rc_more:'Photo suivante', rc_save:'Enregistrer {n} prix', rc_done:'{n} prix enregistrés depuis le ticket', ls_focus:'Gros prix seul', ls_focus_h:'Place le gros prix dans le petit cadre jaune, puis touche « Lire l\'étiquette ».', e_only:'Seulement chez', e_only_ph:'n\'importe quel magasin', e_urg:'⚡ Urgent', urgent:'Urgent', lg_urg:'{w} : ⚡ {x} est urgent', pv_good:'✓ Bon prix : {p} % moins cher que d\'habitude', pv_high:'↑ {p} % plus cher que d\'habitude', pv_usual:'Prix habituel', pv_cheaper:'moins cher chez {c} ({p})', paste_t:'Coller une liste', paste_d:'Un article par ligne. Puces, emojis et titres sont ignorés.', paste_btn:'Ajouter {n} article(s)', paste_ph:'Lait\n2 kg tomates\nPain x2', m_theme:'Couleurs', pal_coral:'Corail', pal_sage:'Sauge', pal_lav:'Lavande', pal_sky:'Ciel', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', sh_off:'Non partagée pour l\'instant', sh_msgs:'Messages, activité, code d\'invitation', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
-  m_ai:'Conseiller IA (facultatif)', m_ai_ph:'URL de ton script Apps Script', m_ai_d:'Laisse vide si tu n\'as pas de clé API. Le script reçoit la liste et les prix connus (POST JSON) et renvoie {"texte": "…"}.',
+  t_tips:'Astuces', c_units:'Unités non comparables (poids vs volume).', c_same:'Même prix : {x}', c_res:'Le format {w} est {p} % moins cher : {a} contre {b}.',
+  
+  m_notpl:'Aucun modèle.', m_add:'Ajouter', m_tfrom:'Depuis la liste',
+  m_settings:'Réglages', m_lang:'Langue', m_look:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre', m_order:'Ordre des rayons', trip_locating:'Recherche du magasin…', trip_cart:'Chariot', trip_scan:'Scanner', trip_end:'Quitter', trip_ended:'Courses enregistrées · {x}', trip_nostore:'Aucun magasin trouvé à proximité : indique-le.', trip_pick:'Dans quel magasin es-tu ?', trip_empty:'Rien dans le chariot pour l\'instant.', trip_end_c:'Quitter le mode courses ? Le total et les prix sont enregistrés.', price_of:'Prix de « {x} »', last_at:'Dernier prix ici : {p} ({d})', skip:'Sans prix', add_cart:'Ajouter au chariot', scan_label:'Lire l\'étiquette', scan_reading:'Lecture de l\'étiquette…', scan_first:'Premier usage : téléchargement du module de lecture (quelques Mo)…', ocr_none:'Aucun prix lu : rapproche-toi, évite les reflets, ou saisis-le.', ocr_err:'Module de lecture indisponible (connexion ?). Saisis le prix.', ocr_pick:'Prix lus : touche le bon', unit_p:'au kg/L', code_found:'Produit : {x}', bc_price:'code-barres', bc_weighed:'Produit pesé : prix lu dans le code-barres ({p})', ocr_raw:'Voir le texte lu', ocr_der:'calculé', src_bc:'Prix lu dans le code-barres', src_lbl:'Prix lu sur l\'étiquette', src_calc:'Prix calculé', src_ok:'cohérent avec le prix au kilo', src_warn:'à vérifier : ne correspond pas au prix au kilo × poids', ocr_blank:'Aucun texte lu : rapproche-toi de l\'étiquette et évite les reflets.', ocr_photo:'Photo…', sl_t:'Scanner un produit', sl_hint:'Cadre l\'étiquette de prix (et le code-barres si tu veux), puis touche « Lire l\'étiquette ».', in_cart:'{x} au chariot · total {t}', tab_pantry:'Placard', ps_ray:'Rayon', ps_az:'A-Z', ps_exp_a:'Péremp. ↑', ps_exp_d:'Péremp. ↓', sl_lbl:'Conservation après achat', sl_unit:'jours', sl_days:'auto : {n} j', sl_none:'auto : sans date', cv_hint:'Sert à dater le produit quand il passe au placard. Laisse vide pour l\'estimation automatique, 0 = sans date.', ap_exp:'Date de péremption (facultatif)', tab_menus:'Menus', p_add_ph:'Ajouter au placard…', p_exp:'Date de péremption', p_hint:'Date facultative à droite. Touche un produit consommé : il part dans la liste. Appui long pour le modifier.', p_empty_t:'Le placard est vide', p_empty_d:'Note ce que vous avez à la maison, avec la date de péremption si besoin.<br>Quand un produit est consommé, touche-le : il passe dans la liste.', p_soon:'À consommer vite', p_auto:'Ranger automatiquement au placard les articles pris dans la liste', p_done:'Fini : ajouter à la liste', p_moved:'{x} : consommé, ajouté à la liste', px_out:'périmé', px_today:'aujourd\'hui', px_in:'J-{n}', p_alert:'⏳ {n} produit(s) du placard à consommer vite', mn_week:'Cette semaine', mn_lunch:'Déjeuner', mn_dinner:'Dîner', mn_pers:'Personnes', mn_add_week:'Ingrédients de la semaine → liste', mn_recipes:'Recettes', mn_new:'Nouvelle recette', mn_serv:'Nombre de personnes de la recette', mn_serv_n:'{n} pers.', mn_free:'…ou un plat sans recette', mn_free_ph:'ex. Restes, Restaurant', mn_clear:'Effacer', mn_paste_d:'Tu peux coller les ingrédients d\'une recette trouvée sur internet : un ingrédient par ligne.', mn_preview_d:'Décoche ce que vous avez déjà. Les quantités sont ajustées au nombre de personnes.', mn_in_pantry:'au placard', mn_in_list:'déjà dans la liste', mn_nothing:'Aucune recette prévue', x_title:'Dépenses', x_empty:'Les dépenses se calculent à partir du mode magasin : prends tes articles avec leur prix, puis touche « Quitter ».', x_month:'Ce mois-ci', x_vs:'vs mois dernier', x_by_store:'Par magasin', x_by_ray:'Par rayon', x_p1:'Ce mois', x_p3:'3 mois', x_p12:'12 mois', x_trips:'{n} passage(s) en caisse', ph_take:'Photo', ph_change:'Changer la photo', ph_del:'Retirer', ph_err:'Photo impossible', m_stores:'Magasins autour de moi', srv_old:'Script de partage à mettre à jour', srv_old_d:'Pour partager aussi le placard, les menus, les prix, les dépenses et les photos.', srv_steps:'1. Ouvre ta feuille Google › Extensions › Apps Script.<br>2. Remplace tout le code par celui-ci et enregistre.<br>3. Déployer › Gérer les déploiements › ✎ Modifier › Version : Nouvelle version › Déployer.<br>L\'URL ne change pas : rien à faire sur les téléphones.', bc_install:'Installation du lecteur de code-barres Google… réessaie dans un instant.', a_scan_s:'Code-barres', nt_tomorrow:'À consommer demain : {x}', nt_today:'Périme aujourd\'hui : {x}', apk_t:'Appli Android', apk_d:'Lecture d\'étiquettes et de tickets plus fiable, code-barres natif, rappels de péremption. Télécharge le dernier fichier .apk, installe-le, puis rejoins la liste en collant le lien d\'invitation (Plus › Partage en direct).', rc_hint:'Tiens le téléphone en hauteur, le ticket bien à plat dans le cadre vertical, puis touche « Prendre la photo ». Ticket long : photographie d\'abord le haut, puis « Photo suivante ».', rc_next_h:'Cadre la suite du ticket, puis « Prendre la photo ».', rc_shot:'Prendre la photo', rc_back:'Retour à la vérification', rc_nocam:'Caméra indisponible : « Prendre la photo » ouvre l\'appareil photo du téléphone.', sc_t:'Que veux-tu scanner ?', sc_lbl:'Étiquette de rayon', sc_lbl_d:'Prix et nom d\'un produit en magasin', sc_rc:'Ticket de caisse', sc_rc_d:'Tous les prix d\'un coup, après les courses', em_lbl:'Pictogramme', em_t:'Pictogramme de « {x} »', em_custom:'Choisi par toi', em_auto:'Automatique', em_more:'Autres', em_other:'Autre emoji', em_type:'Tape ou colle un emoji', em_img:'Image perso', em_img_d:'Une image trouvée ou créée sur internet (PNG, idéalement carrée et à fond transparent) : depuis la galerie, ou en collant son lien.', em_link:'Lien', em_link_err:'Image inaccessible depuis ce lien : télécharge-la puis choisis-la dans la galerie.', em_reset:'Automatique ({x})', p_exact:'Date exacte imprimée (facultatif)', p_exp_is:'Périme le {d}', p_bought_exp:'Acheté le {b} → à consommer avant le {d}', rc_n:'Nombre', rc_pack:'Contenu', rc_pantry:'Ranger les produits achetés au placard', rc_shelved:'rangés au placard', pe_t:'Modifier le prix', pe_all:'Renommer aussi les {n} autres prix de ce produit', pe_qty:'Quantité achetée (ex. 12 œufs, 500 g)', pe_unit:'Soit {x}', pe_hint:'✎ pour corriger le nom, le magasin, le prix ou la quantité.', rc_t:'Scanner un ticket de caisse', rc_short:'Ticket', rc_gal:'Galerie', rc_reading:'Lecture du ticket… (quelques secondes)', rc_none:'Aucune ligne d\'article reconnue. Essaie une photo plus nette et plus droite.', rc_review:'Vérifie le ticket', rc_review_d:'Décoche les lignes à ignorer et corrige les noms si besoin : l\'appli s\'en souviendra au prochain ticket.', rc_disc:'remise déduite', rc_inlist:'dans ta liste : sera retiré', rc_new:'non reconnu : vérifie le nom', rc_sum:'Coché : {s}', rc_total:'total du ticket : {t}', rc_gap:'écart {g}', rc_exp:'Compter dans les dépenses', rc_exp_dup:'Déjà compté dans les dépenses ce jour-là (mode magasin) : coche pour compter quand même', rc_take:'Retirer de la liste les articles achetés', rc_more:'Photo suivante', rc_save:'Enregistrer {n} prix', rc_done:'{n} prix enregistrés depuis le ticket', ls_focus:'Gros prix seul', ls_focus_h:'Place le gros prix dans le petit cadre jaune, puis touche « Lire l\'étiquette ».', e_only:'Seulement chez', e_only_ph:'n\'importe quel magasin', e_urg:'⚡ Urgent', urgent:'Urgent', lg_urg:'{w} : ⚡ {x} est urgent', pv_good:'✓ Bon prix : {p} % moins cher que d\'habitude', pv_high:'↑ {p} % plus cher que d\'habitude', pv_usual:'Prix habituel', pv_cheaper:'moins cher chez {c} ({p})', paste_t:'Coller une liste', paste_d:'Un article par ligne. Puces, emojis et titres sont ignorés.', paste_btn:'Ajouter {n} article(s)', paste_ph:'Lait\n2 kg tomates\nPain x2', m_theme:'Couleurs', pal_coral:'Corail', pal_sage:'Sauge', pal_lav:'Lavande', pal_sky:'Ciel', pal_berry:'Framboise', pal_honey:'Miel', pal_teal:'Lagune', pal_ink:'Graphite', m_tools:'Outils', took:'{x} pris', a_undo:'Annuler la dernière action', trip_go:'Magasin', sh_off:'Non partagée pour l\'instant', sh_msgs:'Messages, activité, code d\'invitation', ver:'Version {v}', ver_check:'Rechercher une mise à jour', ver_ok:'Tu as la dernière version', ver_new:'Version {v} disponible', undone:'Annulé : {x}', recent:'Récemment pris ({n})', e_price_d:'Avec le magasin, le prix est gardé dans l\'historique et sert aux comparaisons.', upd:'Nouvelle version disponible', upd_btn:'Mettre à jour', c_hint:'Touche un article quand tu le prends · appui long pour le modifier',
+  
   m_sync:'Partage en direct', m_sync_ph:'URL du script de partage (Apps Script)', m_me:'Ton prénom (visible par l\'autre téléphone)',
   m_data:'Données', m_stats:'{p} prix · {h} courses · {c} produits connus. Tout reste sur ton téléphone.', m_exp:'Exporter', m_imp:'Importer', m_clear:'Effacer l\'historique des prix',
   m_install:'Installer l\'appli', m_credits:'Magasins © OpenStreetMap · Produits Open Food Facts · Prix Open Prices (ODbL)',
-  list_sel:'Liste « {x} »', empty_list:'La liste est vide', tpl_added:'{n} articles ajoutés', imported:'Données importées', bad_file:'Fichier invalide',
+  empty_list:'La liste est vide', imported:'Données importées', bad_file:'Fichier invalide',
   confirm_clear:'Effacer tous les prix et l\'historique des courses ?', cleared:'Historique effacé',
-  lf_edit:'Modifier la liste', lf_ph:'ex. Courses de la semaine', lf_budget:'Budget (facultatif)', confirm_del:'Supprimer « {x} » ?', def_list:'Courses',
+  lf_budget:'Budget (facultatif)', def_list:'Courses',
   tf_edit:'Modifier le modèle', tf_ph:'ex. Paella, Apéro, Basiques', tf_items:'Articles (un par ligne)', tf_req:'Nom et articles requis',
-  of_d:'Range-les dans l\'ordre de ton parcours en magasin.', done:'Terminé', new_s:'Nouvelle', edit:'Modifier',
+  of_d:'Range-les dans l\'ordre de ton parcours en magasin.', done:'Terminé', edit:'Modifier',
   /* partage en direct */
   sh_t:'Partage en direct', sh_intro:'Partage cette liste avec un autre téléphone : chaque ajout, chaque article coché apparaît chez l\'autre en quelques secondes, et vous pouvez vous envoyer des messages.',
   sh_setup:'Mise en place (une seule fois)', sh_steps:'1. Crée une feuille Google Sheets.<br>2. Extensions › Apps Script : colle le script ci-dessous.<br>3. Déployer › Nouveau déploiement › Application Web — Exécuter en tant que : moi ; Accès : tout le monde.<br>4. Colle l\'URL obtenue ici. L\'autre téléphone la recevra avec l\'invitation.',
@@ -504,8 +518,8 @@ fr:{
   sh_create:'Partager « {x} »', sh_code:'Code de partage', sh_invite:'Inviter par WhatsApp', sh_invite_msg:'🛒 Rejoins ma liste de courses « {x} » sur Cabas :\n{l}\n(code {c})',
   sh_members:'Avec : {x}', sh_alone:'Personne n\'a encore rejoint la liste.', sh_stop:'Arrêter le partage sur ce téléphone', sh_stop_c:'Arrêter le partage ? La liste reste sur ce téléphone mais ne se synchronise plus.',
   sh_join:'Rejoindre une liste', sh_join_ph:'Code ou lien d\'invitation', sh_join_btn:'Rejoindre', sh_join_t:'Rejoindre la liste {c}', sh_nf:'Liste introuvable : vérifie le code',
-  sh_err:'Partage impossible : vérifie l\'URL du script', sh_joined:'Liste « {x} » rejointe', sh_created:'Liste partagée', sh_activity:'Activité', sh_msg_ph:'Écrire un message…', sh_send:'Envoyer',
-  sh_bar:'Partagée · {x}', sh_bar_wait:'Partagée · en attente de l\'autre téléphone', sh_note:'Les messages arrivent quand l\'appli est ouverte (pas de notification appli fermée).',
+  sh_err:'Partage impossible : vérifie l\'URL du script', sh_joined:'Liste « {x} » rejointe', sh_created:'Liste partagée', sh_activity:'Activité', sh_msg_ph:'Écrire un message…', 
+  sh_bar_wait:'Partagée · en attente de l\'autre téléphone', sh_note:'Les messages arrivent quand l\'appli est ouverte (pas de notification appli fermée).',
   q1:'Je pars faire les courses 🛒', q2:'Courses faites ✓', q3:'Il manque quelque chose ?', q4:'Je suis au magasin',
   lg_add:'{w} a ajouté {x}', lg_chk:'{w} a pris {x}', lg_done:'{w} a terminé les courses ({x})', lg_join:'{w} a rejoint la liste', lg_msg:'{w} : {x}',
   lg_adds:'{w} : +{n} article(s)', lg_chks:'{w} a pris {n} article(s)', someone:'Quelqu\'un'
@@ -513,10 +527,10 @@ fr:{
 es:{
   tab_list:'Lista', tab_stores:'Tiendas', tab_prices:'Precios', tab_tips:'Consejos', tab_more:'Más',
   add_ph:'Añadir un producto…', a_store:'Modo compra', a_send:'Enviar la lista', a_sync:'Compartir en directo', a_mic:'Dictar', a_scan:'Escanear un código de barras',
-  s_todo:'Por coger', s_est:'Estimación', s_basket:'En el carro', budget:'Presupuesto',
+  s_todo:'Por coger', s_est:'Estimación', budget:'Presupuesto',
   empty_t:'Tu lista está vacía', empty_d:'Escribe un producto, díctalo o escanea un código de barras.<br>Se ordenan solos por sección.',
-  all_done:'Todo está en el carro', in_basket:'En el carro ({n})', hide:'Ocultar', show:'Mostrar', finish:'Terminar la compra',
-  season:'de temporada', offseason:'fuera de temporada', qty_upd:'{x}: cantidad actualizada', deleted:'{x} eliminado', undo:'Deshacer',
+  hide:'Ocultar', show:'Mostrar', 
+  qty_upd:'{x}: cantidad actualizada', deleted:'{x} eliminado', undo:'Deshacer',
   bought_every:'Comprado cada {n} días aprox.', mem_full:'Memoria llena: exporta y borra el historial',
   e_name:'Nombre', e_qty:'Cantidad', e_unit:'Unidad', e_ray:'Sección', e_note:'Nota', e_note_ph:'marca, tamaño, ecológico…', e_price:'Precio (€)',
   e_season:'Temporada en España (orientativo): {m}', e_where:'Dónde comprarlo', e_info:'Información (Open Food Facts)', e_code:'Código de barras {c}',
@@ -529,9 +543,9 @@ es:{
   scan_t:'Escanear un código de barras', scan_aim:'Apunta al código dentro del marco.', scan_nosup:'Este navegador no permite escanear con la cámara. Escribe el código:', scan_ph:'Código EAN (13 cifras)', cam_err:'Cámara no accesible',
   mic_na:'Dictado no disponible en este navegador', n_added:'{n} producto(s) añadido(s)', mic_err:'No te he entendido',
   articles:'{n} producto(s)', nothing_send:'Nada que enviar: la lista está vacía', send_t:'Enviar la lista', copy:'Copiar', other_app:'Otra app', wa:'Enviar por WhatsApp', copied:'Lista copiada', copy_err:'No se pudo copiar',
-  store:'Tienda', other_store:'Otra tienda…', fin_d:'Indica dónde has comprado y los precios: servirán para comparar tiendas.', fin_ph:'Nombre de la tienda (ej. Lidl Delicias)',
-  paid:'Precios pagados', total:'Total', sug_hint:'Los precios en gris son sugerencias (último precio conocido): toca una casilla para aceptarlo.', sug_all:'Aceptar todas las sugerencias',
-  need_store:'Indica la tienda', fin_ok:'Compra guardada', store_on:'Modo tienda: pantalla siempre encendida', store_off:'Modo tienda desactivado',
+  store:'Tienda', fin_ph:'Nombre de la tienda (ej. Lidl Delicias)',
+  total:'Total', 
+  need_store:'Indica la tienda', 
   around:'Tiendas cerca de mí', addr_ph:'…o una dirección, un barrio', supers:'Supermercados', food_shops:'+ comercios de alimentación', my_stores:'Mis tiendas',
   n_stores:'{n} tienda(s) · {w}', around_you:'cerca de ti', nearby:'Cerca', no_other:'Ninguna otra tienda.',
   stores_help:'Busca para ver los supermercados cercanos, la distancia, el horario y cómo llegar. Marca tus habituales como favoritas ⭐: se propondrán al terminar la compra.',
@@ -548,27 +562,27 @@ es:{
   t_split:'Comprar {n} producto(s) en {c} ahorraría unos <b>{s}</b>. Merece la pena si te pilla de camino.',
   t_rebuy:'Para volver a comprar pronto', t_rebuy_d:'comprado cada {a} días aprox. · última compra hace {s} días', t_inlist:'En tu lista', t_off:'<b>{x}</b> no es de temporada en {m}: suele ser importado, más caro y con menos sabor.',
   t_seas:'De temporada en {m}', t_cmp:'Comparar dos formatos', t_cmp_d:'¿Cuál es más barato por kilo / litro?', t_price_n:'Precio {n} (€)', t_qty:'Cant.',
-  t_ai:'Asesor IA', t_ai_btn:'💬 Pedir consejo para esta lista', t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
-  ai_think:'Pensando…', ai_down:'El servicio de IA no responde.', ai_ask:'Da consejos de compra concretos y breves, en español, para esta lista de la compra en Zaragoza: dónde comprar, qué sustituir, cómo ahorrar.',
-  m_lists:'Mis listas', m_new:'Nueva lista', m_edit:'Editar «{x}»', m_tpl:'Plantillas y recetas', m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tnew:'Nueva plantilla', m_tfrom:'Desde la lista',
-  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', m_view:'Presentación', v_carnet:'Sencilla', v_modern:'Con casillas', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', bc_price:'código de barras', bc_weighed:'Producto pesado: precio leído en el código de barras ({p})', ocr_raw:'Ver el texto leído', ocr_der:'calculado', src_bc:'Precio leído en el código de barras', src_lbl:'Precio leído en la etiqueta', src_calc:'Precio calculado', src_ok:'coherente con el precio por kilo', src_warn:'a comprobar: no coincide con precio por kilo × peso', ocr_blank:'No se ha leído ningún texto: acércate a la etiqueta y evita reflejos.', ocr_photo:'Foto…', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', tab_pantry:'Despensa', ps_ray:'Sección', ps_az:'A-Z', ps_exp_a:'Caduc. ↑', ps_exp_d:'Caduc. ↓', sl_lbl:'Conservación tras la compra', sl_unit:'días', sl_days:'auto: {n} d', sl_none:'auto: sin fecha', cv_hint:'Sirve para fechar el producto cuando pasa a la despensa. Déjalo vacío para la estimación automática, 0 = sin fecha.', sl_est:'estimada', ap_exp:'Fecha de caducidad (opcional)', tab_menus:'Menús', p_add_ph:'Añadir a la despensa…', p_exp:'Fecha de caducidad', p_hint:'Fecha opcional a la derecha. Toca un producto consumido: pasa a la lista. Mantén pulsado para editarlo.', p_empty_t:'La despensa está vacía', p_empty_d:'Apunta lo que tenéis en casa, con la fecha de caducidad si hace falta.<br>Cuando se acabe un producto, tócalo: pasa a la lista.', p_soon:'Consumir pronto', p_auto:'Guardar en la despensa los productos cogidos de la lista', p_done:'Se acabó: añadir a la lista', p_moved:'{x}: se acabó, añadido a la lista', px_out:'caducado', px_today:'hoy', px_in:'{n} d', p_alert:'⏳ {n} producto(s) de la despensa para consumir pronto', p_to_list:'Se acabó: añadir a la lista', mn_week:'Esta semana', mn_lunch:'Comida', mn_dinner:'Cena', mn_pers:'Personas', mn_add_week:'Ingredientes de la semana → lista', mn_recipes:'Recetas', mn_new:'Nueva receta', mn_serv:'Número de personas de la receta', mn_serv_n:'{n} pers.', mn_free:'…o un plato sin receta', mn_free_ph:'ej. Sobras, Restaurante', mn_clear:'Borrar', mn_paste_d:'Puedes pegar los ingredientes de una receta de internet: un ingrediente por línea.', mn_preview_d:'Desmarca lo que ya tenéis. Las cantidades se ajustan al número de personas.', mn_in_pantry:'en la despensa', mn_in_list:'ya en la lista', mn_nothing:'No hay recetas previstas', x_title:'Gastos', x_empty:'Los gastos se calculan con el modo compra: coge los productos con su precio y toca «Salir».', x_month:'Este mes', x_vs:'vs mes pasado', x_by_store:'Por tienda', x_by_ray:'Por sección', x_p1:'Este mes', x_p3:'3 meses', x_p12:'12 meses', x_trips:'{n} compra(s)', ph_take:'Foto', ph_change:'Cambiar la foto', ph_del:'Quitar', ph_err:'No se pudo hacer la foto', m_stores:'Tiendas cerca de mí', srv_old:'Hay que actualizar el script', srv_old_d:'Para compartir también despensa, menús, precios, gastos y fotos.', srv_steps:'1. Abre tu hoja de Google › Extensiones › Apps Script.<br>2. Sustituye todo el código por este y guarda.<br>3. Implementar › Gestionar implementaciones › ✎ Editar › Versión: Nueva versión › Implementar.<br>La URL no cambia: nada que hacer en los móviles.', bc_install:'Instalando el lector de códigos de Google… inténtalo de nuevo en un momento.', a_scan_s:'Código de barras', nt_tomorrow:'Consumir mañana: {x}', nt_today:'Caduca hoy: {x}', apk_t:'App Android', apk_d:'Lectura de etiquetas y tiques más fiable, código de barras nativo, avisos de caducidad. Descarga el último .apk, instálalo y únete a la lista pegando el enlace de invitación (Más › Compartir en directo).', rc_hint:'Sujeta el móvil en vertical, con el tique plano dentro del marco vertical, y toca «Hacer la foto». Tique largo: primero la parte de arriba y luego «Siguiente foto».', rc_next_h:'Encuadra el resto del tique y toca «Hacer la foto».', rc_shot:'Hacer la foto', rc_back:'Volver a la revisión', rc_nocam:'Cámara no disponible: «Hacer la foto» abre la cámara del móvil.', sc_t:'¿Qué quieres escanear?', sc_lbl:'Etiqueta de estantería', sc_lbl_d:'Precio y nombre de un producto en la tienda', sc_rc:'Tique de compra', sc_rc_d:'Todos los precios a la vez, después de la compra', em_lbl:'Pictograma', em_t:'Pictograma de «{x}»', em_custom:'Elegido por ti', em_auto:'Automático', em_more:'Otros', em_other:'Otro emoji', em_type:'Escribe o pega un emoji', em_img:'Imagen propia', em_img_d:'Una imagen encontrada o creada en internet (PNG, mejor cuadrada y con fondo transparente): desde la galería o pegando su enlace.', em_link:'Enlace', em_link_err:'No se puede abrir la imagen desde este enlace: descárgala y elígela en la galería.', em_reset:'Automático ({x})', p_exact:'Fecha exacta impresa (opcional)', p_exp_is:'Caduca el {d}', p_bought_exp:'Comprado el {b} → consumir antes del {d}', rc_n:'Número', rc_pack:'Contenido', rc_pantry:'Guardar los productos comprados en la despensa', rc_shelved:'guardados en la despensa', pe_t:'Editar el precio', pe_all:'Renombrar también los otros {n} precios de este producto', pe_qty:'Cantidad comprada (ej. 12 huevos, 500 g)', pe_unit:'O sea {x}', pe_hint:'✎ para corregir el nombre, la tienda, el precio o la cantidad.', rc_t:'Escanear un tique de compra', rc_short:'Tique', rc_d:'Fotografía el tique plano, entero, recto y bien iluminado. Todo se lee en el móvil: no se envía ninguna imagen.', rc_photo:'Hacer foto', rc_gal:'Galería', rc_reading:'Leyendo el tique… (unos segundos)', rc_none:'No se ha reconocido ningún producto. Prueba con una foto más nítida y recta.', rc_review:'Revisa el tique', rc_review_d:'Desmarca las líneas que no quieras y corrige los nombres si hace falta: la app lo recordará en el próximo tique.', rc_disc:'descuento aplicado', rc_inlist:'en tu lista: se quitará', rc_new:'no reconocido: revisa el nombre', rc_sum:'Marcado: {s}', rc_total:'total del tique: {t}', rc_gap:'diferencia {g}', rc_exp:'Contar en los gastos', rc_exp_dup:'Ya contado en los gastos ese día (modo compra): marca para contarlo igualmente', rc_take:'Quitar de la lista los productos comprados', rc_more:'Siguiente foto', rc_save:'Guardar {n} precios', rc_done:'{n} precios guardados desde el tique', ls_focus:'Solo el precio grande', ls_focus_h:'Pon el precio grande en el marco amarillo pequeño y toca «Leer la etiqueta».', e_only:'Solo en', e_only_ph:'cualquier tienda', e_urg:'⚡ Urgente', urgent:'Urgente', lg_urg:'{w}: ⚡ {x} es urgente', pv_good:'✓ Buen precio: un {p} % más barato de lo habitual', pv_high:'↑ un {p} % más caro de lo habitual', pv_usual:'Precio habitual', pv_cheaper:'más barato en {c} ({p})', paste_t:'Pegar una lista', paste_d:'Un producto por línea. Se ignoran viñetas, emojis y títulos.', paste_btn:'Añadir {n} producto(s)', paste_ph:'Leche\n2 kg tomates\nPan x2', m_theme:'Colores', pal_coral:'Coral', pal_sage:'Salvia', pal_lav:'Lavanda', pal_sky:'Cielo', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', sh_off:'Aún no compartida', sh_msgs:'Mensajes, actividad, código de invitación', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
-  m_ai:'Asesor IA (opcional)', m_ai_ph:'URL de tu script de Apps Script', m_ai_d:'Déjalo vacío si no tienes clave API. El script recibe la lista y los precios (POST JSON) y devuelve {"texte": "…"}.',
+  t_tips:'Trucos', c_units:'Unidades no comparables (peso vs volumen).', c_same:'Mismo precio: {x}', c_res:'El formato {w} es un {p} % más barato: {a} frente a {b}.',
+  
+  m_notpl:'Ninguna plantilla.', m_add:'Añadir', m_tfrom:'Desde la lista',
+  m_settings:'Ajustes', m_lang:'Idioma', m_look:'Apariencia', th_auto:'Auto', th_light:'Claro', th_dark:'Oscuro', m_order:'Orden de las secciones', trip_locating:'Buscando la tienda…', trip_cart:'Carro', trip_scan:'Escanear', trip_end:'Salir', trip_ended:'Compra guardada · {x}', trip_nostore:'No hay tiendas cerca: indícala.', trip_pick:'¿En qué tienda estás?', trip_empty:'Aún no hay nada en el carro.', trip_end_c:'¿Salir del modo compra? El total y los precios se guardan.', price_of:'Precio de «{x}»', last_at:'Último precio aquí: {p} ({d})', skip:'Sin precio', add_cart:'Añadir al carro', scan_label:'Leer la etiqueta', scan_reading:'Leyendo la etiqueta…', scan_first:'Primera vez: descargando el módulo de lectura (unos MB)…', ocr_none:'No se ha leído ningún precio: acércate, evita reflejos o escríbelo.', ocr_err:'Módulo de lectura no disponible (¿conexión?). Escribe el precio.', ocr_pick:'Precios leídos: toca el correcto', unit_p:'por kg/L', code_found:'Producto: {x}', bc_price:'código de barras', bc_weighed:'Producto pesado: precio leído en el código de barras ({p})', ocr_raw:'Ver el texto leído', ocr_der:'calculado', src_bc:'Precio leído en el código de barras', src_lbl:'Precio leído en la etiqueta', src_calc:'Precio calculado', src_ok:'coherente con el precio por kilo', src_warn:'a comprobar: no coincide con precio por kilo × peso', ocr_blank:'No se ha leído ningún texto: acércate a la etiqueta y evita reflejos.', ocr_photo:'Foto…', sl_t:'Escanear un producto', sl_hint:'Encuadra la etiqueta del precio (y el código de barras si quieres) y toca «Leer la etiqueta».', in_cart:'{x} al carro · total {t}', tab_pantry:'Despensa', ps_ray:'Sección', ps_az:'A-Z', ps_exp_a:'Caduc. ↑', ps_exp_d:'Caduc. ↓', sl_lbl:'Conservación tras la compra', sl_unit:'días', sl_days:'auto: {n} d', sl_none:'auto: sin fecha', cv_hint:'Sirve para fechar el producto cuando pasa a la despensa. Déjalo vacío para la estimación automática, 0 = sin fecha.', ap_exp:'Fecha de caducidad (opcional)', tab_menus:'Menús', p_add_ph:'Añadir a la despensa…', p_exp:'Fecha de caducidad', p_hint:'Fecha opcional a la derecha. Toca un producto consumido: pasa a la lista. Mantén pulsado para editarlo.', p_empty_t:'La despensa está vacía', p_empty_d:'Apunta lo que tenéis en casa, con la fecha de caducidad si hace falta.<br>Cuando se acabe un producto, tócalo: pasa a la lista.', p_soon:'Consumir pronto', p_auto:'Guardar en la despensa los productos cogidos de la lista', p_done:'Se acabó: añadir a la lista', p_moved:'{x}: se acabó, añadido a la lista', px_out:'caducado', px_today:'hoy', px_in:'{n} d', p_alert:'⏳ {n} producto(s) de la despensa para consumir pronto', mn_week:'Esta semana', mn_lunch:'Comida', mn_dinner:'Cena', mn_pers:'Personas', mn_add_week:'Ingredientes de la semana → lista', mn_recipes:'Recetas', mn_new:'Nueva receta', mn_serv:'Número de personas de la receta', mn_serv_n:'{n} pers.', mn_free:'…o un plato sin receta', mn_free_ph:'ej. Sobras, Restaurante', mn_clear:'Borrar', mn_paste_d:'Puedes pegar los ingredientes de una receta de internet: un ingrediente por línea.', mn_preview_d:'Desmarca lo que ya tenéis. Las cantidades se ajustan al número de personas.', mn_in_pantry:'en la despensa', mn_in_list:'ya en la lista', mn_nothing:'No hay recetas previstas', x_title:'Gastos', x_empty:'Los gastos se calculan con el modo compra: coge los productos con su precio y toca «Salir».', x_month:'Este mes', x_vs:'vs mes pasado', x_by_store:'Por tienda', x_by_ray:'Por sección', x_p1:'Este mes', x_p3:'3 meses', x_p12:'12 meses', x_trips:'{n} compra(s)', ph_take:'Foto', ph_change:'Cambiar la foto', ph_del:'Quitar', ph_err:'No se pudo hacer la foto', m_stores:'Tiendas cerca de mí', srv_old:'Hay que actualizar el script', srv_old_d:'Para compartir también despensa, menús, precios, gastos y fotos.', srv_steps:'1. Abre tu hoja de Google › Extensiones › Apps Script.<br>2. Sustituye todo el código por este y guarda.<br>3. Implementar › Gestionar implementaciones › ✎ Editar › Versión: Nueva versión › Implementar.<br>La URL no cambia: nada que hacer en los móviles.', bc_install:'Instalando el lector de códigos de Google… inténtalo de nuevo en un momento.', a_scan_s:'Código de barras', nt_tomorrow:'Consumir mañana: {x}', nt_today:'Caduca hoy: {x}', apk_t:'App Android', apk_d:'Lectura de etiquetas y tiques más fiable, código de barras nativo, avisos de caducidad. Descarga el último .apk, instálalo y únete a la lista pegando el enlace de invitación (Más › Compartir en directo).', rc_hint:'Sujeta el móvil en vertical, con el tique plano dentro del marco vertical, y toca «Hacer la foto». Tique largo: primero la parte de arriba y luego «Siguiente foto».', rc_next_h:'Encuadra el resto del tique y toca «Hacer la foto».', rc_shot:'Hacer la foto', rc_back:'Volver a la revisión', rc_nocam:'Cámara no disponible: «Hacer la foto» abre la cámara del móvil.', sc_t:'¿Qué quieres escanear?', sc_lbl:'Etiqueta de estantería', sc_lbl_d:'Precio y nombre de un producto en la tienda', sc_rc:'Tique de compra', sc_rc_d:'Todos los precios a la vez, después de la compra', em_lbl:'Pictograma', em_t:'Pictograma de «{x}»', em_custom:'Elegido por ti', em_auto:'Automático', em_more:'Otros', em_other:'Otro emoji', em_type:'Escribe o pega un emoji', em_img:'Imagen propia', em_img_d:'Una imagen encontrada o creada en internet (PNG, mejor cuadrada y con fondo transparente): desde la galería o pegando su enlace.', em_link:'Enlace', em_link_err:'No se puede abrir la imagen desde este enlace: descárgala y elígela en la galería.', em_reset:'Automático ({x})', p_exact:'Fecha exacta impresa (opcional)', p_exp_is:'Caduca el {d}', p_bought_exp:'Comprado el {b} → consumir antes del {d}', rc_n:'Número', rc_pack:'Contenido', rc_pantry:'Guardar los productos comprados en la despensa', rc_shelved:'guardados en la despensa', pe_t:'Editar el precio', pe_all:'Renombrar también los otros {n} precios de este producto', pe_qty:'Cantidad comprada (ej. 12 huevos, 500 g)', pe_unit:'O sea {x}', pe_hint:'✎ para corregir el nombre, la tienda, el precio o la cantidad.', rc_t:'Escanear un tique de compra', rc_short:'Tique', rc_gal:'Galería', rc_reading:'Leyendo el tique… (unos segundos)', rc_none:'No se ha reconocido ningún producto. Prueba con una foto más nítida y recta.', rc_review:'Revisa el tique', rc_review_d:'Desmarca las líneas que no quieras y corrige los nombres si hace falta: la app lo recordará en el próximo tique.', rc_disc:'descuento aplicado', rc_inlist:'en tu lista: se quitará', rc_new:'no reconocido: revisa el nombre', rc_sum:'Marcado: {s}', rc_total:'total del tique: {t}', rc_gap:'diferencia {g}', rc_exp:'Contar en los gastos', rc_exp_dup:'Ya contado en los gastos ese día (modo compra): marca para contarlo igualmente', rc_take:'Quitar de la lista los productos comprados', rc_more:'Siguiente foto', rc_save:'Guardar {n} precios', rc_done:'{n} precios guardados desde el tique', ls_focus:'Solo el precio grande', ls_focus_h:'Pon el precio grande en el marco amarillo pequeño y toca «Leer la etiqueta».', e_only:'Solo en', e_only_ph:'cualquier tienda', e_urg:'⚡ Urgente', urgent:'Urgente', lg_urg:'{w}: ⚡ {x} es urgente', pv_good:'✓ Buen precio: un {p} % más barato de lo habitual', pv_high:'↑ un {p} % más caro de lo habitual', pv_usual:'Precio habitual', pv_cheaper:'más barato en {c} ({p})', paste_t:'Pegar una lista', paste_d:'Un producto por línea. Se ignoran viñetas, emojis y títulos.', paste_btn:'Añadir {n} producto(s)', paste_ph:'Leche\n2 kg tomates\nPan x2', m_theme:'Colores', pal_coral:'Coral', pal_sage:'Salvia', pal_lav:'Lavanda', pal_sky:'Cielo', pal_berry:'Frambuesa', pal_honey:'Miel', pal_teal:'Laguna', pal_ink:'Grafito', m_tools:'Herramientas', took:'{x} cogido', a_undo:'Deshacer la última acción', trip_go:'Tienda', sh_off:'Aún no compartida', sh_msgs:'Mensajes, actividad, código de invitación', ver:'Versión {v}', ver_check:'Buscar actualización', ver_ok:'Tienes la última versión', ver_new:'Versión {v} disponible', undone:'Deshecho: {x}', recent:'Cogidos recientemente ({n})', e_price_d:'Con la tienda, el precio se guarda en el historial y sirve para comparar.', upd:'Nueva versión disponible', upd_btn:'Actualizar', c_hint:'Toca un producto cuando lo cojas · mantén pulsado para editarlo',
+  
   m_sync:'Compartir en directo', m_sync_ph:'URL del script para compartir (Apps Script)', m_me:'Tu nombre (visible en el otro móvil)',
   m_data:'Datos', m_stats:'{p} precios · {h} compras · {c} productos conocidos. Todo se queda en tu móvil.', m_exp:'Exportar', m_imp:'Importar', m_clear:'Borrar el historial de precios',
   m_install:'Instalar la app', m_credits:'Tiendas © OpenStreetMap · Productos Open Food Facts · Precios Open Prices (ODbL)',
-  list_sel:'Lista «{x}»', empty_list:'La lista está vacía', tpl_added:'{n} productos añadidos', imported:'Datos importados', bad_file:'Archivo no válido',
+  empty_list:'La lista está vacía', imported:'Datos importados', bad_file:'Archivo no válido',
   confirm_clear:'¿Borrar todos los precios y el historial de compras?', cleared:'Historial borrado',
-  lf_edit:'Editar la lista', lf_ph:'ej. Compra de la semana', lf_budget:'Presupuesto (opcional)', confirm_del:'¿Eliminar «{x}»?', def_list:'Compra',
+  lf_budget:'Presupuesto (opcional)', def_list:'Compra',
   tf_edit:'Editar la plantilla', tf_ph:'ej. Paella, Aperitivo, Básicos', tf_items:'Productos (uno por línea)', tf_req:'Nombre y productos obligatorios',
-  of_d:'Ordénalas según tu recorrido en la tienda.', done:'Hecho', new_s:'Nueva', edit:'Editar',
+  of_d:'Ordénalas según tu recorrido en la tienda.', done:'Hecho', edit:'Editar',
   sh_t:'Compartir en directo', sh_intro:'Comparte esta lista con otro móvil: cada producto añadido o marcado aparece en el otro en pocos segundos, y podéis enviaros mensajes.',
   sh_setup:'Configuración (una sola vez)', sh_steps:'1. Crea una hoja de Google Sheets.<br>2. Extensiones › Apps Script: pega el script de abajo.<br>3. Implementar › Nueva implementación › Aplicación web — Ejecutar como: yo; Acceso: cualquier usuario.<br>4. Pega aquí la URL obtenida. El otro móvil la recibirá con la invitación.',
   sh_show_gs:'Mostrar el script', sh_need_url:'Pega primero la URL del script', sh_need_me:'Indica tu nombre',
   sh_create:'Compartir «{x}»', sh_code:'Código para compartir', sh_invite:'Invitar por WhatsApp', sh_invite_msg:'🛒 Únete a mi lista de la compra «{x}» en Cabas:\n{l}\n(código {c})',
   sh_members:'Con: {x}', sh_alone:'Nadie se ha unido todavía.', sh_stop:'Dejar de compartir en este móvil', sh_stop_c:'¿Dejar de compartir? La lista se queda en este móvil pero ya no se sincroniza.',
   sh_join:'Unirse a una lista', sh_join_ph:'Código o enlace de invitación', sh_join_btn:'Unirse', sh_join_t:'Unirse a la lista {c}', sh_nf:'Lista no encontrada: revisa el código',
-  sh_err:'No se pudo compartir: revisa la URL del script', sh_joined:'Te has unido a «{x}»', sh_created:'Lista compartida', sh_activity:'Actividad', sh_msg_ph:'Escribe un mensaje…', sh_send:'Enviar',
-  sh_bar:'Compartida · {x}', sh_bar_wait:'Compartida · esperando al otro móvil', sh_note:'Los mensajes llegan cuando la app está abierta (sin notificación con la app cerrada).',
+  sh_err:'No se pudo compartir: revisa la URL del script', sh_joined:'Te has unido a «{x}»', sh_created:'Lista compartida', sh_activity:'Actividad', sh_msg_ph:'Escribe un mensaje…', 
+  sh_bar_wait:'Compartida · esperando al otro móvil', sh_note:'Los mensajes llegan cuando la app está abierta (sin notificación con la app cerrada).',
   q1:'Me voy a hacer la compra 🛒', q2:'Compra hecha ✓', q3:'¿Falta algo?', q4:'Estoy en la tienda',
   lg_add:'{w} ha añadido {x}', lg_chk:'{w} ha cogido {x}', lg_done:'{w} ha terminado la compra ({x})', lg_join:'{w} se ha unido a la lista', lg_msg:'{w}: {x}',
   lg_adds:'{w}: +{n} producto(s)', lg_chks:'{w} ha cogido {n} producto(s)', someone:'Alguien'
@@ -709,7 +723,9 @@ const keyOf = name => norm(name).split(' ').map(w => w.length > 3 && /[sx]$/.tes
 const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
 const eur = n => n == null || isNaN(n) ? '' : n.toLocaleString(LOC, {style:'currency', currency:'EUR'});
 const num = v => { const n = parseFloat(String(v).replace(',', '.')); return isNaN(n) ? null : n; };
-const today = () => new Date().toISOString().slice(0,10);
+const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+/* Requête réseau avec délai maximal : une connexion bloquée ne fige plus le partage */
+const fetchT = (url, opt = {}, ms = 30000) => { const c = new AbortController(), tm = setTimeout(() => c.abort(), ms); return fetch(url, {...opt, signal:c.signal}).finally(() => clearTimeout(tm)); };
 const daysBetween = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
 const fdate = d => new Date(d).toLocaleDateString(LOC, {day:'numeric', month:'short'});
 const ftime = ts => { const d = new Date(ts); const same = d.toDateString() === new Date().toDateString(); return same ? d.toLocaleTimeString(LOC, {hour:'2-digit', minute:'2-digit'}) : fdate(ts); };
@@ -784,7 +800,7 @@ function defaults(){
       {id:uid(), name:'Petit-déjeuner', items:['Lait','Pain de mie','Beurre','Confiture','Café moulu','Jus d\'orange']},
       {id:uid(), name:'Spaghetti carbonara (4 pers.)', items:['500 g spaghetti','200 g lardons','4 œufs','100 g parmesan','Poivre']}
     ],
-    settings:{theme:'auto', radius:2000, food:false, ai:'', storeMode:false, view:'carnet', lang:(navigator.language || 'fr').startsWith('es') ? 'es' : 'fr', sync:'', me:'', autoPantry:true, pSort:'ray'}
+    settings:{theme:'auto', radius:2000, food:false, storeMode:false, lang:(navigator.language || 'fr').startsWith('es') ? 'es' : 'fr', sync:'', me:'', autoPantry:true, pSort:'ray'}
   };
 }
 function load(){
@@ -819,7 +835,6 @@ let S = load();
   S.lists = [target]; S.cur = target.id;
   try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
 })();
-S.settings.view = 'carnet';
 S.lists.forEach(l => { l.items = l.items.filter(i => !i.checked); });
 function setLang(l){ LANG = l === 'es' ? 'es' : 'fr'; LOC = LANG === 'es' ? 'es-ES' : 'fr-FR'; document.documentElement.lang = LANG; }
 setLang(S.settings.lang);
@@ -994,7 +1009,6 @@ function storeAnalysis(items){
 
 /* ================= Rendu : Liste ================= */
 let showRecent = false;
-const carnet = () => S.settings.view !== 'modern';
 /* Article pris : il quitte la liste, l'achat est noté en arrière-plan */
 function toPantry(it){
   const n = shelfDays(it), d = today();
@@ -1062,7 +1076,7 @@ function carnetRow(it){
   const q = it.qty ? qtyLabel(it) : '×1';
   const bs = !it.st ? bestStore(it) : null;
   const sub = [q ? `<span class="sq">${esc(q)}</span>` : '', it.st ? `<span class="stt">${esc(it.st)}</span>` : '', bs ? `<span class="bst${S.trip && S.trip.chain && sameChain(bs.c, S.trip.chain) ? ' here' : ''}">💡 ${esc(bs.c)} ${eur(bs.v)}</span>` : '', e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : '', it.note ? `<span class="nt">${esc(it.note)}</span>` : ''].filter(Boolean).join('');
-  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="cbd"><span class="ctop"><span class="nm">${esc(dn(it))}</span>${it.ns ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}${s === true ? `<span class="tg">🍃</span>` : ''}</span>${sub ? `<span class="csub">${sub}</span>` : ''}</span><span class="stp"><i data-a="minus">−</i><i data-a="plus">+</i></span></button>`;
+  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="cbd"><span class="ctop"><span class="nm">${esc(dn(it))}</span>${/^[a-e]$/.test(it.ns || '') ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}${s === true ? `<span class="tg">🍃</span>` : ''}</span>${sub ? `<span class="csub">${sub}</span>` : ''}</span><span class="stp"><i data-a="minus">−</i><i data-a="plus">+</i></span></button>`;
 }
 function renderSum(){
   const L = curList();
@@ -1070,20 +1084,11 @@ function renderSum(){
   L.items.forEach(it => { const e = estPrice(it); if (e){ known++; est += e.v; } });
   const todo = L.items.length;
   const pct = L.budget ? Math.min(100, est / L.budget * 100) : 0;
-  $('#sum').innerHTML = L.items.length ? `<div class="sum">
-    <div class="card k"><small>${t('s_todo')}</small><b>${todo}</b></div>
-    <div class="card k"><small>${t('s_est')}${known && known < L.items.length ? ` (${known}/${L.items.length})` : ''}</small><b>${est ? eur(est) : '—'}</b>
+  $('#sum').innerHTML = L.items.length ? `<div class="sum card">
+    <div class="sn"><b>${todo}</b><small>${t('s_todo')}</small></div>
+    <div class="se"><small>${t('s_est')}${known && known < L.items.length ? ` (${known}/${L.items.length})` : ''}</small><b>${est ? eur(est) : '—'}</b>
       ${L.budget ? `<div class="bar ${est > L.budget ? 'over' : ''}"><i style="width:${pct}%"></i></div><small>${t('budget')} ${eur(L.budget)}</small>` : ''}</div>
     </div>` : '';
-}
-function itemRow(it){
-  const e = estPrice(it);
-  const s = it.rayon === 'fl' ? inSeason(it.name) : null;
-  const sub = [qtyLabel(it) ? `<span class="qty">${esc(qtyLabel(it))}</span>` : '', esc([it.brand, it.note].filter(Boolean).join(' · '))].join('');
-  return `<div class="item ${it.checked ? 'done' : ''}" data-id="${it.id}">
-    <button class="chk" data-a="chk" aria-label="✓">${ic('check')}</button>
-    <button class="ibd" data-a="edit"><div class="in"><span>${esc(dn(it))}</span>${it.ns ? `<i class="ns ns-${it.ns}">${it.ns}</i>` : ''}${s === true ? `<em class="tag">${t('season')}</em>` : s === false ? `<em class="tag warn">${t('offseason')}</em>` : ''}</div>${sub ? `<div class="isub">${sub}</div>` : ''}</button>
-    <div class="ip ${e && e.est ? 'est' : ''}">${e ? (e.est ? '~' : '') + eur(e.v) : ''}</div></div>`;
 }
 function renderList(){
   const L = curList();
@@ -1092,7 +1097,7 @@ function renderList(){
   const todo = L.items;
   let h = '';
   if (!todo.length) h += `<div class="empty"><div class="big">🧺</div><b>${t('empty_t')}</b>${t('empty_d')}</div>`;
-  if (carnet() && todo.length){
+  if (todo.length){
     const isOther = i => S.trip && S.trip.chain && i.st && !sameChain(i.st, S.trip.chain) ? 1 : 0;
     const urg = todo.filter(i => i.urg);
     if (urg.length) h += `<div class="sec urgsec"><div class="cgh"><span class="e">⚡</span>${t('urgent')}<span class="n">${urg.length}</span></div>${urg.map(carnetRow).join('')}</div>`;
@@ -1104,12 +1109,6 @@ function renderList(){
     });
     h += `<p class="chint">${t('c_hint')}</p>`;
   }
-  if (!carnet()) S.rayonOrder.forEach(rid => {
-    const its = todo.filter(i => i.rayon === rid).sort((a, b) => a.ts - b.ts);
-    if (!its.length) return;
-    const r = RAY[rid];
-    h += `<div class="gh"><i class="dot" style="background:${r.c}"></i>${r.e} ${rn(rid)}<span class="n">${its.length}</span></div><div class="card items">${its.map(itemRow).join('')}</div>`;
-  });
   const inList = new Set(todo.map(i => i.k));
   const rec = (S.recent || []).filter(r => !inList.has(r.k));
   if (rec.length){
@@ -1344,78 +1343,6 @@ function openShare(){
 /* ================= Terminer les courses ================= */
 function storeLabel(s){ const b = s.brand, n = s.name; if (b && n && !norm(n).includes(norm(b))) return `${b} · ${n}`; return n || b || t('store'); }
 function chainOf(s){ return s.brand || s.name || t('store'); }
-function knownStores(){
-  const m = new Map();
-  S.favStores.forEach(s => m.set(s.id, s));
-  (S.storesCache?.list || []).slice(0, 10).forEach(s => { if (!m.has(s.id)) m.set(s.id, s); });
-  return [...m.values()];
-}
-function openFinish(){
-  const L = curList(); const done = L.items.filter(i => i.checked);
-  const stores = knownStores();
-  const pastChains = [...new Set(S.history.map(h => h.c).filter(Boolean))];
-  const opts = stores.map(s => `<option value="id:${s.id}">${esc(storeLabel(s))}${s.dist ? ' — ' + fmtDist(s.dist) : ''}</option>`).join('')
-    + pastChains.filter(c => !stores.some(s => chainOf(s) === c)).map(c => `<option value="c:${esc(c)}">${esc(c)}</option>`).join('')
-    + `<option value="other">${t('other_store')}</option>`;
-  const sh = openSheet(`<h3>${t('finish')}</h3>
-    <p class="small muted" style="margin:2px 0 0">${t('fin_d')}</p>
-    <label class="f">${t('store')}</label><select id="finStore">${opts}</select>
-    <input id="finOther" class="mt" placeholder="${t('fin_ph')}" style="display:none">
-    <div class="h2">${t('paid')}</div>
-    <p class="small muted" id="sugHint" style="margin:-4px 4px 8px;display:none">${t('sug_hint')}</p>
-    <div class="card">${done.map(it => `<div class="item"><div class="ibd"><div class="in"><span>${esc(dn(it))}</span></div>${qtyLabel(it) ? `<div class="isub">${esc(qtyLabel(it))}</div>` : ''}</div><input class="finP" data-id="${it.id}" inputmode="decimal" placeholder="€" style="width:100px;flex:none;text-align:right" value="${it.price ?? ''}"></div>`).join('')}</div>
-    <button class="btn sm mt" id="sugAll" style="display:none">${t('sug_all')}</button>
-    <div class="row mt" style="justify-content:space-between"><b>${t('total')}</b><b id="finTot" style="text-align:right">—</b></div>
-    <div class="acts"><button class="btn ghost" id="finCancel">${t('cancel')}</button><button class="btn pri" id="finOk">${t('save')}</button></div>`);
-  const sel = sh.querySelector('#finStore');
-  const currentChain = () => { const v = sel.value; if (v === 'other') return $('#finOther').value.trim(); if (v.startsWith('c:')) return v.slice(2); const s = stores.find(x => 'id:' + x.id === v); return s ? chainOf(s) : ''; };
-  const total = () => { let x = 0; $$('.finP', sh).forEach(i => { const v = num(i.value); if (v != null) x += v; }); $('#finTot').textContent = x ? eur(x) : '—'; };
-  const suggest = () => {
-    const c = currentChain(); let any = false;
-    $$('.finP', sh).forEach(inp => {
-      const it = done.find(i => i.id === inp.dataset.id);
-      const v = c ? suggestPrice(it, c) : null;
-      if (v != null){ inp.dataset.sug = v.toFixed(2); inp.placeholder = '≈ ' + v.toFixed(2).replace('.', LANG === 'es' || LANG === 'fr' ? ',' : '.'); if (!inp.value) any = true; }
-      else { delete inp.dataset.sug; inp.placeholder = '€'; }
-    });
-    $('#sugHint').style.display = any ? '' : 'none';
-    $('#sugAll').style.display = any ? '' : 'none';
-    total();
-  };
-  $$('.finP', sh).forEach(i => {
-    i.oninput = total;
-    i.onfocus = () => { if (!i.value && i.dataset.sug){ i.value = i.dataset.sug; total(); setTimeout(() => i.select(), 0); } };
-  });
-  sh.querySelector('#sugAll').onclick = () => { $$('.finP', sh).forEach(i => { if (!i.value && i.dataset.sug) i.value = i.dataset.sug; }); suggest(); };
-  sel.onchange = () => { $('#finOther').style.display = sel.value === 'other' ? '' : 'none'; suggest(); };
-  $('#finOther').oninput = suggest;
-  sel.value = stores.length ? 'id:' + stores[0].id : (pastChains.length ? 'c:' + pastChains[0] : 'other');
-  sel.onchange();
-  sh.querySelector('#finCancel').onclick = () => closeSheet();
-  sh.querySelector('#finOk').onclick = () => {
-    const v = sel.value; let s = '', c = '';
-    if (v === 'other'){ s = c = $('#finOther').value.trim(); if (!s) return toast(t('need_store')); }
-    else if (v.startsWith('c:')){ s = c = v.slice(2); }
-    else { const st = stores.find(x => 'id:' + x.id === v); s = storeLabel(st); c = chainOf(st); }
-    const d = today(); const hist = {id:uid(), d, s, c, items:[], t:0};
-    $$('.finP', sh).forEach(inp => {
-      const it = done.find(i => i.id === inp.dataset.id); const p = num(inp.value);
-      hist.items.push({n:it.name, k:it.k, q:it.qty, u:it.unit, p});
-      if (p != null){
-        hist.t += p;
-        const {up, uu} = unitPrice(p, it.qty, it.unit);
-        S.prices.push({k:it.k, n:it.name, s, c, p, q:it.qty, u:it.unit, up, uu, d});
-      }
-      const cat = learn(it.name); cat.b = (cat.b || 0) + 1; cat.lb = d; if (!cat.rayon) cat.rayon = it.rayon;
-    });
-    S.history.push(hist);
-    done.forEach(it => removeItem(L, it));
-    logEv(L, 'done', c);
-    if (S.settings.storeMode) setStoreMode(false);
-    save(); renderList(); closeSheet(); vib([20, 50, 20]);
-    toast(t('fin_ok') + (hist.t ? ' · ' + eur(hist.t) : ''));
-  };
-}
 
 /* ================= Mode magasin ================= */
 let wakeLock = null;
@@ -1668,12 +1595,10 @@ function renderTips(){
   h += `<div class="h2">${t('t_cmp')}</div><div class="card pad"><div class="small muted">${t('t_cmp_d')}</div>
       ${[1, 2].map(n => `<div class="row mt"><input class="cp" id="cpP${n}" inputmode="decimal" placeholder="${t('t_price_n', {n})}"><input class="cp" id="cpQ${n}" inputmode="decimal" placeholder="${t('t_qty')}"><select class="cp" id="cpU${n}" style="flex:.8"><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="cl">cl</option><option value="l">L</option><option value="">${LANG === 'es' ? 'ud' : 'pce'}</option></select></div>`).join('')}
       <div id="cpRes"></div></div>`;
-  if (S.settings.ai) h += `<div class="h2">${t('t_ai')}</div><div class="card pad"><button class="btn pri full" id="aiBtn">${t('t_ai_btn')}</button><div id="aiRes" class="mt"></div></div>`;
   h += `<div class="h2">${t('t_tips')}</div><div class="card">${TIPS.map(x => `<div class="tip"><span class="e">${x[0]}</span><p>${esc(LANG === 'es' ? x[2] : x[1])}</p></div>`).join('')}</div>`;
   $('#tab-tips').innerHTML = h;
   $$('.cp').forEach(i => i.oninput = compare);
   $$('#tab-tips [data-add]').forEach(b => b.onclick = () => { addItem(b.dataset.add); toast(t('x_added', {x:b.dataset.add})); renderTips(); });
-  const ai = $('#aiBtn'); if (ai) ai.onclick = askAI;
 }
 function compare(){
   const v = n => { const p = num($('#cpP' + n).value), q = num($('#cpQ' + n).value), u = $('#cpU' + n).value; return p != null && q ? unitPrice(p, q, u) : null; };
@@ -1683,21 +1608,6 @@ function compare(){
   if (Math.abs(a.up - b.up) < 0.005){ out.innerHTML = `<div class="res">${t('c_same', {x:fmtUnit(a.up, a.uu)})}</div>`; return; }
   const w = a.up < b.up ? 1 : 2, lo = Math.min(a.up, b.up), hi = Math.max(a.up, b.up);
   out.innerHTML = `<div class="res">${t('c_res', {w, p:Math.round((1 - lo / hi) * 100), a:fmtUnit(lo, a.uu), b:fmtUnit(hi, a.uu)})}</div>`;
-}
-async function askAI(){
-  const L = curList(); const out = $('#aiRes');
-  const payload = {
-    demande: t('ai_ask'), langue: LANG, mois: monthName(new Date().getMonth() + 1),
-    liste: L.items.map(i => ({nom:dn(i), quantite:qtyLabel(i), rayon:rn(i.rayon)})),
-    prix_connus: L.items.map(i => ({nom:dn(i), prix:Object.values(recordsOf(i.k).reduce((m, r) => { if (!m[r.c]) m[r.c] = {magasin:r.c, prix:r.p, unite:fmtUnit(r.up, r.uu), date:r.d}; return m; }, {}))})).filter(x => x.prix.length)
-  };
-  out.innerHTML = `<p class="small muted">${t('ai_think')}</p>`;
-  try {
-    const r = await fetch(S.settings.ai, {method:'POST', body:JSON.stringify(payload)});
-    const txt0 = await r.text(); let txt = txt0;
-    try { const j = JSON.parse(txt0); txt = j.texte || j.text || j.reponse || txt0; } catch(e){}
-    out.innerHTML = `<div style="white-space:pre-wrap">${esc(txt)}</div>`;
-  } catch(e){ out.innerHTML = `<p class="small muted">${t('ai_down')}</p>`; }
 }
 
 /* ================= Partage en direct ================= */
@@ -1798,12 +1708,13 @@ async function syncList(L, mode){
     const logs = (L.outLog || []).slice();
     const pd = (L.pantry || []).filter(i => i.dirty).map(i => [i, i.dirty]), pg = (L.pgone || []).filter(g => g.dirty);
     const planD = L.planDirty && L.plan ? L.plan.u : 0;
-    let res;
+    let res, posted = false;
     if (mode === 'create' || dirty.length || gone.length || logs.length || L.metaDirty || pd.length || pg.length || planD){
       const body = {room:L.shared.room, create: mode === 'create', meta:{name:L.name, budget:L.budget || 0, u:L.mu || 0}, items:[...dirty.map(([i]) => strip(i)), ...gone.map(strip)], pantry:[...pd.map(([i]) => strip(i)), ...pg.map(strip)], log:logs};
       if (planD) body.plan = L.plan;
-      res = await (await fetch(url, {method:'POST', body:JSON.stringify(body)})).json();
+      res = await (await fetchT(url, {method:'POST', body:JSON.stringify(body)})).json();
       if (res.ok){
+        posted = true;
         dirty.forEach(([i, v]) => { if (i.dirty === v) delete i.dirty; });
         gone.forEach(g => delete g.dirty);
         pd.forEach(([i, v]) => { if (i.dirty === v) delete i.dirty; });
@@ -1813,11 +1724,11 @@ async function syncList(L, mode){
         L.metaDirty = false;
       }
     } else {
-      res = await (await fetch(url + (url.includes('?') ? '&' : '?') + 'room=' + encodeURIComponent(L.shared.room))).json();
+      res = await (await fetchT(url + (url.includes('?') ? '&' : '?') + 'room=' + encodeURIComponent(L.shared.room))).json();
     }
     if (res.ver) S.srvVer = res.ver; else if (res.ok) S.srvVer = 1;
     if (!res.ok){ setSyncState('err'); return res; }
-    mergeDoc(L, res.doc); setSyncState('ok');
+    mergeDoc(L, res.doc, posted); setSyncState('ok');
     if ((S.srvVer || 1) >= 2) dataSync();
     return res;
   } catch(e){ setSyncState('err'); return false; }
@@ -1841,7 +1752,7 @@ function mergeColl(arr, gone, map, isItems){
   }
   return changed;
 }
-function mergeDoc(L, doc){
+function mergeDoc(L, doc, wrote = true){
   let changed = mergeColl(L.items, L.gone, doc.items, true);
   pantry();
   const pch = mergeColl(L.pantry, L.pgone, doc.pantry, false);
@@ -1855,7 +1766,7 @@ function mergeDoc(L, doc){
   const fresh = L.log.filter(l => l.t > (L.seen || 0) && l.by !== S.dev);
   if (L.log.length) L.seen = Math.max(L.seen || 0, ...L.log.map(l => l.t));
   if (fresh.length) notifyLog(fresh);
-  save();
+  if (changed || pch || mch || fresh.length || wrote) save(); /* rien de neuf : pas de réécriture toutes les 6 s */
   if (changed && $('#tab-list').classList.contains('on') && !sheetOpen) renderList();
   else if ($('#tab-list').classList.contains('on')) renderShBar();
 }
@@ -1878,15 +1789,7 @@ function notifyLog(fresh){
   }
 }
 function members(L){ const m = new Map(); (L.log || []).forEach(l => { if (l.by !== S.dev && l.w) m.set(l.by, l.w); }); return [...m.values()]; }
-function renderShBar(){
-  const L = curList(); const el = $('#shbar');
-  $('#syncBtn').style.display = 'none';
-  el.innerHTML = ''; return;
-  const mem = members(L);
-  const lastMsg = [...(L.log || [])].reverse().find(l => l.by !== S.dev);
-  el.innerHTML = `<button class="card shbar" id="shOpen"><span style="font-size:20px">👥</span><div class="bd2"><b>${mem.length ? esc(t('sh_bar', {x:mem.join(', ')})) : t('sh_bar_wait')}</b>${lastMsg ? `<div class="small muted">${esc(logText(lastMsg))} · ${ftime(lastMsg.t)}</div>` : ''}</div><span class="muted">›</span></button>`;
-  $('#shOpen').onclick = openActivity;
-}
+function renderShBar(){ $('#syncBtn').style.display = 'none'; $('#shbar').innerHTML = ''; }
 const roomCode = () => { const a = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s = ''; for (let i = 0; i < 6; i++) s += a[Math.floor(Math.random() * a.length)]; return s; };
 const inviteLink = room => `${location.origin}${location.pathname}?join=${room}&srv=${encodeURIComponent(S.settings.sync)}`;
 function setupFields(){
@@ -2015,10 +1918,13 @@ function renderMore(){
     ${L.shared && (S.srvVer || 1) < 2 ? `<button class="card pad mt srvold" id="mSrv"><b>⚠️ ${t('srv_old')}</b><div class="small">${t('srv_old_d')}</div></button>` : ''}
     <div class="h2">${t('budget')}</div>
     <div class="card pad"><input id="mBudget" inputmode="decimal" value="${L.budget || ''}" placeholder="${t('lf_budget')}"></div>
-    <button class="btn full mt" id="mPaste">📋 ${t('paste_t')}</button>
-    <button class="btn full mt" id="mRc">🧾 ${t('rc_t')}</button>
-    ${NATIVE ? '' : `<a class="card pad mt apkcard" href="https://github.com/ChrisSorbadere/cabas/releases/latest" target="_blank" rel="noopener"><b>📱 ${t('apk_t')}</b><div class="small muted">${t('apk_d')}</div></a>`}
-    <button class="btn full mt" id="mStores">📍 ${t('m_stores')}</button>
+    <div class="h2">${t('m_tools')}</div>
+    <div class="card menu">
+      <button class="li" id="mPaste"><span class="mi">📋</span><div class="bd2"><b>${t('paste_t')}</b></div><span class="muted">›</span></button>
+      <button class="li" id="mRc"><span class="mi">🧾</span><div class="bd2"><b>${t('rc_t')}</b></div><span class="muted">›</span></button>
+      <button class="li" id="mStores"><span class="mi">📍</span><div class="bd2"><b>${t('m_stores')}</b></div><span class="muted">›</span></button>
+      ${NATIVE ? '' : `<a class="li" href="https://github.com/ChrisSorbadere/cabas/releases/latest" target="_blank" rel="noopener"><span class="mi">📱</span><div class="bd2"><b>${t('apk_t')}</b><div class="small muted">${t('apk_d')}</div></div><span class="muted">›</span></a>`}
+    </div>
     <div class="h2">${t('m_settings')}</div>
     <div class="card pad">
       <label class="f" style="margin-top:0">${t('m_lang')}</label>
@@ -2030,9 +1936,6 @@ function renderMore(){
       <button class="btn full mt" id="mOrder">${t('m_order')}</button>
       <label class="f">${t('m_me')}</label><input id="mMe" value="${esc(S.settings.me)}">
       <label class="f">${t('m_sync_ph')}</label><input id="mSync" value="${esc(S.settings.sync)}" placeholder="https://script.google.com/macros/s/…/exec">
-      <label class="f">${t('m_ai')}</label>
-      <input id="mAi" placeholder="${t('m_ai_ph')}" value="${esc(S.settings.ai)}">
-      <p class="small muted">${t('m_ai_d')}</p>
     </div>
     <div class="h2">${t('m_data')}</div>
     <div class="card pad">
@@ -2057,39 +1960,11 @@ function renderMore(){
   $('#mOrder').onclick = orderForm;
   $('#mMe').onchange = e => { S.settings.me = e.target.value.trim(); save(); };
   $('#mSync').onchange = e => { S.settings.sync = e.target.value.trim(); save(); };
-  $('#mAi').onchange = e => { S.settings.ai = e.target.value.trim(); save(); };
   $('#mExp').onclick = () => { const b = new Blob([JSON.stringify(S, null, 1)], {type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `cabas-${today()}.json`; a.click(); };
   $('#mImp').onclick = () => $('#mFile').click();
   $('#mFile').onchange = async e => { try { const j = JSON.parse(await e.target.files[0].text()); if (!j.lists) throw 0; localStorage.setItem(KEY, JSON.stringify(j)); S = load(); setLang(S.settings.lang); applyTheme(); applyStatic(); renderAll(); toast(t('imported')); } catch(err){ toast(t('bad_file')); } };
   $('#mClear').onclick = () => { if (confirm(t('confirm_clear'))){ S.prices = []; S.history = []; save(); renderMore(); toast(t('cleared')); } };
   const ins = $('#mInst'); if (ins) ins.onclick = async () => { installEvt.prompt(); await installEvt.userChoice; installEvt = null; renderMore(); };
-}
-function listForm(l){
-  const sh = openSheet(`<h3>${l ? t('lf_edit') : t('m_new')}</h3>
-    <label class="f">${t('e_name')}</label><input id="lfN" value="${esc(l?.name || '')}" placeholder="${t('lf_ph')}">
-    <label class="f">${t('lf_budget')}</label><input id="lfB" inputmode="decimal" value="${l?.budget || ''}" placeholder="€">
-    <div class="acts">${l && S.lists.length > 1 ? `<button class="btn danger" id="lfDel">${t('delete')}</button>` : '<span></span>'}<button class="btn pri" id="lfOk">${t('save')}</button></div>`);
-  sh.querySelector('#lfOk').onclick = () => {
-    const name = $('#lfN').value.trim() || t('def_list'), budget = num($('#lfB').value) || 0;
-    if (l){ Object.assign(l, {name, budget}); l.mu = Date.now(); if (l.shared){ l.metaDirty = true; queueSync(); } }
-    else { const n = {id:uid(), name, budget, items:[], gone:[]}; S.lists.push(n); S.cur = n.id; }
-    save(); closeSheet(); renderMore(); renderList();
-  };
-  const d = sh.querySelector('#lfDel');
-  if (d) d.onclick = () => { if (!confirm(t('confirm_del', {x:l.name}))) return; S.lists = S.lists.filter(x => x !== l); S.cur = S.lists[0].id; save(); closeSheet(); renderMore(); renderList(); };
-}
-function tplForm(x){
-  const sh = openSheet(`<h3>${x && x.id ? t('tf_edit') : t('m_tnew')}</h3>
-    <label class="f">${t('e_name')}</label><input id="tfN" value="${esc(x?.name || '')}" placeholder="${t('tf_ph')}">
-    <label class="f">${t('tf_items')}</label><textarea id="tfI" rows="8" placeholder="500 g riz&#10;1 poivron&#10;Safran">${esc((x?.items || []).join('\n'))}</textarea>
-    <div class="acts">${x && x.id ? `<button class="btn danger" id="tfDel">${t('delete')}</button>` : '<span></span>'}<button class="btn pri" id="tfOk">${t('save')}</button></div>`);
-  sh.querySelector('#tfOk').onclick = () => {
-    const name = $('#tfN').value.trim(), items = $('#tfI').value.split('\n').map(s => s.trim()).filter(Boolean);
-    if (!name || !items.length) return toast(t('tf_req'));
-    if (x && x.id) Object.assign(x, {name, items}); else S.templates.push({id:uid(), name, items});
-    save(); closeSheet(); renderMore();
-  };
-  const d = sh.querySelector('#tfDel'); if (d) d.onclick = () => { S.templates = S.templates.filter(y => y !== x); save(); closeSheet(); renderMore(); };
 }
 function orderForm(){
   const draw = () => {
@@ -2102,15 +1977,6 @@ function orderForm(){
     sh.querySelector('#oOk').onclick = () => closeSheet();
   };
   draw();
-}
-function openListPicker(){
-  const sh = openSheet(`<h3>${t('m_lists')}</h3><div class="card mt">${S.lists.map(l => `<button class="li" data-pick="${l.id}"><i class="radio ${l.id === S.cur ? 'on' : ''}"></i><div class="bd2"><b>${l.shared ? '👥 ' : ''}${esc(l.name)}</b><div class="small muted">${t('articles', {n:l.items.filter(i => !i.checked).length})}</div></div></button>`).join('')}</div>
-    <div class="acts"><button class="btn" id="lpNew">${ic('plus')} ${t('new_s')}</button><button class="btn" id="lpEdit">${t('edit')}</button></div>
-    <button class="btn full mt" id="lpLive">${ic('users')} ${t('m_sync')}</button>`);
-  $$('[data-pick]', sh).forEach(b => b.onclick = () => { S.cur = b.dataset.pick; save(); renderList(); closeSheet(); if (curList().shared) syncList(curList()); });
-  sh.querySelector('#lpNew').onclick = () => listForm(null);
-  sh.querySelector('#lpEdit').onclick = () => listForm(curList());
-  sh.querySelector('#lpLive').onclick = openLive;
 }
 
 /* ================= Mode courses : magasin, étiquettes, total ================= */
@@ -3152,7 +3018,11 @@ const PALETTES = {
   coral:{l:['#e5795c','#fdeee8','#fbf7f3'], d:['#f09479','#3c2a24','#1d1917']},
   sage:{l:['#4f9470','#e3f0e8','#f5f8f4'], d:['#7cc39a','#22352a','#151a17']},
   lav:{l:['#8070c4','#eeeafa','#f8f6fc'], d:['#a898e6','#2e2944','#18161f']},
-  sky:{l:['#3f86c4','#e3eff9','#f4f8fc'], d:['#6fb0e6','#1f3144','#141a20']}
+  sky:{l:['#3f86c4','#e3eff9','#f4f8fc'], d:['#6fb0e6','#1f3144','#141a20']},
+  berry:{l:['#cf4f7d','#fbe7ee','#fcf6f8'], d:['#f08fb0','#3d2430','#1c1619']},
+  honey:{l:['#b7790f','#faedcf','#fbf8ef'], d:['#f0bd5a','#3b2f18','#1b1813']},
+  teal:{l:['#1c8a85','#dcf2f0','#f2f9f8'], d:['#62c9c2','#1c3534','#131a1a']},
+  ink:{l:['#3d4654','#e8ebf0','#f6f7f8'], d:['#c3ccd9','#2b3038','#15171a']}
 };
 
 /* ================= Raccourcis de l'icône ================= */
@@ -3270,6 +3140,7 @@ function editPantry(p){
     <p class="small muted" style="margin:6px 2px 0" id="peSlD"></p>
     <details class="pexact" ${p.exp && !p.est ? 'open' : ''}><summary class="small">${t('p_exact')}</summary><input id="peX" type="date" value="${esc(p.exp && !p.est ? p.exp : '')}"></details>
     <label class="f">${t('e_ray')}</label>${rayonSelect(p.rayon)}
+    <button class="btn full mt" id="peL">🛒 ${t('p_done')}</button>
     <div class="acts"><button class="btn danger" id="peD">${ic('trash')} ${t('delete')}</button><button class="btn pri" id="peO">${t('save')}</button></div>`);
   const base = p.bought || today();
   const slInfo = () => { const v = $('#peSl').value.trim(), x = $('#peX').value; $('#peSlD').textContent = x ? t('p_exp_is', {d:fdate(x)}) : v !== '' && +v > 0 ? t('p_bought_exp', {b:fdate(base), d:fdate(addDays(base, Math.round(num(v))))}) : ''; };
@@ -3286,7 +3157,11 @@ function editPantry(p){
     if (!p.exp) p.est = false;
     ptouch(p); save(); closeSheet(); renderPantry();
   };
-  sh.querySelector('#peD').onclick = () => { closeSheet(); pantryDone(p); };
+  sh.querySelector('#peL').onclick = () => { closeSheet(); pantryDone(p); };
+  sh.querySelector('#peD').onclick = () => {
+    const L = curList(); closeSheet(); premove(p); save(); renderPantry();
+    offerUndo(t('deleted', {x:trName(p.name)}), () => { pantry().push(p); L.pgone = L.pgone.filter(g => g.id !== p.id); ptouch(p); save(); renderPantry(); });
+  };
   sh.querySelector('#peEmo').onclick = () => openEmoPicker(p.name, p.rayon, () => editPantry(p));
 }
 function updateBadges(){
@@ -3539,7 +3414,7 @@ async function dataSync(force){
     const clean = o => { const x = {...o}; delete x.sy; delete x._sig; return x; };
     const sent = hs.map(h => [h, hsig(h)]);
     const body = {room:L.shared.room, since:S.dataSince || 0, data:[...ps.map(r => ({kind:'p', ...clean(r)})), ...sent.map(([h]) => ({kind:'h', ...clean(h), u:Date.now()})), ...outs]};
-    const res = await (await fetch(url, {method:'POST', body:JSON.stringify(body)})).json();
+    const res = await (await fetchT(url, {method:'POST', body:JSON.stringify(body)}, 45000)).json();
     if (!res.ok) return;
     dataLast = Date.now();
     ps.forEach(r => r.sy = true);
@@ -3662,7 +3537,7 @@ $('#list').onclick = e => {
   const a = e.target.closest('[data-a]'); if (!a) return;
   const act = a.dataset.a;
   if (act === 'toggleRecent'){ showRecent = !showRecent; renderList(); return; }
-  const L = curList(); const id = (a.closest('.item') || a.closest('.citem'))?.dataset.id; const it = L.items.find(i => i.id === id); if (!it) return;
+  const L = curList(); const id = a.closest('.citem')?.dataset.id; const it = L.items.find(i => i.id === id); if (!it) return;
   if (act === 'plus' || act === 'minus'){ e.stopPropagation(); if (lpFired){ lpFired = false; return; } stepQty(L, it, act === 'plus' ? 1 : -1); return; }
   if (act === 'photo'){ if (lpFired){ lpFired = false; return; } showPhoto(it); return; }
   if (act === 'take'){
@@ -3672,8 +3547,6 @@ $('#list').onclick = e => {
     setTimeout(() => { takeItem(L, it); if (S.trip) askPrice(it); }, 260);
     return;
   }
-  if (act === 'chk'){ vib(12); a.closest('.item').classList.add('done'); setTimeout(() => { takeItem(L, it); if (S.trip) askPrice(it); }, 260); }
-  if (act === 'edit') editItem(id);
 };
 
 /* Appui long sur une ligne du carnet : modifier */
@@ -3745,7 +3618,8 @@ function showUpd(v){
   d.querySelector('button').onclick = hardUpdate;
   document.body.appendChild(d);
 }
-async function checkVersion(){ const v = await remoteVersion(); if (v && v !== APP_VERSION) showUpd(v); }
+let verLast = 0;
+async function checkVersion(){ if (Date.now() - verLast < 6e5) return; verLast = Date.now(); const v = await remoteVersion(); if (v && v !== APP_VERSION) showUpd(v); }
 if (/[?&]v=\d/.test(location.search)) history.replaceState(null, '', location.pathname);
 setTimeout(checkVersion, 1500);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkVersion(); });
