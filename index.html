@@ -253,7 +253,7 @@ body.store .citem{min-height:62px;font-size:20px}
 /* Lot A */
 .citem{gap:8px;padding:8px 10px 8px 12px;overflow:hidden;transition:opacity .25s,transform .28s ease,background .15s}
 .citem .em{width:42px;height:42px;flex:none;display:grid;place-items:center;font-size:31px;border-radius:11px}
-.citem .em.ph{padding:0;overflow:hidden;background:var(--soft)}
+.citem .em.ph{padding:0;background:var(--soft)}
 .citem .em.ph img{width:100%;height:100%;object-fit:cover}
 .citem .zap{font-size:15px}
 .citem .stt{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap}
@@ -400,6 +400,8 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,v
 .menu .li{color:inherit;text-decoration:none}
 .mi{width:40px;height:40px;border-radius:13px;background:var(--soft);display:grid;place-items:center;font-size:20px;flex:none}
 .emrow .em{background:var(--bg);border-radius:12px;width:40px;height:40px}
+.hd{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.95)) drop-shadow(0 0 3px rgba(255,255,255,.75))}
+.hl{filter:drop-shadow(0 0 1.5px rgba(0,0,0,.6)) drop-shadow(0 0 3px rgba(0,0,0,.35))}
 </style>
 </head>
 <body>
@@ -455,7 +457,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,v
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.9.1';
+const APP_VERSION = '2.9.2';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -2831,8 +2833,32 @@ function emoChosen(name){ const c = S.catalog[canonK(name)]; return c && c.emo ?
 /* Pictogramme affiché : choix de l'utilisateur, sinon dictionnaire, sinon rayon */
 function iconHtml(name, rayon){
   const e = emoChosen(name);
-  if (e && e.startsWith('ph:')) return `<img class="emi" src="${esc(photoSrc(e.slice(3)))}" data-ph="${esc(e.slice(3))}" alt="">`;
-  return esc(e || emojiOf(name) || RAY[rayon]?.e || '🛒');
+  if (e && e.startsWith('ph:')){
+    const id = e.slice(3), k = 'p:' + id; if (PH[id]) lumAsk(k, PH[id]);
+    return `<img class="emi${lumClass(k)}" data-lk="${esc(k)}" src="${esc(photoSrc(id))}" data-ph="${esc(id)}" alt="">`;
+  }
+  const g = e || emojiOf(name) || RAY[rayon]?.e || '🛒', k = 'e:' + g; lumAsk(k, g);
+  return `<span class="eg${lumClass(k)}" data-lk="${esc(k)}">${esc(g)}</span>`;
+}
+/* Halo de contraste : contour clair autour des images sombres, sombre autour des images claires */
+const LUM = {}, lumQ = new Set();
+const lumClass = k => LUM[k] && LUM[k] !== '-' ? ' ' + LUM[k] : '';
+function lumAsk(key, src){
+  if (LUM[key] !== undefined || lumQ.has(key)) return; lumQ.add(key);
+  const c = document.createElement('canvas'); c.width = c.height = 32;
+  const x = c.getContext('2d', {willReadFrequently:true});
+  const done = () => {
+    let v = '';
+    try {
+      const d = x.getImageData(0, 0, 32, 32).data; let s = 0, a = 0;
+      for (let i = 0; i < d.length; i += 4){ const al = d[i + 3]; if (al < 40) continue; s += (.2126 * d[i] + .7152 * d[i + 1] + .0722 * d[i + 2]) * al; a += al; }
+      if (a){ const l = s / a; v = l < 80 ? 'hd' : l > 205 ? 'hl' : ''; }
+    } catch(e){}
+    LUM[key] = v || '-';
+    if (v) $$('[data-lk]').forEach(el => { if (el.dataset.lk === key) el.classList.add(v); });
+  };
+  if (key[0] === 'e') setTimeout(() => { x.font = '26px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(src, 16, 17); done(); }, 0);
+  else { const im = new Image(); im.onload = () => { x.drawImage(im, 0, 0, 32, 32); done(); }; im.onerror = () => lumQ.delete(key); im.src = src; }
 }
 function shrinkIcon(blob){
   return new Promise((res, rej) => {
@@ -3355,6 +3381,7 @@ async function loadPhoto(id){
     }
     PH[id] = data;
     $$(`img.emi[data-ph="${id}"]`).forEach(im => { im.src = data; });
+    lumAsk('p:' + id, data);
     const big = $('#bigPh'); if (big && big.dataset.ph === id) big.src = data;
   } catch(e){}
 }
