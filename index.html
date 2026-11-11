@@ -338,7 +338,7 @@ body.store .citem{font-size:19px}
 .rqty .rx{padding-bottom:9px;color:var(--muted);font-weight:700}
 .rqty .rp{margin-left:auto}
 .rcUp{margin-top:3px;text-align:right}
-.em img.emi{width:100%;height:100%;object-fit:contain;display:block}
+.em img.emi{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 .emrow{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:10px 12px;border-radius:14px;background:var(--card);box-shadow:var(--sh);text-align:left;font-weight:600}
 .emrow .em{width:34px;height:34px;display:grid;place-items:center;font-size:24px;flex:none}
 .emrow span:nth-child(2){flex:1}
@@ -349,7 +349,7 @@ body.store .citem{font-size:19px}
 .emb:active,.emb.on{background:var(--soft)}
 .emb.on{outline:2px solid var(--brand)}
 .acem{width:30px;height:30px;font-size:22px;display:grid;place-items:center;flex:none}
-.acem img.emi{width:100%;height:100%;object-fit:contain}
+.acem img.emi{width:100%;height:100%;object-fit:cover;border-radius:8px}
 .bst{font-size:12px;font-weight:700;color:var(--brand);background:var(--soft);border-radius:999px;padding:1px 8px;white-space:nowrap}
 .bst.here{background:var(--brand);color:var(--brand-ink)}
 .trip .trow{gap:8px}
@@ -455,7 +455,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,v
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.8.0';
+const APP_VERSION = '2.9.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -1072,7 +1072,7 @@ function carnetRow(it){
   const s = it.rayon === 'fl' ? inSeason(it.name) : null;
   const tr = S.trip && S.trip.chain;
   const other = tr && it.st && !sameChain(it.st, S.trip.chain), here = tr && it.st && !other;
-  const em = it.photo ? `<span class="em ph" data-a="photo"><img src="${esc(photoSrc(it.photo))}" alt=""></span>` : `<span class="em">${iconHtml(it.name, it.rayon)}</span>`;
+  const em = photoOf(it.name) ? `<span class="em ph" data-a="photo">${iconHtml(it.name, it.rayon)}</span>` : `<span class="em">${iconHtml(it.name, it.rayon)}</span>`;
   const q = it.qty ? qtyLabel(it) : '×1';
   const bs = !it.st ? bestStore(it) : null;
   const sub = [q ? `<span class="sq">${esc(q)}</span>` : '', it.st ? `<span class="stt">${esc(it.st)}</span>` : '', bs ? `<span class="bst${S.trip && S.trip.chain && sameChain(bs.c, S.trip.chain) ? ' here' : ''}">💡 ${esc(bs.c)} ${eur(bs.v)}</span>` : '', e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : '', it.note ? `<span class="nt">${esc(it.note)}</span>` : ''].filter(Boolean).join('');
@@ -1173,7 +1173,7 @@ function editItem(id){
     <h3>${esc(dn(it))}</h3>
     ${it.brand || it.ns ? `<div class="small muted">${esc(it.brand)} ${it.ns ? `· Nutri-Score <i class="ns ns-${it.ns}" style="vertical-align:middle">${it.ns}</i>` : ''}</div>` : ''}
     <button class="emrow" id="fEmo"><span class="em">${iconHtml(it.name, it.rayon)}</span><span>${t('em_lbl')}</span><span class="muted">›</span></button>
-    <div class="phrow">${it.photo ? `<img class="phm" src="${esc(photoSrc(it.photo))}" alt="">` : ''}<button class="btn sm" id="fPh">📷 ${it.photo ? t('ph_change') : t('ph_take')}</button>${it.photo ? `<button class="btn sm ghost" id="fPhD">${t('ph_del')}</button>` : ''}</div>
+    <div class="phrow">${photoOf(it.name) ? `<img class="phm emi" data-ph="${esc(photoOf(it.name))}" src="${esc(photoSrc(photoOf(it.name)))}" alt="">` : ''}<button class="btn sm" id="fPh">📷 ${photoOf(it.name) ? t('ph_change') : t('ph_take')}</button>${photoOf(it.name) ? `<button class="btn sm ghost" id="fPhD">${t('ph_del')}</button>` : ''}</div>
     <label class="f">${t('e_name')}</label><input id="fName" value="${esc(dn(it))}">
     <div class="grid2"><div><label class="f">${t('e_qty')}</label><input id="fQty" inputmode="decimal" value="${it.qty ?? ''}" placeholder="1"></div><div><label class="f">${t('e_unit')}</label>${unitSelect(it.unit)}</div></div>
     <label class="f">${t('e_ray')}</label>${rayonSelect(it.rayon)}
@@ -1209,7 +1209,7 @@ function editItem(id){
   it._p0 = it.price;
   sh.querySelector('#fPh').onclick = () => pickPhoto(it, () => editItem(it.id));
   sh.querySelector('#fEmo').onclick = () => openEmoPicker(it.name, it.rayon, () => editItem(it.id));
-  const phd = sh.querySelector('#fPhD'); if (phd) phd.onclick = () => { it.photo = null; touch(L, it); save(); renderList(); editItem(it.id); };
+  const phd = sh.querySelector('#fPhD'); if (phd) phd.onclick = () => { emoSet(it.name, null); editItem(it.id); };
   sh.querySelector('#fUrg').onclick = e => { const b = e.currentTarget; const on = b.dataset.on !== '1'; b.dataset.on = on ? '1' : '0'; b.classList.toggle('pri', on); };
   sh.querySelector('#fDel').onclick = () => {
     const idx = L.items.indexOf(it); removeItem(L, it); save(); renderList(); closeSheet();
@@ -2809,18 +2809,24 @@ function emoSet(name, emo){
   const k = canonK(name), now = Date.now();
   learn(name, {emo: emo || null, emoT: now});
   const L = curList();
-  L.items.filter(i => i.k === k).forEach(i => { i.emo = emo || ''; i.emoT = now; touch(L, i); });
+  L.items.filter(i => i.k === k).forEach(i => { i.emo = emo || ''; i.emoT = now; delete i.photo; touch(L, i); });
   pantry().filter(p => p.k === k).forEach(p => { p.emo = emo || ''; p.emoT = now; ptouch(p); });
   save(); renderList(); if ($('#tab-pantry').classList.contains('on')) renderPantry();
 }
 /* L'autre téléphone a changé un pictogramme : le retenir pour ce produit */
 function emoLearn(arr){
   (arr || []).forEach(i => {
+    if (i.photo){ /* ancienne photo attachée à la ligne : elle passe au produit */
+      const c0 = S.catalog[canonK(i.name)];
+      if (!c0 || !c0.emo){ const tt = i.u || Date.now(); learn(i.name, {emo:'ph:' + i.photo, emoT:tt}); i.emo = 'ph:' + i.photo; i.emoT = tt; }
+      delete i.photo;
+    }
     if (typeof i.emo !== 'string' || !i.emoT) return;
     const c = S.catalog[canonK(i.name)];
     if (!c || (c.emoT || 0) < i.emoT){ learn(i.name, {emo: i.emo || null, emoT: i.emoT}); }
   });
 }
+const photoOf = name => { const e = emoChosen(name); return e && e.startsWith('ph:') ? e.slice(3) : null; };
 function emoChosen(name){ const c = S.catalog[canonK(name)]; return c && c.emo ? c.emo : null; }
 /* Pictogramme affiché : choix de l'utilisateur, sinon dictionnaire, sinon rayon */
 function iconHtml(name, rayon){
@@ -3349,7 +3355,6 @@ async function loadPhoto(id){
     }
     PH[id] = data;
     $$(`img.emi[data-ph="${id}"]`).forEach(im => { im.src = data; });
-    $$(`[data-id] .em.ph img`).forEach(im => { const it = curList().items.find(i => i.id === im.closest('[data-id]').dataset.id); if (it && it.photo === id) im.src = data; });
     const big = $('#bigPh'); if (big && big.dataset.ph === id) big.src = data;
   } catch(e){}
 }
@@ -3376,18 +3381,19 @@ function pickPhoto(it, after){
       const data = await shrink(f), id = uid();
       PH[id] = data;
       if ('caches' in window) (await caches.open(PHC)).put('./ph/' + id, new Response(data));
-      const L = curList(); it.photo = id; touch(L, it); save(); renderList();
+      const L = curList();
       if (L.shared && S.settings.sync){ fetch(S.settings.sync, {method:'POST', body:JSON.stringify({room:L.shared.room, photo:{id, data}})}).catch(() => {}); }
+      emoSet(it.name, 'ph:' + id);
       if (after) after();
     } catch(e){ toast(t('ph_err')); }
   };
   inp.click();
 }
 function showPhoto(it){
-  const sh = openSheet(`<h3>${esc(dn(it))}</h3><img id="bigPh" class="bigph" data-ph="${esc(it.photo)}" src="${esc(photoSrc(it.photo))}" alt="">
+  const sh = openSheet(`<h3>${esc(dn(it))}</h3><img id="bigPh" class="bigph" data-ph="${esc(photoOf(it.name) || '')}" src="${esc(photoSrc(photoOf(it.name)))}" alt="">
     <div class="acts"><button class="btn danger" id="bpD">${t('ph_del')}</button><button class="btn" id="bpC">${t('ph_change')}</button></div>`);
   sh.querySelector('#bpC').onclick = () => pickPhoto(it, () => showPhoto(it));
-  sh.querySelector('#bpD').onclick = () => { const L = curList(); it.photo = null; touch(L, it); save(); renderList(); closeSheet(); };
+  sh.querySelector('#bpD').onclick = () => { emoSet(it.name, null); closeSheet(); };
 }
 
 /* ================= Sauvegarde et historique partagés ================= */
@@ -3580,6 +3586,7 @@ renderList();
 handleInvite();
 handleShortcut();
 plan(); migrateShelf2(); expiryNotice(); scheduleExpiry();
+if (curList().items.some(i => i.photo)){ emoLearn(curList().items); save(); renderList(); }
 /* Nutri-Score manquant pour les articles déjà scannés */
 setTimeout(async () => {
   const L = curList(); let ch = false;
