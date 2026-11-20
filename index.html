@@ -446,18 +446,23 @@ input.need{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var
 .cheap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 2px 6px}
 .cheap .chip{padding:5px 11px;font-size:13px}
 /* v2.18 : ligne d'article — nom sur toute la largeur, détails sur une ligne, image plus grande */
-.citem{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"em top stp" "em sub stp";column-gap:10px;row-gap:4px;align-items:center;padding-right:8px}
+.citem{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"em top stp" "em sub stp" "em cst stp";column-gap:10px;row-gap:4px;align-items:center;padding-right:8px}
 .citem .cbd{display:contents}
 .citem .em{grid-area:em;width:72px;height:72px;font-size:46px;border-radius:20px}
 .citem .ctop{grid-area:top;flex-wrap:nowrap;min-width:0;align-self:end}
 .citem .ctop .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1 auto;min-width:0;font-size:17px;letter-spacing:-.01em}
 .citem .ctop>*:not(.nm){flex:none}
-.citem .csub{grid-area:sub;flex-wrap:nowrap;overflow:hidden;min-width:0;align-self:start}
+.citem .csub{grid-area:sub;flex-wrap:nowrap;overflow:hidden;min-width:0;align-self:center}
 .citem .csub>*{flex:none}
 .citem .csub .bst,.citem .csub .stt,.citem .csub .nt{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.citem .cst{grid-area:cst;display:flex;gap:6px;min-width:0;align-self:start}
+.citem .cst>*{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.citem .cst .bst{font-size:12.5px;padding:2px 9px}
 .citem .stp{grid-area:stp;align-self:center;flex-direction:column-reverse;border-radius:16px;margin:0}
 .citem .stp i{width:34px;height:32px}
 .pmain .em{width:70px;height:70px;font-size:44px;border-radius:19px}
+tr.wed{cursor:pointer}
+tr.wed:active td{background:var(--soft)}
 </style>
 </head>
 <body>
@@ -512,7 +517,7 @@ input.need{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.18.0';
+const APP_VERSION = '2.18.1';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -1351,8 +1356,9 @@ function carnetRow(it){
   const em = photoOf(it.name) ? `<span class="em ph" data-a="photo">${iconHtml(it.name, it.rayon)}</span>` : `<span class="em">${iconHtml(it.name, it.rayon)}</span>`;
   const q = it.qty ? qtyLabel(it) : '×1';
   const bs = !it.st ? bestStore(it) : null;
-  const sub = [q ? `<span class="sq">${esc(q)}</span>` : '', e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : '', it.st ? `<span class="stt">${esc(it.st)}</span>` : '', bs ? `<span class="bst${bs.cmp ? '' : ' one'}${S.trip && S.trip.chain && sameChain(bs.c, S.trip.chain) || (cheapF && bs.cmp && bs.c === cheapF) ? ' here' : ''}">${bs.cmp ? '💡 ' + esc(bs.c) + ' ' + bs.lbl : esc(bs.c)}</span>` : '', it.note ? `<span class="nt">${esc(it.note)}</span>` : ''].filter(Boolean).join('');
-  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="cbd"><span class="ctop"><span class="nm">${esc(dn(it))}</span>${/^[a-e]$/.test(it.ns || '') ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}</span>${sub || s === true ? `<span class="csub">${s === true ? '<span class="tg">🍃</span>' : ''}${sub}</span>` : ''}</span><span class="stp"><i data-a="minus">−</i><i data-a="plus">+</i></span></button>`;
+  const sub = [q ? `<span class="sq">${esc(q)}</span>` : '', e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : '', it.note ? `<span class="nt">${esc(it.note)}</span>` : ''].filter(Boolean).join('');
+  const cst = [it.st ? `<span class="stt">${esc(it.st)}</span>` : '', bs ? `<span data-a="bst" class="bst${bs.cmp ? '' : ' one'}${S.trip && S.trip.chain && sameChain(bs.c, S.trip.chain) || (cheapF && bs.cmp && bs.c === cheapF) ? ' here' : ''}">${bs.cmp ? '💡 ' : ''}${esc(bs.c)} ${bs.lbl}</span>` : ''].filter(Boolean).join('');
+  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="cbd"><span class="ctop"><span class="nm">${esc(dn(it))}</span>${/^[a-e]$/.test(it.ns || '') ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}</span>${sub || s === true ? `<span class="csub">${s === true ? '<span class="tg">🍃</span>' : ''}${sub}</span>` : ''}${cst ? `<span class="cst">${cst}</span>` : ''}</span><span class="stp"><i data-a="minus">−</i><i data-a="plus">+</i></span></button>`;
 }
 function openBudget(){
   const L = curList();
@@ -1454,7 +1460,7 @@ function whereBlock(k){
   if (!recs.length) return `<p class="small muted">${t('no_price')}</p>`;
   const byC = {}; recs.forEach(r => { if (!byC[r.c]) byC[r.c] = r; });
   const arr = Object.values(byC).sort((a, b) => a.up - b.up);
-  return `<table><tr><th>${t('th_where')}</th><th style="text-align:right">${t('th_last')}</th><th style="text-align:right">${t('th_unit')}</th></tr>${arr.map((r, i) => `<tr class="${i === 0 && arr.length > 1 ? 'best' : ''}"><td>${esc(stLbl(r.c))}<div class="small muted">${fdate(r.d)}</div></td><td class="n">${eur(r.p)}</td><td class="n">${fmtUnit(r.up, r.uu)}</td></tr>`).join('')}</table>`;
+  return `<table><tr><th>${t('th_where')}</th><th style="text-align:right">${t('th_last')}</th><th style="text-align:right">${t('th_unit')}</th></tr>${arr.map((r, i) => `<tr class="${i === 0 && arr.length > 1 ? 'best' : ''} wed" data-wed="${esc(r.id || '')}"><td>${esc(stLbl(r.c))} <span class="muted">✎</span><div class="small muted">${fdate(r.d)}</div></td><td class="n">${eur(r.p)}</td><td class="n">${fmtUnit(r.up, r.uu)}</td></tr>`).join('')}</table>`;
 }
 function editItem(id){
   const L = curList(); const it = L.items.find(i => i.id === id); if (!it) return;
@@ -1828,7 +1834,7 @@ function openPriceDetail(k){
   const sh = openSheet(`<h3>${esc(name)}</h3>
     <div class="card pad mt">${whereBlock(k)}${spark(rs.filter(r => r.uu === rs[0].uu))}</div>
     <div class="h2">${t('history')}</div>
-    <div class="card pad"><table>${rs.slice(0, 20).map((r, i) => `<tr><td>${fdate(r.d)}<div class="small muted">${esc(stLbl(r.s))}</div></td><td class="n">${eur(r.p)}<div class="small muted">${fmtUnit(r.up, r.uu)}</div></td><td style="width:80px;white-space:nowrap;text-align:right"><button class="ib" data-ped="${i}" style="width:34px;height:34px;color:var(--brand)" aria-label="${t('edit')}">✎</button><button class="ib" data-del="${i}" style="width:34px;height:34px;color:var(--muted)">${ic('trash')}</button></td></tr>`).join('')}</table>
+    <div class="card pad"><table>${rs.slice(0, 20).map((r, i) => `<tr class="wed" data-ped2="${i}"><td>${fdate(r.d)}<div class="small muted">${esc(stLbl(r.s))}</div></td><td class="n">${eur(r.p)}<div class="small muted">${fmtUnit(r.up, r.uu)}</div></td><td style="width:80px;white-space:nowrap;text-align:right"><button class="ib" data-ped="${i}" style="width:34px;height:34px;color:var(--brand)" aria-label="${t('edit')}">✎</button><button class="ib" data-del="${i}" style="width:34px;height:34px;color:var(--muted)">${ic('trash')}</button></td></tr>`).join('')}</table>
     <p class="small muted" style="margin:8px 0 0">${t('pe_hint')}</p></div>
     ${code ? `<div class="h2">${t('community')}</div><div class="card pad" id="opRes2"><button class="btn sm" id="opBtn2">${t('load_op')}</button></div>` : ''}
     <button class="btn full mt" id="pdAl">🔗 ${t('mg_btn')}</button>
@@ -1845,6 +1851,7 @@ function openPriceDetail(k){
     if (recordsOf(k).length) openPriceDetail(k); else closeSheet();
   });
   $$('[data-ped]', sh).forEach(b => b.onclick = () => editPriceRec(rs[+b.dataset.ped]));
+  $$('[data-ped2]', sh).forEach(tr => tr.onclick = e => { if (e.target.closest('[data-del],[data-ped]')) return; editPriceRec(rs[+tr.dataset.ped2]); });
   const ob = sh.querySelector('#opBtn2'); if (ob) ob.onclick = () => openPrices(code, $('#opRes2'));
 }
 function editPriceRec(r){
@@ -3972,6 +3979,7 @@ $('#list').addEventListener('click', e => {
   const r = (S.recent || []).find(x => x.k === b.dataset.readd); if (!r) return;
   addItem('', {name:trName(r.name), qty:r.qty, unit:r.unit, rayon:r.rayon});
 });
+document.addEventListener('click', e => { const tr = e.target.closest('[data-wed]'); if (!tr || !tr.dataset.wed) return; const r = S.prices.find(x => x.id === tr.dataset.wed); if (r) editPriceRec(r); });
 $('#list').onclick = e => {
   const a = e.target.closest('[data-a]'); if (!a) return;
   const act = a.dataset.a;
@@ -3979,6 +3987,7 @@ $('#list').onclick = e => {
   const L = curList(); const id = a.closest('.citem')?.dataset.id; const it = L.items.find(i => i.id === id); if (!it) return;
   if (act === 'plus' || act === 'minus'){ e.stopPropagation(); if (lpFired){ lpFired = false; return; } stepQty(L, it, act === 'plus' ? 1 : -1); return; }
   if (act === 'photo'){ if (lpFired){ lpFired = false; return; } showPhoto(it); return; }
+  if (act === 'bst'){ e.stopPropagation(); if (lpFired){ lpFired = false; return; } openPriceDetail(it.k); return; }
   if (act === 'take'){ S.settings.nTake = (S.settings.nTake || 0) + 1;
     if (lpFired){ lpFired = false; return; }
     if (a.classList.contains('gone')) return;
