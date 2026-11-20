@@ -445,6 +445,19 @@ input.need{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var
 .bst.one{color:var(--muted);background:transparent;border:1px solid var(--line);font-weight:600}
 .cheap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 2px 6px}
 .cheap .chip{padding:5px 11px;font-size:13px}
+/* v2.18 : ligne d'article — nom sur toute la largeur, détails sur une ligne, image plus grande */
+.citem{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"em top stp" "em sub stp";column-gap:10px;row-gap:4px;align-items:center;padding-right:8px}
+.citem .cbd{display:contents}
+.citem .em{grid-area:em;width:72px;height:72px;font-size:46px;border-radius:20px}
+.citem .ctop{grid-area:top;flex-wrap:nowrap;min-width:0;align-self:end}
+.citem .ctop .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1 auto;min-width:0;font-size:17px;letter-spacing:-.01em}
+.citem .ctop>*:not(.nm){flex:none}
+.citem .csub{grid-area:sub;flex-wrap:nowrap;overflow:hidden;min-width:0;align-self:start}
+.citem .csub>*{flex:none}
+.citem .csub .bst,.citem .csub .stt,.citem .csub .nt{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.citem .stp{grid-area:stp;align-self:center;flex-direction:column-reverse;border-radius:16px;margin:0}
+.citem .stp i{width:34px;height:32px}
+.pmain .em{width:70px;height:70px;font-size:44px;border-radius:19px}
 </style>
 </head>
 <body>
@@ -499,7 +512,7 @@ input.need{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script>
 'use strict';
-const APP_VERSION = '2.17.0';
+const APP_VERSION = '2.18.0';
 const KEY = 'cabas.v1';
 
 /* ================= Traductions ================= */
@@ -1338,8 +1351,8 @@ function carnetRow(it){
   const em = photoOf(it.name) ? `<span class="em ph" data-a="photo">${iconHtml(it.name, it.rayon)}</span>` : `<span class="em">${iconHtml(it.name, it.rayon)}</span>`;
   const q = it.qty ? qtyLabel(it) : '×1';
   const bs = !it.st ? bestStore(it) : null;
-  const sub = [q ? `<span class="sq">${esc(q)}</span>` : '', it.st ? `<span class="stt">${esc(it.st)}</span>` : '', bs ? `<span class="bst${bs.cmp ? '' : ' one'}${S.trip && S.trip.chain && sameChain(bs.c, S.trip.chain) || (cheapF && bs.cmp && bs.c === cheapF) ? ' here' : ''}">${bs.cmp ? '💡 ' : ''}${esc(bs.c)} ${bs.lbl}</span>` : '', e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : '', it.note ? `<span class="nt">${esc(it.note)}</span>` : ''].filter(Boolean).join('');
-  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="cbd"><span class="ctop"><span class="nm">${esc(dn(it))}</span>${/^[a-e]$/.test(it.ns || '') ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}${s === true ? `<span class="tg">🍃</span>` : ''}</span>${sub ? `<span class="csub">${sub}</span>` : ''}</span><span class="stp"><i data-a="minus">−</i><i data-a="plus">+</i></span></button>`;
+  const sub = [q ? `<span class="sq">${esc(q)}</span>` : '', e ? `<span class="pz">${e.est ? '~' : ''}${eur(e.v)}</span>` : '', it.st ? `<span class="stt">${esc(it.st)}</span>` : '', bs ? `<span class="bst${bs.cmp ? '' : ' one'}${S.trip && S.trip.chain && sameChain(bs.c, S.trip.chain) || (cheapF && bs.cmp && bs.c === cheapF) ? ' here' : ''}">${bs.cmp ? '💡 ' + esc(bs.c) + ' ' + bs.lbl : esc(bs.c)}</span>` : '', it.note ? `<span class="nt">${esc(it.note)}</span>` : ''].filter(Boolean).join('');
+  return `<button class="citem${it.urg ? ' urg' : ''}${other ? ' other' : ''}${here ? ' here' : ''}${it.id === freshId && !calm() ? ' fresh' : ''}" data-id="${it.id}" data-a="take">${em}<span class="cbd"><span class="ctop"><span class="nm">${esc(dn(it))}</span>${/^[a-e]$/.test(it.ns || '') ? `<i class="ns ns-${it.ns}" title="Nutri-Score ${it.ns.toUpperCase()}">${it.ns}</i>` : ''}${it.urg ? '<span class="zap">⚡</span>' : ''}</span>${sub || s === true ? `<span class="csub">${s === true ? '<span class="tg">🍃</span>' : ''}${sub}</span>` : ''}</span><span class="stp"><i data-a="minus">−</i><i data-a="plus">+</i></span></button>`;
 }
 function openBudget(){
   const L = curList();
